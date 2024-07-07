@@ -1,0 +1,454 @@
+\documentclass[a4paper,onecolumn,oneside,12pt,extrafontsizes]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,polish]{babel}
+\usepackage{setspace}
+\usepackage{color,calc}
+\usepackage{ebgaramond}
+\usepackage{tgtermes}   
+
+\renewcommand*\ttdefault{txtt}
+
+\clubpenalty=10000  
+\widowpenalty=10000 
+\righthyphenmin=3
+
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.35}
+
+\setlength{\headsep}{10pt} 
+\setlength{\headheight}{13.6pt}
+\setlength{\footskip}{\headsep+\headheight}
+\setlength{\uppermargin}{\headheight+\headsep+1cm}
+\setlength{\textheight}{\paperheight-\uppermargin-\footskip-1.5cm}
+\setlength{\textwidth}{\paperwidth-5cm}
+\setlength{\spinemargin}{2.5cm}
+\setlength{\foremargin}{2.5cm}
+\setlength{\marginparsep}{2mm}
+\setlength{\marginparwidth}{2.3mm}
+
+\checkandfixthelayout[fixed]
+
+\linespread{1}
+\setlength{\parindent}{14.5pt}
+
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{listings} 
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd\l@lstlisting{1.5em}{0em}{}{}
+\makeatother
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, 
+  belowskip=.5\baselineskip,
+  literate={\_}{{\_\allowbreak}}1
+}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstdefinelanguage{JavaScript}{ 
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstdefinestyle{JavaScriptStyle}{
+	language=JavaScript,
+	commentstyle=\color{javagreen},
+	backgroundcolor=,
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=none,%left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=t
+}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{dark-grey}{rgb}{0.4,0.4,0.4}
+
+\newcommand\JSONnumbervaluestyle{\color{blue}}
+\newcommand\JSONstringvaluestyle{\color{red}}
+
+\newif\ifcolonfoundonthisline
+
+\makeatletter
+
+\lstdefinestyle{json-style}  
+{
+	showstringspaces    = false,
+	keywords            = {false,true},
+	alsoletter          = 0123456789.,
+	morestring          = [s]{"}{"},
+	stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+	MoreSelectCharTable =%
+	\lst@DefSaveDef{`:}\colon@json{\processColon@json},
+	basicstyle          = \footnotesize\ttfamily,
+	keywordstyle        = \ttfamily\bfseries,
+	numbers				= left, 
+	numberstyle={\footnotesize\ttfamily\color{dark-grey}},
+	xleftmargin			= 2em 
+}
+
+\newcommand\processColon@json{
+	\colon@json
+	\ifnum\lst@mode=\lst@Pmode
+	\global\colonfoundonthislinetrue
+	\fi
+}
+
+\lst@AddToHook{Output}{
+	\ifcolonfoundonthisline
+	\ifnum\lst@mode=\lst@Pmode
+	\def\lst@thestyle{\JSONnumbervaluestyle}
+	\fi
+	\fi
+	\lsthk@DetectKeywords
+}
+
+\lst@AddToHook{EOL}
+{\global\colonfoundonthislinefalse}
+
+\makeatother
+
+\usepackage{memlays} 
+\usepackage{printlen}
+\usepackage{enumitem}
+
+\uselengthunit{pt}
+\makeatletter
+\newcommand{\showFontSize}{\f@size pt} % makro wypisujące wielkość bieżącej czcionki
+\makeatother
+
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=4pt,parsep=0pt,partopsep=4pt,leftmargin=*}
+\setenumerate{labelindent=0pt,itemindent=0pt,leftmargin=!,label=\arabic*.}
+\setlistdepth{4}
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=\normalfont\bfseries\textendash}
+\setlist[itemize,3]{label=$\ast$}
+\setlist[itemize,4]{label=$\cdot$}
+\renewlist{itemize}{itemize}{4}
+
+\makeatletter
+\renewenvironment{quote}{
+	\begin{list}{}
+	{
+	\setlength{\leftmargin}{1em}
+	\setlength{\topsep}{0pt}%
+	\setlength{\partopsep}{0pt}%
+	\setlength{\parskip}{0pt}%
+	\setlength{\parsep}{0pt}%
+	\setlength{\itemsep}{0pt}
+	}
+	}{
+	\end{list}}
+\makeatother
+
+\usepackage[pdftex,bookmarks,breaklinks,unicode]{hyperref}
+\usepackage{hyperxmp}
+\usepackage{ifpdf}
+
+\ifpdf
+ \usepackage{datetime2} 
+ \usepackage[pdftex]{graphicx}
+ \DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png} 
+\pdfcompresslevel=9
+\pdfoutput=1
+
+\makeatletter
+\AtBeginDocument{  
+  \hypersetup{
+	pdfinfo={
+    Title = {\@title},
+    Author = {\@author},
+    Subject={Praca dyplomowa \ifMaster magisterska\else inżynierska\fi},  
+    Keywords={\@kvpl}, 
+		Producer={}, 
+	  CreationDate= {}, 
+    ModDate={\pdfcreationdate},
+		Creator={pdftex},
+	}}
+}
+
+\pdftrailerid{} 
+\pdfsuppressptexinfo15 
+\makeatother
+\else            
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps,.ps,.jpg,.mps,.png}
+\fi
+\sloppy
+
+\def\UrlBreaks{\do\/\do-\do_} 
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\setsecnumdepth{subsection}
+
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\def\numberline#1{\hb@xt@\@tempdima{#1\if&#1&\else.\fi\hfil}}
+\makeatother
+
+\renewcommand{\chapternumberline}[1]{#1.\quad}
+\renewcommand{\cftchapterdotsep}{\cftdotsep}
+
+\makeatletter 
+\renewcommand*{\insertchapterspace}{%
+  \addtocontents{lof}{\protect\addvspace{3pt}}%
+  \addtocontents{lot}{\protect\addvspace{3pt}}%
+	\addtocontents{toc}{\protect\addvspace{3pt}} %
+  \addtocontents{lol}{\protect\addvspace{3pt}}}
+\makeatother 
+
+\setlength{\cftbeforechapterskip}{0pt}
+\renewcommand{\aftertoctitle}{\afterchaptertitle\vspace{-4pt}}
+
+\captionnamefont{\small}
+\captiontitlefont{\small}
+
+\newcommand{\listingcaption}[1]
+{%
+\vspace*{\abovecaptionskip}\small 
+\refstepcounter{lstlisting}\hfill%
+Listing \thelstlisting: #1\hfill%\hfill%
+\addcontentsline{lol}{lstlisting}{\protect\numberline{\thelstlisting}#1}
+}%
+
+\newcommand{\eng}[1]{(ang.~\emph{#1})}
+\newcommand*{\captionsource}[2]{%
+  \caption[{#1}]{%
+    #1 \emph{Źródło:} #2%
+  }%
+}
+
+\addto\captionspolish{
+\renewcommand{\tablename}{Tab.}
+}
+
+\addto\captionspolish{
+\renewcommand{\figurename}{Rys.}
+}
+
+\addto\captionspolish{
+\renewcommand{\lstlistlistingname}{Spis listingów}
+}
+
+\addto\captionspolish{
+\renewcommand{\bibname}{Literatura}
+}
+
+\addto\captionspolish{
+\renewcommand{\listfigurename}{Spis rysunków}
+}
+
+\addto\captionspolish{
+\renewcommand{\listtablename}{Spis tabel}
+}
+
+\addto\captionspolish{
+\renewcommand\indexname{Indeks rzeczowy}
+}
+
+\renewcommand{\abstractnamefont}{\normalfont\Large\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont}
+
+\addtopsmarks{headings}{
+    \nouppercaseheads
+}{
+\createmark{chapter}{both}{shownumber}{}{. \space}
+\createmark{section}{right}{shownumber}{}{. \space}
+}
+
+\makeatletter
+\copypagestyle{outer}{headings}
+\makeoddhead{outer}{}{}{\small\itshape\rightmark}
+\makeevenhead{outer}{\small\itshape\leftmark}{}{}
+\makeoddfoot{outer}{\small\@author:~\@titleShort}{}{\small\thepage}
+\makeevenfoot{outer}{\small\thepage}{}{\small\@author:~\@title}
+\makeheadrule{outer}{\linewidth}{\normalrulethickness}
+\makefootrule{outer}{\linewidth}{\normalrulethickness}{2pt}
+\makeatother
+
+\copypagestyle{plain}{headings} 
+\makeoddhead{plain}{}{}{}
+\makeevenhead{plain}{}{}{} 
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+
+\copypagestyle{empty}{headings}
+\makeoddhead{empty}{}{}{} 
+\makeevenhead{empty}{}{}{}
+\makeevenfoot{empty}{}{}{}
+\makeoddfoot{empty}{}{}{}
+
+\newif\ifMaster
+
+\makeatletter
+%Uczelnia
+\newcommand\uczelnia[1]{\renewcommand\@uczelnia{#1}}
+\newcommand\@uczelnia{}
+%Wydział
+\newcommand\wydzial[1]{\renewcommand\@wydzial{#1}}
+\newcommand\@wydzial{}
+%Kierunek
+\newcommand\kierunek[1]{\renewcommand\@kierunek{#1}}
+\newcommand\@kierunek{}
+%Specjalność
+\newcommand\specjalnosc[1]{\renewcommand\@specjalnosc{#1}}
+\newcommand\@specjalnosc{}
+%Tytuł po angielsku
+\newcommand\titleEN[1]{\renewcommand\@titleEN{#1}}
+\newcommand\@titleEN{}
+%Tytuł krótki
+\newcommand\titleShort[1]{\renewcommand\@titleShort{#1}}
+\newcommand\@titleShort{}
+%Promotor
+\newcommand\promotor[1]{\renewcommand\@promotor{#1}}
+\newcommand\@promotor{}
+%Słowa kluczowe
+\newcommand\kvpl[1]{\renewcommand\@kvpl{#1}}
+\newcommand\@kvpl{}
+\newcommand\kven[1]{\renewcommand\@kven{#1}}
+\newcommand\@kven{}
+%Komenda wykorzystywana w streszczeniu
+\newcommand\mykeywords{\hspace{\absleftindent}%
+\parbox{\linewidth-2.0\absleftindent}{
+       \iflanguage{polish}{\textbf{Słowa kluczowe:} \@kvpl}{%
+			 \iflanguage{english}{\textbf{Keywords:} \@kven}}{}}
+				}
+
+\def\maketitle{
+  \pagestyle{empty}
+    \fontfamily{\ebgaramond@family}\selectfont 
+
+\newlength{\tmpfboxrule}
+\setlength{\tmpfboxrule}{\fboxrule}
+\setlength{\fboxsep}{2mm}
+\setlength{\fboxrule}{0mm} 
+
+\setlength{\unitlength}{1mm}
+\begin{picture}(0,0)
+
+\put(20,-124){\fbox{
+\parbox[c][71mm][c]{104mm}{\centering
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@title}\\[5mm]
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@titleEN}\\[10mm]
+{\fontsize{16pt}{18pt}\selectfont \@author}}
+}
+}
+\end{picture}
+\setlength{\fboxrule}{\tmpfboxrule} 
+{\vskip 9pt\centering
+		{\fontsize{20pt}{22pt}\bfseries\selectfont \@uczelnia}\\[5pt]
+		{\fontsize{16pt}{18pt}\bfseries\selectfont \@wydzial}\\[1pt]
+		  \hrule
+	}
+{\vskip 24pt\raggedright\fontsize{14pt}{16pt}\selectfont%
+\begin{tabular}{@{}ll}
+Kierunek: & {\bfseries \@kierunek}\\
+Specjalność: & {\bfseries \@specjalnosc}\\
+\end{tabular}\\[1.3cm]
+}
+{\vskip 29pt\centering{\fontsize{24pt}{26pt}\selectfont%
+{\fontsize{26pt}{28pt}\selectfont P}RACA {\fontsize{26pt}{24pt}\selectfont D}YPLOMOWA\\[7pt]
+\ifMaster \selectfont{\fontsize{26pt}{28pt}\selectfont M}AGISTERSKA\\[2.5cm]%
+\else \selectfont{\fontsize{26pt}{28pt}\selectfont I}NŻYNIERSKA\\[2.5cm]\fi
+}}
+	\vfill
+{\centering
+    {\fontsize{14pt}{16pt}\selectfont Opiekun pracy}\\[2mm] 
+	{\fontsize{14pt}{16pt}\bfseries\selectfont \@promotor}\\[10mm]
+}
+\vspace{4cm}\noindent
+{\fontsize{12pt}{14pt}\selectfont Słowa kluczowe: \@kvpl}
+\vspace{1.3cm}
+\hrule\vspace*{0.3cm}
+{\centering
+{\fontsize{14pt}{16pt}\selectfont \@date}\\[0cm]
+}
+\normalfont
+ \cleardoublepage
+}
+\makeatother
+
+\title{Aplikacja webowa do optymalizacji zleceń w transporcie towarów} % INFO: tytuł pracy w języku polskim 
+\titleShort{Aplikacja webowa do optymalizacji zleceń w transporcie towarów}  % INFO: krótki tytuł pracy (do zamieszczenia w stopce, sklejony z imieniem i nazwiskiem autora nie powinien zająć więcej niż jedną linijkę)
+\titleEN{Web application for optimizing orders in the transport of goods} % INFO: tytuł pracy w języku angielskim
+\author{Krystian Tomczyk}  % INFO: imię i nazwisko autora
+\uczelnia{Politechnika Wrocławska} % INFO: nazwa uczelni
+\wydzial{Wydział Informatyki i Telekomunikacji} % INFO: nazwa wydziału
+\kierunek{Informatyka techniczna (ITE)} % IFO: nazwa kierunku
+\specjalnosc{Inżynieria systemów informatycznych (INS)} % INFO: nazwa specjalności
+\promotor{dr. inż. Paweł Rogaliński} % INFO: dane promotora 
+\kvpl{aplikacja, transport, web} % INFO: słowa kluczowe po polsku
+\kven{application, transport, web} % INFO: słowa kluczowe po angielsku
+\date{WROCŁAW, 2024} % INFO: miejscowość, rok złożenia pracy dyplomowej
+
+\begin{document}
+
+\pdfbookmark[0]{Tytuł}{Tytul.1}
+\maketitle
+
+\include{streszczenie}
+\pagestyle{outer}
+\clearpage
+
+\pdfbookmark[0]{Spis treści}{spisTresci.1}
+\tableofcontents* 
+\clearpage
+
+\pdfbookmark[0]{Spis rysunków}{spisRysunkow.1}
+\listoffigures*
+\clearpage
+
+\pdfbookmark[0]{Spis tabel}{spisTabel.1}
+\listoftables*
+\clearpage
+
+\pdfbookmark[0]{Spis listingów}{spisListingow.1}
+\lstlistoflistings*
+\clearpage
+
+\chapterstyle{default}
+\include{rozdzial01}
+
+\bibliographystyle{plabbrv}
+\setlength{\bibitemsep}{2pt}
+\addtocontents{toc}{\addvspace{2pt}}
+\bibliography{bibliografia}
+\appendix
+
+\include{instrukcja}
+
+\end{document}
