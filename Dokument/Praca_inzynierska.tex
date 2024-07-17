@@ -86,6 +86,7 @@
 	numbersep=9pt,
 	tabsize=2,
 	breaklines=true,
+	breakatwhitespace=true,
 	showtabs=false,
 	captionpos=t
 }
@@ -246,9 +247,9 @@ Listing \thelstlisting: #1\hfill%\hfill%
 }%
 
 \newcommand{\eng}[1]{(ang.~\emph{#1})}
-\newcommand*{\captionsource}[2]{%
-  \caption[{#1}]{%
-    #1 \emph{Źródło:} #2%
+\newcommand*{\captionsource}[2]{
+  \caption[{#1}]{
+    #1 \emph{Źródło:} #2
   }%
 }
 
