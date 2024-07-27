@@ -5,13 +5,13 @@
 \usepackage{setspace}
 \usepackage{color,calc}
 \usepackage{ebgaramond}
-\usepackage{tgtermes}   
+\usepackage{tgtermes}
 \usepackage{float}
 
 \renewcommand*\ttdefault{txtt}
 
-\clubpenalty=10000  
-\widowpenalty=10000 
+\clubpenalty=10000
+\widowpenalty=10000
 \righthyphenmin=3
 
 \renewcommand{\topfraction}{0.95}
@@ -19,7 +19,7 @@
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\floatpagefraction}{0.35}
 
-\setlength{\headsep}{10pt} 
+\setlength{\headsep}{10pt}
 \setlength{\headheight}{13.6pt}
 \setlength{\footskip}{\headsep+\headheight}
 \setlength{\uppermargin}{\headheight+\headsep+1cm}
@@ -37,7 +37,7 @@
 
 \usepackage{multicol}
 \usepackage{tabularx}
-\usepackage{listings} 
+\usepackage{listings}
 \usepackage{xpatch}
 \makeatletter
 \xpatchcmd\l@lstlisting{1.5em}{0em}{}{}
@@ -46,7 +46,7 @@
 \lstset{
   basicstyle=\small\ttfamily,
   breaklines=true,
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, 
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
   belowskip=.5\baselineskip,
   literate={\_}{{\_\allowbreak}}1
 }
@@ -59,7 +59,7 @@
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
-\lstdefinelanguage{JavaScript}{ 
+\lstdefinelanguage{JavaScript}{
 	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
 	keywordstyle=\color{blue}\bfseries,
 	ndkeywords={class, export, boolean, throw, implements, import, this},
@@ -105,7 +105,7 @@
 
 \makeatletter
 
-\lstdefinestyle{json-style}  
+\lstdefinestyle{json-style}
 {
 	showstringspaces    = false,
 	keywords            = {false,true},
@@ -116,9 +116,9 @@
 	\lst@DefSaveDef{`:}\colon@json{\processColon@json},
 	basicstyle          = \footnotesize\ttfamily,
 	keywordstyle        = \ttfamily\bfseries,
-	numbers				= left, 
+	numbers				= left,
 	numberstyle={\footnotesize\ttfamily\color{dark-grey}},
-	xleftmargin			= 2em 
+	xleftmargin			= 2em
 }
 
 \newcommand\processColon@json{
@@ -142,7 +142,7 @@
 
 \makeatother
 
-\usepackage{memlays} 
+\usepackage{memlays}
 \usepackage{printlen}
 \usepackage{enumitem}
 
@@ -181,37 +181,37 @@
 \usepackage{ifpdf}
 
 \ifpdf
- \usepackage{datetime2} 
+ \usepackage{datetime2}
  \usepackage[pdftex]{graphicx}
- \DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png} 
+ \DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png}
 \pdfcompresslevel=9
 \pdfoutput=1
 
 \makeatletter
-\AtBeginDocument{  
+\AtBeginDocument{
   \hypersetup{
 	pdfinfo={
     Title = {\@title},
     Author = {\@author},
-    Subject={Praca dyplomowa \ifMaster magisterska\else inżynierska\fi},  
-    Keywords={\@kvpl}, 
-		Producer={}, 
-	  CreationDate= {}, 
+    Subject={Praca dyplomowa \ifMaster magisterska\else inżynierska\fi},
+    Keywords={\@kvpl},
+		Producer={},
+	  CreationDate= {},
     ModDate={\pdfcreationdate},
 		Creator={pdftex},
 	}}
 }
 
-\pdftrailerid{} 
-\pdfsuppressptexinfo15 
+\pdftrailerid{}
+\pdfsuppressptexinfo15
 \makeatother
-\else            
+\else
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.eps,.ps,.jpg,.mps,.png}
 \fi
 \sloppy
 
-\def\UrlBreaks{\do\/\do-\do_} 
+\def\UrlBreaks{\do\/\do-\do_}
 
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
@@ -225,13 +225,13 @@
 \renewcommand{\chapternumberline}[1]{#1.\quad}
 \renewcommand{\cftchapterdotsep}{\cftdotsep}
 
-\makeatletter 
+\makeatletter
 \renewcommand*{\insertchapterspace}{%
   \addtocontents{lof}{\protect\addvspace{3pt}}%
   \addtocontents{lot}{\protect\addvspace{3pt}}%
 	\addtocontents{toc}{\protect\addvspace{3pt}} %
   \addtocontents{lol}{\protect\addvspace{3pt}}}
-\makeatother 
+\makeatother
 
 \setlength{\cftbeforechapterskip}{0pt}
 \renewcommand{\aftertoctitle}{\afterchaptertitle\vspace{-4pt}}
@@ -241,7 +241,7 @@
 
 \newcommand{\listingcaption}[1]
 {%
-\vspace*{\abovecaptionskip}\small 
+\vspace*{\abovecaptionskip}\small
 \refstepcounter{lstlisting}\hfill%
 Listing \thelstlisting: #1\hfill%\hfill%
 \addcontentsline{lol}{lstlisting}{\protect\numberline{\thelstlisting}#1}
@@ -302,14 +302,14 @@ Listing \thelstlisting: #1\hfill%\hfill%
 \makefootrule{outer}{\linewidth}{\normalrulethickness}{2pt}
 \makeatother
 
-\copypagestyle{plain}{headings} 
+\copypagestyle{plain}{headings}
 \makeoddhead{plain}{}{}{}
-\makeevenhead{plain}{}{}{} 
+\makeevenhead{plain}{}{}{}
 \makeevenfoot{plain}{}{}{}
 \makeoddfoot{plain}{}{}{}
 
 \copypagestyle{empty}{headings}
-\makeoddhead{empty}{}{}{} 
+\makeoddhead{empty}{}{}{}
 \makeevenhead{empty}{}{}{}
 \makeevenfoot{empty}{}{}{}
 \makeoddfoot{empty}{}{}{}
@@ -352,12 +352,12 @@ Listing \thelstlisting: #1\hfill%\hfill%
 
 \def\maketitle{
   \pagestyle{empty}
-    \fontfamily{\ebgaramond@family}\selectfont 
+    \fontfamily{\ebgaramond@family}\selectfont
 
 \newlength{\tmpfboxrule}
 \setlength{\tmpfboxrule}{\fboxrule}
 \setlength{\fboxsep}{2mm}
-\setlength{\fboxrule}{0mm} 
+\setlength{\fboxrule}{0mm}
 
 \setlength{\unitlength}{1mm}
 \begin{picture}(0,0)
@@ -370,7 +370,7 @@ Listing \thelstlisting: #1\hfill%\hfill%
 }
 }
 \end{picture}
-\setlength{\fboxrule}{\tmpfboxrule} 
+\setlength{\fboxrule}{\tmpfboxrule}
 {\vskip 9pt\centering
 		{\fontsize{20pt}{22pt}\bfseries\selectfont \@uczelnia}\\[5pt]
 		{\fontsize{16pt}{18pt}\bfseries\selectfont \@wydzial}\\[1pt]
@@ -389,7 +389,7 @@ Specjalność: & {\bfseries \@specjalnosc}\\
 }}
 	\vfill
 {\centering
-    {\fontsize{14pt}{16pt}\selectfont Opiekun pracy}\\[2mm] 
+    {\fontsize{14pt}{16pt}\selectfont Opiekun pracy}\\[2mm]
 	{\fontsize{14pt}{16pt}\bfseries\selectfont \@promotor}\\[10mm]
 }
 \vspace{4cm}\noindent
@@ -404,7 +404,7 @@ Specjalność: & {\bfseries \@specjalnosc}\\
 }
 \makeatother
 
-\title{Aplikacja webowa do optymalizacji zleceń w transporcie towarów} % INFO: tytuł pracy w języku polskim 
+\title{Aplikacja webowa do optymalizacji zleceń w transporcie towarów} % INFO: tytuł pracy w języku polskim
 \titleShort{Aplikacja webowa do optymalizacji zleceń w transporcie towarów}  % INFO: krótki tytuł pracy (do zamieszczenia w stopce, sklejony z imieniem i nazwiskiem autora nie powinien zająć więcej niż jedną linijkę)
 \titleEN{Web application for optimizing orders in the transport of goods} % INFO: tytuł pracy w języku angielskim
 \author{Krystian Tomczyk}  % INFO: imię i nazwisko autora
@@ -412,7 +412,7 @@ Specjalność: & {\bfseries \@specjalnosc}\\
 \wydzial{Wydział Informatyki i Telekomunikacji} % INFO: nazwa wydziału
 \kierunek{Informatyka techniczna (ITE)} % IFO: nazwa kierunku
 \specjalnosc{Inżynieria systemów informatycznych (INS)} % INFO: nazwa specjalności
-\promotor{dr. inż. Paweł Rogaliński} % INFO: dane promotora 
+\promotor{dr. inż. Paweł Rogaliński} % INFO: dane promotora
 \kvpl{aplikacja, transport, web} % INFO: słowa kluczowe po polsku
 \kven{application, transport, web} % INFO: słowa kluczowe po angielsku
 \date{WROCŁAW, 2024} % INFO: miejscowość, rok złożenia pracy dyplomowej
@@ -427,7 +427,7 @@ Specjalność: & {\bfseries \@specjalnosc}\\
 \clearpage
 
 \pdfbookmark[0]{Spis treści}{spisTresci.1}
-\tableofcontents* 
+\tableofcontents*
 \clearpage
 
 \pdfbookmark[0]{Spis rysunków}{spisRysunkow.1}
