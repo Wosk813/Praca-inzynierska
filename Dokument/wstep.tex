@@ -7,50 +7,48 @@ Transport towarów odgrywa kluczową rolę w globalnej gospodarce, łącząc pro
 Transport regularny, inaczej łańcuch dostaw, to przewóz towarów, który odbywa się według ustalonego harmonogramu i stałych tras. Charakteryzuje się regularnością kursów, co oznacza, że pojazdy wykonują swoje trasy w określonych, z góry ustalonych terminach. Przykładami transportu regularnego są linie autobusowe, kolejowe czy lotnicze, które działają według stałego rozkładu jazdy.
 
 \label{sec:transport_okazjonalny}
-Transport okazjonalny to przewóz towarów, który nie spełnia definicji przewozu regularnego. Oznacza to, że odbywa się on bez ustalonego z góry rozkładu jazdy. Pojazdy wykonują swoje trasy w zależności od zapotrzebowania klientów, najczęściej jest to usługa jednorazowa. Sam przewóz zaś zlecany jest na potrzebę klienta, nie musi on jednak określnać dokładnego terminu odbycia trasy, ani przez kogo ma on być zrealizowany.
+Transport okazjonalny to przewóz towarów, który odbywa się bez ustalonego z góry rozkładu jazdy. Pojazdy wykonują swoje trasy w zależności od zapotrzebowania klientów, najczęściej jest to usługa jednorazowa. Sam przewóz zaś zlecany jest na potrzebę klienta, nie musi on jednak określnać dokładnego terminu odbycia trasy, ani przez kogo ma on być zrealizowany.
 
-Podczas swoich tras przewoźnicy czasami są zmuszeni do przebycia części drogi bez żadnego załadunku. Powoduje to, że trasy nie są w pełni zoptymalizowane względem kosztów, jakie niesie za sobą pokonywana trasa. Możliwe jest jednak zredukowanie występowania takich sytuacji poprzez odpowiednie powiązanie przewoźników i osób zlecających transport. Zleceniodawca, który nie potrzebuje dostawy towaru w konkretnej dacie, mógłby wtedy zlecić transport z nieokreślonym dokładnie terminem dotarcia towaru, w zamian za niższe ceny przewozowe. Przykład: dyrektor szkoły, w czasie wakacji, zamówił dużych rozmiarów tablicę interaktywną, która nie zmieściłaby się w standardowym samochodzie osobowym. Z racji, że zamówienie zostało złożone w czasie, gdy dzieci nie chodzą do szkoły, nie zależy mu na dokładnym terminie dostawy. Może on w takim przypadku zlecić dostawę tablicy w formie transportu okazjonalnego, z mniejszymi kosztami transportu. Przewoźnik mógłby zabrać towar i zawieźć go na miejsce docelowe, gdy akurat odbywałby trasę bez załadunku i kierował się w tym przybliżonym kierunku. Taka sytuacja jest korzystna dla obu stron, przewoźnik może odbywać trase bardziej efektywnie, dzięki nie marnowaniu zasobów na puste przebiegi. Zleceniodawca natomiast, generują mniejsze koszty, związane z brakiem konieczności korzystania z droższych określonych terminowo usług transpotowych.
+Podczas swoich tras przewoźnicy czasami są zmuszeni do przebycia części drogi bez żadnego załadunku. Powoduje to, że trasy nie są w pełni zoptymalizowane względem kosztów, jakie niesie za sobą pokonywana trasa. Możliwe jest jednak zredukowanie występowania takich sytuacji poprzez odpowiednie powiązanie przewoźników i osób zlecających transport okazjonalny. Zleceniodawca, który nie potrzebuje dostawy towaru w konkretnej dacie, mógłby wtedy zlecić transport z nieokreślonym dokładnie terminem dotarcia towaru, w zamian za niższe ceny przewozowe. Przykład: dyrektor szkoły, w czasie wakacji, zamówił dużych rozmiarów tablicę interaktywną, która nie zmieściłaby się w standardowym samochodzie osobowym. Z racji, że zamówienie zostało złożone w czasie, gdy dzieci nie chodzą do szkoły, nie zależy mu na dokładnym terminie dostawy. Może on w takim przypadku zlecić dostawę tablicy w formie transportu okazjonalnego, z mniejszymi kosztami transportu. Przewoźnik mógłby zabrać towar i zawieźć go na miejsce docelowe, gdy akurat wykonywałby trasę bez ładunku i kierował się w przybliżonym kierunku. Taka sytuacja jest korzystna dla obu stron, przewoźnik może odbywać trase bardziej efektywnie, dzięki nie marnowaniu zasobów na puste przebiegi. Zleceniodawca natomiast, generują mniejsze koszty, związane z brakiem konieczności korzystania z droższych określonych terminowo usług transpotowych.
 
-Połączenie między osobami zlecającymi usługi transportowe - zleceniodawcami, a osobami oferującymi przewóz towaru - przewoźnikami, może odbywać się za pomocą serwisu oferującego dodawanie publicznych ogłoszeń. Ogłoszenia dzielić się będą na dwie kategorie, ogłoszenie z planowaną trasą oraz zlecenie z wymaganym towarem do przewiezienia do punktu docelowego.
+Połączenie między osobami zlecającymi usługi transportowe - zleceniodawcami, a osobami oferującymi przewóz towaru - przewoźnikami, może odbywać się za pomocą serwisu oferującego dodawanie publicznych ogłoszeń. Ogłoszenia dzielić się będą na dwie kategorie, ogłoszenie z planowaną trasą przejazdu oraz zlecenie z wymaganym towarem do przewiezienia z punktu początkowego do punktu docelowego.
 
-\label{sec:cele}
 \section{Cel projektu}
+\label{sec:cele}
 Celem projektu jest stworzenie aplikacji webowej, pod tytułem \texttt{CargoLink}. Serwis ten pozwalać będzie na dodawanie ogłoszeń oraz zleceń dotyczących transportów okazjonalnych. Aplikacja przyczni się do zoptymalizowania procesów logistycznych, eliminując nieefektywne wykorzystanie zasobów transportowych. Dodatkowo pozwoli ona przewoźnikom i zleceniodawcom, na łatwą i szybką komunikacje między sobą.
 Główne cele projektu:
 \begin{enumerate}
-    \item \textbf{Możliwość umieszczania ogłoszeń i zleceń}, aplikacja pozwalać ma na dodawanie ogłoszeń o trasach, planowanych przez przewoźników oraz zleceń transportowych na konkretny towar przez zleceniodawców
-    \item \textbf{Ułatwienie szukania odpowiednich ogłoszeń i zleceń}, poprzez system powiązania zleceń transportowych do planowanych tras przewoźników oraz ogłoszeń o planowanej trasie do zleceń zamieszczonych w serwisie, aplikacja skróci czas potrzebny na znalezienie odpowiednich ofert.
-    \item \textbf{Komunikacja między przewoźnikami i zleceniodawcami}, aplikacja umożliwi szybką komunikację między użytkownikami serwisu poprzez czat tekstowy.
-    \item \textbf{Redukcja kosztów transportu}, dzięki lepszemu dopasowaniu potencjalnych przewoźników i zleceniodawców, aplikacja pozwoli na obniżenie kosztów transportu zarówno dla zleceniodawców, jak i przewoźników.
+    \item Możliwość umieszczania ogłoszeń i zleceń, aplikacja pozwalać ma na dodawanie ogłoszeń o trasach przejazdu, planowanych przez przewoźników oraz zleceń transportowych na konkretny towar przez zleceniodawców
+    \item Ułatwienie szukania odpowiednich ogłoszeń i zleceń, poprzez system powiązania zleceń transportowych do planowanych tras przewoźników oraz ogłoszeń o planowanej trasie do zleceń zamieszczonych w serwisie, aplikacja skróci czas potrzebny na znalezienie odpowiednich ofert.
+    \item Komunikacja między przewoźnikami i zleceniodawcami, aplikacja umożliwi szybką komunikację między użytkownikami serwisu poprzez czat tekstowy.
+    \item Redukcja kosztów transportu, dzięki lepszemu dopasowaniu potencjalnych przewoźników i zleceniodawców, aplikacja pozwoli na obniżenie kosztów transportu zarówno dla zleceniodawców, jak i przewoźników.
 \end{enumerate}
-Nowoczesna aplikacja transportowa przyczyni się do efektywnego zrealizowania tych celów, co wspomoże rynek zleceń transportowych, przynosząc korzyści zarówno dla zleceniodawców, jak i przewoźników.
+Nowoczesna aplikacja transportowa powinna przyczynić się do efektywnego zrealizowania tych celów, co wspomoże rynek zleceń transportowych, przynosząc korzyści zarówno dla zleceniodawców, jak i przewoźników.
 
 \section{Wymagania aplikacji}
-Analizując cele wymienione w podrozdziale \hyperref[sec:cele]{Cel projektu} oraz opis samej aplikacji, można wywnioskować, że do efektywnego działania serwisu, będą musiały zostać zrealizowane następujące wymagania funkcjonalne:
+Analizując cele wymienione w podrozdziale Cel projektu (\ref{sec:cele}) oraz opis samej aplikacji, można wywnioskować, że do efektywnego działania serwisu, będą musiały zostać zrealizowane następujące wymagania funkcjonalne:
 \begin{enumerate}
     \item Uwierzytelnianie: aplikacja będzie wykorzystywała system rejestracji oraz logowania.
     \item Dodawanie zleceń transportowych: zleceniodawcy powinni mieć możliwość zlecenia przewozu towaru, serwis pomagał będzie znaleźć odpowiedniego przewoźnika, poprzez udostępnienie możliwości dodania ogłoszenia zlecenia. W ogłoszeniu zlecenia znajdować się będzie:
     \begin{itemize}
-        \item wymagana trasa (miejsce startu oraz miejsce docelowe),
+        \item opis zlecenia (niewymagane),
+        \item wymagana trasa przewozu (miejsce startu oraz miejsce docelowe),
         \item termin dostarczenia (przedział dat),
         \item waga towarów do przewiezenia,
         \item wymiary przewożonych dóbr,
         \item kategoria każdego z towarów,
-        \item informacja o specjalnych warunków podczas transportu (niewymagane),
+        \item informacja o wymaganych specjalnych warunkach podczas transportu (np. jedzenie wymagać będzie przewozu w odpowiedniej temperaturze, pole niewymagane),
         \item wynagrodzenie (z zaznaczeniem czy kwota podlega negocjacji),
-        \item imienia i nazwiska zleceniodawcy bądź nazwy firmy, która przewoźnik reprezentuje,
-        \item ocena zleceniodawcy, wraz z komentarzami,
-        \item opis zlecenia (niewymagane),
+        \item imienia i nazwiska zleceniodawcy bądź nazwy firmy, która zleceniodawca reprezentuje,
     \end{itemize}
     \item Dodawanie ogłoszeń o planowanej trasie: system powinien pozwalać przewoźnikom, na dodawanie publicznych informacji o planowanych przez siebie trasach. Ogłoszenie będzie składało się z:
     \begin{itemize}
-        \item planowanej trasy (miejsce startu oraz miejsce docelowe),
+        \item planowanej trasy przewozu (miejsce startu oraz miejsce docelowe),
         \item daty planowanej trasy,
         \item dostępnego miejsca w pojeździe (wymiary liczone w europaletach),
         \item maksymalnej wagi towaru,
         \item danych kontaktowych,
         \item imienia i nazwiska przewoźnika bądź nazwy firmy, która przewoźnik reprezentuje,
-        \item oceny przewoźnika, wraz z komentarzami,
         \item opisu ogłoszenia (niewymagane),
     \end{itemize}
     \item System rekomendacji ogłoszeń: podczas wprowadzania danych o trasie, użytkownik będzie informowany o sugerowanych zleceniach dodanych przez innych użytkowników (np. gdy zlecenie dotyczy trasy, która przewoźnik planuje się poruszać). Analogicznie gdy zleceniodawca zamierza dodać ogłoszenie zlecenia, zostanie on poimformowany o proponowanych ogłoszeniach przewoźników.
@@ -58,6 +56,7 @@ Analizując cele wymienione w podrozdziale \hyperref[sec:cele]{Cel projektu} ora
     \item Generowanie umowy: przewoźnik i zleceniodawca, po negocjacji warunków umowy, otrzymają wygenerowany przez serwis dokument finalizujący transakcje.
     \item Weryfikacja dodawanych ogłoszeń: zanim ogłoszenie wyświetlać się będzie dla wszystkich użytkowników, wymagana będzie akceptacja jednego z moderatorów serwisu.
     \item Graficzne przedstawienie trasy: w ogłoszeniach dodanych przez użytkowników, wyświetlana będzie mapa z zaznaczoną trasą. Ułatwi to użytkownikom zobrazowanie planowanego kursu.
+    \item System ocen użytkownika: użytkownicy będą mogli dodać opinie na temat wybranego użytkownika, składającą się z oceny w skali 1-5 oraz komentarza. Opinie będą wyświetlały się na stronie porfilu tego użytkownika oraz dodanych przez niego ogłoszeń.
     \item Regulanim: podczas rejestrowania się do serwisu, użytkownik musi zaakceptować regulamin korzystania z aplikacji. 
 \end{enumerate}
 Aplikacja powinna być niezawodna i przyjazna do użytkowania dla wszystkich. Do komfortowego korzystania z serwisu przez użytkowników, niezbędna będzie realizacja następujących wymagań niefunkcjonalnych
