@@ -1,23 +1,17 @@
-\chapter{Projekt systemu}
-W tym rozdziale zostanie opisany projekt systemu oraz przedstawiona analiza wymagań pod kątem przypadków użycia. Następnie każdy przypadek użycia zostanie omówiony, a jego działanie zilustrowane za pomocą makiet aplikacji. Pierwszym podpunktem będzie identyfikacja aktorów.
+\chapter{Projekt systemu CargoLink}
+W tym rozdziale zostanie opisany projekt systemu, analiza wymagań pod kątem przypadków użycia oraz projekt bazy danych. Każdy przypadek użycia zostanie omówiony, a jego działanie zilustrowane za pomocą makiet aplikacji. Przygotowana została makieta aplikacji w wersji na telefony komórkowe oraz wersja na standardowe monitory. Pierwszym podpunktem w nowym rozdziale będzie identyfikacja aktorów. Jest to kluczowy element w projektowaniu diagramu przypadków użycia aplikacji.
 
 \section{Identyfikacja aktorów}
-Biorąc pod uwagę założenia opisane w poprzednich podrozdziałach, zaprojektowany został diagram przypadków użycia aplikacji. Idnetyfikacja aktorów:
+Biorąc pod uwagę wymagania opisane w poprzednich podrozdziałach, zaprojektowany został diagram przypadków użycia aplikacji. W systmie wyróżnić można następujących aktorów:
 \begin{enumerate}
-\item Użytkownik - ogólny użytkownik systemu. Reprezentuje dowolną osobę korzystającą z serwisu, jego przypadki użycia będą dziedziczone przez pozostałych aktorów systemu.
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=0.6\linewidth]{rozdzial1/dziedziczenie.png}
-	\caption{Graficzne ukazanie dziedziczenia możliwości aktorów}
-	\label{Rys. fig:Graficzne ukazanie dziedziczenia możliwości aktorów}
-\end{figure}
-\item Przewoźnik - aktor odpowiedzialny za transport towarów. Może przeglądać dostępne zlecenia, dodawać ogłoszenia o planowanych trasach, komunikować się z autorami ogłoszeń, przyjmować zlecenia oraz oceniać i komentować kontrahentów.
-\item Zleceniodawca - użytkownik systemu, który zleca transport towarów. Może dodawać nowe zlecenia transportowe, podobnie jak przewoźnik, może również przeglądać ogłoszenia przewoźników oraz komunikować się z autorami ogłoszeń.
-\item Moderator - osoba odpowiedzialna za zarządzanie systemem. Moderator zatwierdza lub usuwa nowe ogłoszenia i zlecenia oraz blokuje konta użytkowników.
-\item Administrator - użytkownik umiejscowiony najwyżej w hierarchii systemu. Może on wykonywać wszystko co moderator, lecz ma również możliwość dodawania nowych moderatorów lub usuwania obecnych.
+\item \textbf{Użytkownik niezalogowany} - nowy gość w serwsie, może  się zalogować oraz przeglądać ogłoszenia przewozu i zlecenia dodane przez pozostałych użytkowników.
+\item \textbf{Przewoźnik} - aktor odpowiedzialny za transport towarów. Przewoźnik może przeglądać dostępne zlecenia, dodawać ogłoszenia o planowanych trasach, komunikować się z autorami ogłoszeń, przyjmować zlecenia oraz oceniać i komentować kontrahentów.
+\item \textbf{Zleceniodawca} - użytkownik systemu, który zleca transport towarów. zleceniodawca może dodawać nowe zlecenia transportowe, podobnie jak przewoźnik, może również przeglądać ogłoszenia przewoźników oraz komunikować się z autorami ogłoszeń.
+\item \textbf{Moderator} - osoba odpowiedzialna za zarządzanie systemem. Moderator zatwierdza lub usuwa nowe ogłoszenia i zlecenia oraz blokuje konta użytkowników.
+\item \textbf{Administrator} - użytkownik umiejscowiony najwyżej w hierarchii systemu. Może on wykonywać wszystko co moderator oraz ma możliwość dodawania nowych moderatorów lub usuwania obecnych.
 \end{enumerate}
 
-\section{Założenia wizualne}
+\section{Projekt interfejsu użytkownika}
 Makieta aplikacji została wykonana w darmowym programie \texttt{Figma}, który pozwala na tworzenie interfejsu użytkownika i oferuje wiele funkcji ułatwiających pracę, takich jak utrzymanie spójności w rozmiarach czcionek, kolorach czy odstępach. Figma świetnie nadaje się także do tworzenia komponentów wielokrotnego użytku oraz ich wariantów. Komponenty te są również wykorzystywane w frameworku \texttt{Next.js}, dlatego uwzględnienie ich już na etapie projektowania ułatwia późniejszą implementację w kodzie.
 
 Poniżej znajdują się założenia wizualne, które zostaną zastosowane podczas projektowania makiety aplikacji. Zdefinowane zostały wartości takie jak:
@@ -29,33 +23,34 @@ Poniżej znajdują się założenia wizualne, które zostaną zastosowane podcza
     \item przycisk do wybierania wersji językowej,
     \item warianty odstępów między elementami,
     \item pola tekstowe (ang. \texttt{inputs}) wraz ze swoim drugim wariantem,
-    \item pola jednokrotnego wyboru
+    \item pola jednokrotnego wyboru.
 \end{itemize}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.7\linewidth]{rozdzial1/komponenty.png}
-	\caption{Założenia co do aspektu wizualnego serwisu}
-	\label{Rys. fig:Założenia wizualne serwisu}
+	\caption{Wybrane parametry dotyczące interfejsu użytkownika}
+	\label{Rys. fig:Wybrane parametry dotyczące interfejsu użytkownika}
 \end{figure}
+Parametry te pozwolą na ujednolicenie wyglądu interfejsu, co przełoży się na lepsze odczucia podczas korzystania z aplikacji.
 
 \section{Diagramy przypadków użycia}
 W tej podrozdziale przedstawione zostaną diagramy przypadków użycia serwisu \texttt{CargoLink}, korzystając z definicji aktorów opisanych powyżej. Dodatkowo opisane i graficznie przedstawione zostaną wszystkie przypadki użycia użyte w diagramach.
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=\linewidth]{rozdzial1/PU_uzytkownik.png}
-	\caption{Diagram przedstawiający przypadki użycia aktora Użytkownik}
-	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Użytkownik}
+		\includegraphics[width=\linewidth]{rozdzial1/PU_niezalogowany_uzytkownik.png}
+	\caption{Diagram przedstawiający przypadki użycia aktora Niezalogowany użytkownik}
+	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Niezalogowany użytkownik}
 \end{figure}
-Na powyższym obrazku przedstawiony został diagram przypadków użycia dla użytkownika. Będą one dziedziczone przez wszystkich pozostałych aktorów. \\
+Na powyższym diagramie przedstawione zostały przypadki użycia dla niezalogowanego użytkownika. \\
 
 \textbf{Rejestracja} \\
 Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Nie masz konta? Zarejestruj się}. \\
 Warunki początkowe: Użytkownik nie jest zalogowany. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie przycisku \texttt{Nie masz konta? Zarejestruj się} (Rys. \ref{fig:Formularz rejestracji - abc}.a);
+    \item Kliknięcie przycisku \texttt{Nie masz konta? Zarejestruj się} (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
     \item Wybór typu konta: zleceniodawca lub przewoźnik;
-    \item Kliknięcie przycisku \texttt{dalej}; (Rys. \ref{fig:Formularz rejestracji - abc}.b)
+    \item Kliknięcie przycisku \texttt{dalej}; (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.b lub \ref{fig:Formularz rejestracji - ab - desktop}.b)
     \item Wpisanie danych:
         \begin{itemize}
             \item imię,
@@ -65,14 +60,14 @@ Przebieg podstawowy realizacji przypadku użycia:
             \item numer telefonu,
             \item hasło (dwukrotnie w celu potwierdzenia)
         \end{itemize}
-    \item Kliknięcie przycisku \texttt{Dalej}; (Rys. \ref{fig:Formularz rejestracji - abc}.c)
+    \item Kliknięcie przycisku \texttt{Dalej}; (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.c lub \ref{fig:Formularz rejestracji - c - desktop})
     \item System sprawdza w bazie danych czy istnieje już użytkownik o podanym emailu oraz sprawdza poprawność wprowadzonych danych;
     \item Wybór czy konto ma reprezentować przedsiębiorstwo (wymagane będzie podane pełnej nazwy firmy, wraz z NIP'em oraz adresem siedziby), bądź osobę fizyczną;
     \item Jeżeli wybrane zostało przedsiębiorstwo, system sprawdza poprawność wprowadzonych danych;
-    \item Kliknięcie przycisku \texttt{Dalej}; (Rys. \ref{fig:Formularz rejestracji - de}.d)
+    \item Kliknięcie przycisku \texttt{Dalej}; (Rys. \ref{fig:Formularz rejestracji - ab2 - mobile}.a lub \ref{fig:Formularz rejestracji - ab2 - desktop}.a)
     \item Zaznaczenie języków, którymi użytkownik umię się posługiwać (informacje te pokazywać się będą w oknie czatu oraz na profilu, aby ułatwić użytkownikom porozumienie się);
     \item Akcpetacja regulaminu;
-    \item Kliknięcie przycisku \texttt{Zarejestruj się}; (Rys. \ref{fig:Formularz rejestracji - de}.d)
+    \item Kliknięcie przycisku \texttt{Zarejestruj się}; (Rys. \ref{fig:Formularz rejestracji - ab2 - mobile}.a lub \ref{fig:Formularz rejestracji - ab2 - desktop}.a)
 \end{enumerate}
 Przebieg alternatywny realizacji przypadku użycia: W bazie danych istnieje już użytkownik o podanym emailu bądź użytkownik podał błędne dane. System informuje o niezgodności. \\
 Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarke ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
@@ -80,22 +75,48 @@ Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekie
  \centering
   \begin{tabular}{@{}ccc@{}}
   a) & b) & c)\\
-  \includegraphics[width=0.3\textwidth]{rozdzial1/logowanie.png} &
-  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_1.png} &
-  \includegraphics[width=0.3\textwidth]{rozdzial1/rejestracja.png}
+  \includegraphics[width=0.3\textwidth]{rozdzial1/logowanie_m.png} &
+  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_1_m.png} &
+  \includegraphics[width=0.3\textwidth]{rozdzial1/rejestracja_m.png}
   \end{tabular}
- \caption{Formularz rejestracji: a) Menu logowania, b) Wybór typu konta, c) Wprowadzenie danych do rejestracji}
- \label{fig:Formularz rejestracji - abc}
+ \caption{Formularz rejestracji w wersji mobilnej: a) Menu logowania, b) Wybór typu konta, c) Wprowadzenie danych do rejestracji}
+ \label{fig:Formularz rejestracji - abc - mobile}
 \end{figure}
 \begin{figure}[H]
  \centering
   \begin{tabular}{@{}ccc@{}}
-  d) & e)\\
-  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_2.png} &
-  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_3.png} &
+  a) & b)\\
+  %\includegraphics[width=0.45\textwidth]{rozdzial1/logowanie_d.png} &
+  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_1_d.png}
   \end{tabular}
- \caption{Formularz rejestracji: d) Wybór reprezentacji konta, e) Wybór języków, którymi użytkownik się posługuje, }
- \label{fig:Formularz rejestracji - de}
+ \caption{Formularz rejestracji w wersji desktopowej: a) Menu logowania, b) Wybór typu konta}
+ \label{fig:Formularz rejestracji - ab - desktop}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  %\includegraphics[width=0.45\textwidth]{rozdzial1/rejestracja_d.png}
+ \caption{Formularz rejestracji w wersji desktopowej: Wprowadzenie danych do rejestracji}
+ \label{fig:Formularz rejestracji - c - desktop}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_2_m.png} &
+  \includegraphics[width=0.3\textwidth]{rozdzial1/wybor_3_m.png}
+  \end{tabular}
+ \caption{Formularz rejestracji w wersji mobilnej: a) Wybór reprezentacji konta, b) Wybór języków, którymi użytkownik się posługuje, }
+ \label{fig:Formularz rejestracji - ab2 - mobile}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_2_d.png} &
+  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_3_d.png}
+  \end{tabular}
+ \caption{Formularz rejestracji w wersji desktopowej: a) Wybór reprezentacji konta, b) Wybór języków, którymi użytkownik się posługuje, }
+ \label{fig:Formularz rejestracji - ab2 - desktop}
 \end{figure}
 
 \textbf{Logowanie} \\
@@ -104,7 +125,7 @@ Warunki początkowe: Użytkownik nie jest zalogowany. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Wpisanie danych, email oraz hasło:
-    \item Kliknięcie przycisku \texttt{Zaloguj się}; (Rys. \ref{fig:Formularz rejestracji - abc}.a)
+    \item Kliknięcie przycisku \texttt{Zaloguj się}; (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a)
     \item System sprawdza w bazie danych czy istnieje już użytkownik o podanym emailu oraz czy wprowadzone hasło jest prawidłowe;
     \item Zalogowanie użytkownika;
     \item Przejście do wyszukiwarki ogłoszeń o planowanych trasach, bądź zleceń (w zależności od wybranego typu konta).
@@ -113,33 +134,33 @@ Przebieg alternatywny realizacji przypadku użycia: W bazie danych nie znajduję
 Warunki Końcowe: W zależności od typu konta, przenosi do odpowiedniego miejsca w serwisie.\\
 
 \textbf{Zmiana wersji językowej} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a). \\
+Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a);
-    \item Kliknięcie przycisku z ikoną globu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - fg}.f);
-    \item Wybranie jednego z trzech języków z menu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - fg}.g);
+    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Kliknięcie przycisku z ikoną globu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
+    \item Wybranie jednego z trzech języków z menu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.b);
     \item Zmienienie języka w jakim wyświetlana jest aplikacja;
 \end{enumerate}
 \begin{figure}[H]
 	\centering
         \begin{tabular}{@{}ccc@{}}
-            f) & g)\\
+            a) & b)\\
 		\includegraphics[width=0.3\linewidth]{rozdzial1/menu.png} &
 		\includegraphics[width=0.3\linewidth]{rozdzial1/menu_język.png}
 		\end{tabular}
-	\caption{Menu nawigacji po aplikacji: f) Menu nawigacji, g) Menu nawigacji z klikniętym przyciskiem wyboru języka}
-	\label{Rys. fig:Menu nawigacji po aplikacji - fg}
+	\caption{Menu nawigacji po aplikacji: a) Menu nawigacji, b) Menu nawigacji z klikniętym przyciskiem wyboru języka}
+	\label{Rys. fig:Menu nawigacji po aplikacji - ab}
 \end{figure}
 
 \textbf{Wyszukiwanie użytkowników} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a). \\
+Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a);
-    \item Kliknięcie przycisku \texttt{Wyszukaj użytkownika} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - fg}.f);
+    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Kliknięcie przycisku \texttt{Wyszukaj użytkownika} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
     \item Wpisanie danych szukanego użytkownika, takich jak imię, nazwisko, e-mail lub typ konta (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika});
     \item Kliknięcie przycisku \texttt{Szukaj} (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika});
 \end{enumerate}
@@ -154,40 +175,40 @@ Warunki Końcowe: Serwis zwraca wszystkie profile spełniające wpisane wymagani
 \label{Przeglądanie zleceń}
 
 \textbf{Przeglądanie zleceń} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a). \\
+Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a);
-    \item Kliknięcie przycisku \texttt{Zlecenia} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - fg}.f);
+    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Kliknięcie przycisku \texttt{Zlecenia} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
 \end{enumerate}
 Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - hi}.h)
+Warunki Końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.a)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
-            h) & i)\\
+            a) & b)\\
     \includegraphics[width=0.3\linewidth]{rozdzial1/zlecenia.png} &
     \includegraphics[width=0.3\linewidth]{rozdzial1/planowane_trasy.png}
     \end{tabular}
-    \caption{Przeglądarka zleceń i planowanych tras: h) Przeglądarka zleceń, i) Przeglądarka ogłoszeń planowanych tras}
-	\label{Rys. fig:Przeglądarka zleceń i planowanych tras - hi}
+    \caption{Przeglądarka zleceń i planowanych tras: a) Przeglądarka zleceń, b) Przeglądarka ogłoszeń planowanych tras}
+	\label{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}
 \end{figure}
 \label{Przeglądanie ogłoszeń planowanych tras}
 
 \textbf{Przeglądanie ogłoszeń planowanych tras} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a). \\
+Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc}.a);
-    \item Kliknięcie przycisku \texttt{Planowane trasy} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - fg}.f);
+    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Kliknięcie przycisku \texttt{Planowane trasy} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
 \end{enumerate}
 Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - hi}.i)\\
+Warunki Końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.b)\\
 
 \textbf{Wyświetlenie ogłoszenia} \\
-Zdarzenie inicjujące: Kliknięcie w dowolne ogłoszenie (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - hi}.h lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - hi}.i). \\
+Zdarzenie inicjujące: Kliknięcie w dowolne ogłoszenie (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
@@ -195,16 +216,16 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Kliknięcie w dowolne ogłoszenie (Rys. \ref{Przeglądanie zleceń});
 \end{enumerate}
 Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - jk}.j lub \ref{Rys. fig:Wyświetlenie ogłoszenia - jk}.k)
+Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab}.b)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
-            j) & k)\\
+            a) & b)\\
     \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_zlecenie.png}}} &
     \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_planowana_trasa.png}}}
     \end{tabular}
-    \caption{Wyświetlenie ogłoszenia: j) Ogłoszenie zlecenia, k) Ogłoszenie o planowanej trasie}
-	\label{Rys. fig:Wyświetlenie ogłoszenia - jk}
+    \caption{Wyświetlenie ogłoszenia: a) Ogłoszenie zlecenia, b) Ogłoszenie o planowanej trasie}
+	\label{Rys. fig:Wyświetlenie ogłoszenia - ab}
 \end{figure}
 
 \textbf{Wyświetlenie mapy ze wszystkimi trasami} \\
@@ -213,7 +234,7 @@ Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}
-    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}).    
+    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}).
 \end{enumerate}
 Przebieg alternatywny realizacji przypadku użycia: Brak. \\
 Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami}).\\
@@ -223,3 +244,23 @@ Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszys
 	\caption{Mapa ze wszystkimi trasami}
 	\label{Rys. fig:Mapa ze wszystkimi trasami}
 \end{figure}
+
+\section{Projekt bazy danych}
+Baza danych została wykonana w języku \texttt{PostgreSQL}. Jest to zaawansowany, open-source'owy system zarządzania bazami danych. Między innymi jest znany ze swojej elastyczności, skalowalności i zgodności ze standardami SQL.
+
+Diagram bazy danych został wygenerowany przez program \texttt{DataGrip}. \texttt{DataGrip} to zaawansowane narzędzie do zarządzania bazami danych, stworzone przez JetBrains. Jest to wieloplatformowe środowisko IDE (zintegrowane środowisko programistyczne), które obsługuje wiele różnych systemów bazodanowych, takich jak \texttt{PostgreSQL}, \texttt{MySQL}, \texttt{Oracle}, \texttt{SQL Server}, \texttt{SQLite} i inne. Jedną z jego głównych zalet jest inteligentny edytor SQL, który oferuje funkcje automatycznego uzupełniania kodu, podpowiedzi dotyczących zapytań oraz wykrywania błędów w czasie rzeczywistym. \texttt{DataGrip} umożliwia również łatwe przeglądanie struktury baz danych, poprzez graficzny interfejs. Narzędzie jest szczególnie cenione przez deweloperów i administratorów baz danych za swoją intuicyjność.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\linewidth]{rozdzial1/baza_danych.png}
+	\caption{Projekt bazy danych}
+	\label{Rys. fig:Projekt bazy danych}
+\end{figure}
+
+Dla tabel zastosowano nazewnictwo w języku angielskim, co jest dobrą praktyką podczas pracy w zespołach międzynarodowych, ułatwiając współpracę i zrozumienie struktury danych. Klucze główne we wszystkich tabelach są typu \texttt{UUID}, co jest nowoczesnym podejściem do identyfikacji wierszy w bazach danych. W odróżnieniu od tradycyjnych kluczy głównych opartych na autoinkrementujących liczbach całkowitych, \texttt{UUID} są unikalnymi identyfikatorami, które mogą być generowane niezależnie w różnych systemach bez ryzyka konfliktów. Jest to szczególnie istotne w systemach rozproszonych, gdzie wiele serwerów może dodawać dane równocześnie. Co więcej, \texttt{UUID} zwiększa bezpieczeństwo, ponieważ trudno jest przewidzieć kolejny identyfikator, co może mieć znaczenie w aplikacjach wymagających większej prywatności i bezpieczeństwa danych. \\
+Przykładowy klucz główny UUID: \texttt{2d8e72dc-aa4e-4c4c-b02b-b08655d891aa} \\
+
+Dodatkowo, zamiast przechowywać hasła w postaci zwykłego tekstu, hasła użytkowników są szyfrowane przy użyciu algorytmu \texttt{bcrypt}. Dzięki któremu nawet w przypadku nieautoryzowanego dostępu do bazy danych, hasła pozostają bezpieczne, ponieważ odzyskanie oryginalnej wartości z hasha jest praktycznie niemożliwe. Dodatkowo technika solenia (and. \texttt{salt}) stosowana w \texttt{pgcrypto} (rozszerzenie do \texttt{PostgreSQL}) dodaje losowy ciąg znaków do każdego hasła przed jego zahashowaniem, co zapobiega atakom typu "rainbow table" i sprawia, że dwa identyczne hasła będą miały różne zaszyfrowane wartości. \\
+Przykładowe zaszyfrowane hasło: \\
+\texttt{\$2a\$06\$M/okyRSZvHY80DUo6rlTi.SNaZCZF5/NisSB5PMZCPeaPwnFZplAy}. \\
+Po odszyfrowaniu okazuje się, że ukryty ciąg znaków to: \texttt{twojehaslo}
