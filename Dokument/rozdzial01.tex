@@ -27,23 +27,23 @@ Poniżej znajdują się założenia wizualne, które zostaną zastosowane podcza
 \end{itemize}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.7\linewidth]{rozdzial1/komponenty.png}
+		\includegraphics[width=1\linewidth]{rozdzial1/komponenty.png}
 	\caption{Wybrane parametry dotyczące interfejsu użytkownika}
 	\label{Rys. fig:Wybrane parametry dotyczące interfejsu użytkownika}
 \end{figure}
 Parametry te pozwolą na ujednolicenie wyglądu interfejsu, co przełoży się na lepsze odczucia podczas korzystania z aplikacji.
 
 \section{Diagramy przypadków użycia}
-W tej podrozdziale przedstawione zostaną diagramy przypadków użycia serwisu \texttt{CargoLink}, korzystając z definicji aktorów opisanych powyżej. Dodatkowo opisane i graficznie przedstawione zostaną wszystkie przypadki użycia użyte w diagramach.
+W tym podrozdziale przedstawione zostaną diagramy przypadków użycia serwisu \texttt{CargoLink}, korzystając z definicji aktorów opisanych powyżej. Dodatkowo opisane i graficznie przedstawione zostaną wszystkie przypadki użycia użyte w diagramach.
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=\linewidth]{rozdzial1/PU_niezalogowany_uzytkownik.png}
-	\caption{Diagram przedstawiający przypadki użycia aktora Niezalogowany użytkownik}
+	\caption{Diagram przedstawiający przypadki użycia aktora \texttt{Niezalogowany użytkownik}}
 	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Niezalogowany użytkownik}
 \end{figure}
-Na powyższym diagramie przedstawione zostały przypadki użycia dla niezalogowanego użytkownika. \\
+Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Niezalogowanego użytkownika}. \\
 
-\textbf{Rejestracja} \\
+\texttt{Rejestracja} \\
 Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Nie masz konta? Zarejestruj się}. \\
 Warunki początkowe: Użytkownik nie jest zalogowany. \\
 Przebieg podstawowy realizacji przypadku użycia:
@@ -69,7 +69,8 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Akcpetacja regulaminu;
     \item Kliknięcie przycisku \texttt{Zarejestruj się}; (Rys. \ref{fig:Formularz rejestracji - ab2 - mobile}.a lub \ref{fig:Formularz rejestracji - ab2 - desktop}.a)
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: W bazie danych istnieje już użytkownik o podanym emailu bądź użytkownik podał błędne dane. System informuje o niezgodności. \\
+Przebieg alternatywny realizacji podpunktu (6a): W bazie danych istnieje już użytkownik o podanym emailu bądź użytkownik podał błędne dane. System informuje o niezgodności. \\
+Przebieg alternatywny realizacja podpunktu (7a): Jeżeli konto ma reprezentować osobę fizyczną, pola do wpisania informacji o przedsiębiorstwie nie wyświetlą się. \\
 Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarke ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
 \begin{figure}[H]
  \centering
@@ -86,15 +87,15 @@ Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekie
  \centering
   \begin{tabular}{@{}ccc@{}}
   a) & b)\\
-  %\includegraphics[width=0.45\textwidth]{rozdzial1/logowanie_d.png} &
-  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_1_d.png}
+  \includegraphics[width=0.45\textwidth]{rozdzial1/logowanie_d.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/wybor_1_d.jpg}
   \end{tabular}
  \caption{Formularz rejestracji w wersji desktopowej: a) Menu logowania, b) Wybór typu konta}
  \label{fig:Formularz rejestracji - ab - desktop}
 \end{figure}
 \begin{figure}[H]
  \centering
-  %\includegraphics[width=0.45\textwidth]{rozdzial1/rejestracja_d.png}
+  \includegraphics[width=0.45\textwidth]{rozdzial1/rejestracja_d.jpg}
  \caption{Formularz rejestracji w wersji desktopowej: Wprowadzenie danych do rejestracji}
  \label{fig:Formularz rejestracji - c - desktop}
 \end{figure}
@@ -112,14 +113,14 @@ Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekie
  \centering
   \begin{tabular}{@{}ccc@{}}
   a) & b)\\
-  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_2_d.png} &
-  %\includegraphics[width=0.45\textwidth]{rozdzial1/wybor_3_d.png}
+  \includegraphics[width=0.45\textwidth]{rozdzial1/wybor_2_d.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/wybor_3_d.jpg}
   \end{tabular}
  \caption{Formularz rejestracji w wersji desktopowej: a) Wybór reprezentacji konta, b) Wybór języków, którymi użytkownik się posługuje, }
  \label{fig:Formularz rejestracji - ab2 - desktop}
 \end{figure}
 
-\textbf{Logowanie} \\
+\texttt{Logowanie} \\
 Zdarzenie inicjujące: Wpisanie danych logowania oraz kliknięcie przycisku \texttt{Zaloguj się}. \\
 Warunki początkowe: Użytkownik nie jest zalogowany. \\
 Przebieg podstawowy realizacji przypadku użycia:
@@ -130,119 +131,157 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Zalogowanie użytkownika;
     \item Przejście do wyszukiwarki ogłoszeń o planowanych trasach, bądź zleceń (w zależności od wybranego typu konta).
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: W bazie danych nie znajduję się użytkownik o podanym emailu oraz haśle. System informuje o niepowodzeniu. \\
+Przebieg alternatywny realizacji podpunktu (3a): W bazie danych nie znajduję się użytkownik o podanym emailu oraz haśle. System informuje o niepowodzeniu. \\
 Warunki Końcowe: W zależności od typu konta, przenosi do odpowiedniego miejsca w serwisie.\\
 
-\textbf{Zmiana wersji językowej} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
+\texttt{Zmiana wersji językowej aplikacji} \\
+Zdarzenie inicjujące: Wersja mobilna aplikacji - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a). Wersja desktopowa aplikacji - kliknięcie przycisku z ikoną globu (np. Rys. \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
-    \item Kliknięcie przycisku z ikoną globu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
-    \item Wybranie jednego z trzech języków z menu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.b);
+    \item Jeżeli w wersji mobilnej - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a);
+    \item Kliknięcie przycisku z ikoną globu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub np. Rys. \ref{fig:Formularz rejestracji - c - desktop});
+    \item Wybranie jednego z trzech języków z menu (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.b lub Rys. \ref{Rys. fig:Wybór języka aplikacji - desktop});
     \item Zmienienie języka w jakim wyświetlana jest aplikacja;
 \end{enumerate}
 \begin{figure}[H]
 	\centering
         \begin{tabular}{@{}ccc@{}}
             a) & b)\\
-		\includegraphics[width=0.3\linewidth]{rozdzial1/menu.png} &
-		\includegraphics[width=0.3\linewidth]{rozdzial1/menu_język.png}
+		\includegraphics[width=0.3\linewidth]{rozdzial1/menu_m.png} &
+		\includegraphics[width=0.3\linewidth]{rozdzial1/menu_język_m.png}
 		\end{tabular}
-	\caption{Menu nawigacji po aplikacji: a) Menu nawigacji, b) Menu nawigacji z klikniętym przyciskiem wyboru języka}
+	\caption{Menu nawigacji po aplikacji w wersji mobilnej: a) Menu nawigacji, b) Menu nawigacji z klikniętym przyciskiem wyboru języka}
 	\label{Rys. fig:Menu nawigacji po aplikacji - ab}
 \end{figure}
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=0.45\textwidth]{rozdzial1/menu_jezyk_d.jpg}
+ \caption{Menu wyboru języka aplikacji w wersji desktopowej}
+ \label{Rys. fig:Wybór języka aplikacji - desktop}
+\end{figure}
 
-\textbf{Wyszukiwanie użytkowników} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
+\texttt{Wyszukiwanie użytkowników} \\
+Zdarzenie inicjujące: Wersja mobilna aplikacji - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a). Wersja desktopowa aplikacji - kliknięcie przycisku \texttt{Wyszukaj użytkownika} (np. Rys. \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
-    \item Kliknięcie przycisku \texttt{Wyszukaj użytkownika} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
-    \item Wpisanie danych szukanego użytkownika, takich jak imię, nazwisko, e-mail lub typ konta (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika});
-    \item Kliknięcie przycisku \texttt{Szukaj} (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika});
+    \item Jeżeli w wersji mobilnej - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a);
+    \item Kliknięcie przycisku \texttt{Wyszukaj użytkownika} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Wpisanie danych szukanego użytkownika, takich jak imię, nazwisko, e-mail lub typ konta (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika - mobile} lub \ref{Rys. fig:Wyszukiwanie użytkownika - destkop});
+    \item Kliknięcie przycisku \texttt{Szukaj} (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika - mobile} lub \ref{Rys. fig:Wyszukiwanie użytkownika - destkop});
+    \item Wyświetlenie wszystkich użytkowników spełniających podane kryteria.
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: W bazie danych nie znajduję się użytkownik spełniający wpisane wymagania. System informuje o niepowodzeniu. \\
 Warunki Końcowe: Serwis zwraca wszystkie profile spełniające wpisane wymagania.\\
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.3\linewidth]{rozdzial1/szukaj_uzytkownika.png}
-	\caption{Wyszukiwanie użytkownika}
-	\label{Rys. fig:Wyszukiwanie użytkownika}
+		\includegraphics[width=0.3\linewidth]{rozdzial1/szukaj_uzytkownika_m.png}
+	\caption{Wyszukiwanie użytkownika w wersji mobilnej}
+	\label{Rys. fig:Wyszukiwanie użytkownika - mobile}
 \end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.45\linewidth]{rozdzial1/szukaj_uzytkownika_d.jpg}
+	\caption{Wyszukiwanie użytkownika w wersji desktopowej}
+	\label{Rys. fig:Wyszukiwanie użytkownika - destkop}
+\end{figure}
+
 \label{Przeglądanie zleceń}
-
-\textbf{Przeglądanie zleceń} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
+\texttt{Przeglądanie zleceń} \\
+Zdarzenie inicjujące: Wersja mobilna aplikacji - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a). Wersja desktopowa aplikacji - kliknięcie przycisku \texttt{Zlecenia} (np. Rys. \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
-    \item Kliknięcie przycisku \texttt{Zlecenia} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
+    \item Jeżeli w wersji mobilnej - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a);
+    \item Kliknięcie przycisku \texttt{Zlecenia} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Wyświetlenie listy ogłoszeń dodanych przez zleceniodawców.
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.a)
+Warunki Końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
             a) & b)\\
-    \includegraphics[width=0.3\linewidth]{rozdzial1/zlecenia.png} &
-    \includegraphics[width=0.3\linewidth]{rozdzial1/planowane_trasy.png}
+    \includegraphics[width=0.3\linewidth]{rozdzial1/zlecenia_m.png} &
+    \includegraphics[width=0.3\linewidth]{rozdzial1/planowane_trasy_m.png}
     \end{tabular}
-    \caption{Przeglądarka zleceń i planowanych tras: a) Przeglądarka zleceń, b) Przeglądarka ogłoszeń planowanych tras}
-	\label{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}
+    \caption{Przeglądarka zleceń i planowanych tras w wersji mobilnej: a) Przeglądarka zleceń, b) Przeglądarka ogłoszeń planowanych tras}
+	\label{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}
 \end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \includegraphics[width=0.45\textwidth]{rozdzial1/zlecenia_d.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/planowane_trasy_d.jpg}
+  \end{tabular}
+ \caption{Przeglądarka zleceń i planowanych tras w wersji desktopowej: a) Przeglądarka zleceń, b) Przeglądarka ogłoszeń planowanych tras}
+ \label{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}
+\end{figure}
+
 \label{Przeglądanie ogłoszeń planowanych tras}
-
-\textbf{Przeglądanie ogłoszeń planowanych tras} \\
-Zdarzenie inicjujące: Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
+\texttt{Przeglądanie ogłoszeń planowanych tras} \\
+Zdarzenie inicjujące: Wersja mobilna aplikacji - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a). Wersja desktopowa aplikacji - kliknięcie przycisku \texttt{Zlecenia} (np. Rys. \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
-    \item Kliknięcie przycisku \texttt{Planowane trasy} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a);
+    \item Jeżeli w wersji mobilnej - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a);
+    \item Kliknięcie przycisku \texttt{Planowane trasy} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
+    \item Wyświetlenie listy planowanych przez przewoźników tras.
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.b)\\
+Warunki Końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b)\\
 
-\textbf{Wyświetlenie ogłoszenia} \\
-Zdarzenie inicjujące: Kliknięcie w dowolne ogłoszenie (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab}.b). \\
+\texttt{Wyświetlenie ogłoszenia} \\
+Zdarzenie inicjujące: Kliknięcie w dowolne ogłoszenie (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}
-    \item Kliknięcie w dowolne ogłoszenie (Rys. \ref{Przeglądanie zleceń});
+    \item Kliknięcie w dowolne ogłoszenie;
+    \item Wyświetlenie klikniętego ogłoszenia.
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab}.b)
+Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
             a) & b)\\
-    \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_zlecenie.png}}} &
-    \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_planowana_trasa.png}}}
+    \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_zlecenie_m.png}}} &
+    \vtop{\null\hbox{\includegraphics[width=0.25\linewidth]{rozdzial1/ogloszenie_planowana_trasa_m.png}}}
     \end{tabular}
-    \caption{Wyświetlenie ogłoszenia: a) Ogłoszenie zlecenia, b) Ogłoszenie o planowanej trasie}
-	\label{Rys. fig:Wyświetlenie ogłoszenia - ab}
+    \caption{Wyświetlenie ogłoszenia w wersji mobilnej: a) Ogłoszenie zlecenia, b) Ogłoszenie o planowanej trasie}
+	\label{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}
 \end{figure}
-
-\textbf{Wyświetlenie mapy ze wszystkimi trasami} \\
-Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}). \\
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \vtop{\null\hbox{\includegraphics[width=0.45\textwidth]{rozdzial1/ogloszenie_zlecenie_d.jpg}}} &
+  \vtop{\null\hbox{\includegraphics[width=0.45\textwidth]{rozdzial1/ogloszenie_planowana_trasa_d.jpg}}}
+  \end{tabular}
+ \caption{Wyświetlenie ogłoszenia w wersji desktopowej: a) Ogłoszenie zlecenia, b) Ogłoszenie o planowanej trasie}
+ \label{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}
+ 
+\end{figure}
+\texttt{Wyświetlenie mapy ze wszystkimi trasami} \\
+Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}
-    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}).
+    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b).
+    \item Wyświetlenie mapy z zaznaczonymi wszystkimi trasami w bazie danych, które są aktualne.
 \end{enumerate}
-Przebieg alternatywny realizacji przypadku użycia: Brak. \\
-Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami}).\\
+Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich aktualnych ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami - mobile} lub \ref{Rys. fig:Mapa ze wszystkimi trasami - desktop}).\\
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.3\linewidth]{rozdzial1/mapa.png}
-	\caption{Mapa ze wszystkimi trasami}
-	\label{Rys. fig:Mapa ze wszystkimi trasami}
+		\includegraphics[width=0.3\linewidth]{rozdzial1/mapa_m.png}
+	\caption{Mapa ze wszystkimi trasami w wersji mobilnej}
+	\label{Rys. fig:Mapa ze wszystkimi trasami - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.45\linewidth]{rozdzial1/mapa_d.jpg}
+	\caption{Mapa ze wszystkimi trasami w wersji desktopowej}
+	\label{Rys. fig:Mapa ze wszystkimi trasami - desktop}
 \end{figure}
 
 \section{Projekt bazy danych}

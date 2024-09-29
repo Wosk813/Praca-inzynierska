@@ -13,15 +13,15 @@ Podczas swoich tras przewoźnicy czasami są zmuszeni do przebycia części drog
 
 Połączenie między osobami zlecającymi usługi transportowe - zleceniodawcami, a osobami oferującymi przewóz towaru - przewoźnikami, może odbywać się za pomocą serwisu oferującego dodawanie publicznych ogłoszeń. Ogłoszenia dzielić się będą na dwie kategorie, ogłoszenie z planowaną trasą przejazdu oraz zlecenie z wymaganym towarem do przewiezienia z punktu początkowego do punktu docelowego.
 
-\section{Cel projektu}
+\section{Cel i zakres projektu}
 \label{sec:cele}
 Celem projektu jest stworzenie aplikacji webowej, pod tytułem \texttt{CargoLink}. Serwis ten pozwalać będzie na dodawanie ogłoszeń oraz zleceń dotyczących transportów okazjonalnych. Aplikacja przyczni się do zoptymalizowania procesów logistycznych, eliminując nieefektywne wykorzystanie zasobów transportowych. Dodatkowo pozwoli ona przewoźnikom i zleceniodawcom, na łatwą i szybką komunikacje między sobą.
 Główne cele projektu:
 \begin{enumerate}
-    \item Możliwość umieszczania ogłoszeń i zleceń, aplikacja pozwalać ma na dodawanie ogłoszeń o trasach przejazdu, planowanych przez przewoźników oraz zleceń transportowych na konkretny towar przez zleceniodawców
-    \item Ułatwienie szukania odpowiednich ogłoszeń i zleceń, poprzez system powiązania zleceń transportowych do planowanych tras przewoźników oraz ogłoszeń o planowanej trasie do zleceń zamieszczonych w serwisie, aplikacja skróci czas potrzebny na znalezienie odpowiednich ofert.
-    \item Komunikacja między przewoźnikami i zleceniodawcami, aplikacja umożliwi szybką komunikację między użytkownikami serwisu poprzez czat tekstowy.
-    \item Redukcja kosztów transportu, dzięki lepszemu dopasowaniu potencjalnych przewoźników i zleceniodawców, aplikacja pozwoli na obniżenie kosztów transportu zarówno dla zleceniodawców, jak i przewoźników.
+    \item \textbf{Możliwość umieszczania ogłoszeń i zleceń}: aplikacja pozwalać ma na dodawanie ogłoszeń o trasach przejazdu, planowanych przez przewoźników oraz zleceń transportowych na konkretny towar przez zleceniodawców
+    \item \textbf{Ułatwienie szukania odpowiednich ogłoszeń i zleceń}: poprzez system powiązania zleceń transportowych do planowanych tras przewoźników oraz ogłoszeń o planowanej trasie do zleceń zamieszczonych w serwisie, aplikacja skróci czas potrzebny na znalezienie odpowiednich ofert.
+    \item \textbf{Komunikacja między przewoźnikami i zleceniodawcami}: aplikacja umożliwi szybką komunikację między użytkownikami serwisu poprzez czat tekstowy.
+    \item \textbf{Redukcja kosztów transportu}: dzięki lepszemu dopasowaniu potencjalnych przewoźników i zleceniodawców, aplikacja pozwoli na obniżenie kosztów transportu zarówno dla zleceniodawców, jak i przewoźników.
 \end{enumerate}
 Nowoczesna aplikacja transportowa powinna przyczynić się do efektywnego zrealizowania tych celów, co wspomoże rynek zleceń transportowych, przynosząc korzyści zarówno dla zleceniodawców, jak i przewoźników.
 
@@ -50,20 +50,21 @@ Na podstawie analizy celów wymienionych w podrozdziale \ref{sec:cele}, można w
         \item daty planowanego przejazdu,
         \item dostępnego miejsca w pojeździe (wymiary liczone w europaletach),
         \item maksymalnej wagi towaru,
+        \item marki i modelu pojazdu,
         \item danych kontaktowych,
         \item imienia i nazwiska przewoźnika bądź nazwy firmy, która przewoźnik reprezentuje,
     \end{itemize}
     \item \textbf{System rekomendacji ogłoszeń}: podczas wprowadzania danych o trasie, użytkownik będzie informowany o sugerowanych zleceniach dodanych przez innych użytkowników (np. gdy zlecenie dotyczy trasy, która w przybliżeniu pokrywa się z tą jaką przewoźnik planuje się poruszać). Analogicznie gdy zleceniodawca zamierza dodać ogłoszenie zlecenia, zostanie on poimformowany o proponowanych ogłoszeniach przewoźników.
     \item \textbf{Umożliwienie konaktu między użytkownikami}: aby zapewnnić kontakt między użytkownikami, w aplikacji zostanie dodany czat tekstowy umożliwiający korespondencje między zleceniodawcami, a przewoźnikami, bezpośrednio w aplikacji. Ma on pełnić rolę komunikacji na wzór tej  oferowanej przez tradycyjną poczte elektroniczną.
     \item \textbf{Generowanie szablonu umowy}: przewoźnik i zleceniodawca, po negocjacji warunków umowy, otrzymają wygenerowany przez serwis szablon dokumentu finalizujący transakcje.
-    \item \textbf{Weryfikacja dodawanych ogłoszeń}: zanim ogłoszenie wyświetlać się będzie dla wszystkich użytkowników, moderator serwisu będzię musiał go zatwierdzić.
+    \item \textbf{Weryfikacja dodawanych ogłoszeń}: zanim ogłoszenie wyświetlać się będzie dla wszystkich użytkowników, moderator serwisu będzię musiał je zatwierdzić.
     \item \textbf{Graficzne przedstawienie trasy}: podczas dodawania ogłoszenia o planowanej trasie, przewoźnikowi wyświetlać się będzie mapa z zaznaczonymi trasami, dodanymi przez zleceniodawców, które przebiegają w przybliżonym kierunku. Zleceniodawcy natomiast, podczas dodawania oferty, będą widzieć mapę ze wszystkimi trasami planowanymi przez przewoźników.
-    \item \textbf{System ocen użytkownika}: po 2 dniach po upływie terminu przewozu, użytkownicy będą mogli dodać opinie na temat użytkownika, którego umowa dotyczyła. Opinia składała się będzie z oceny w skali 1-5 oraz komentarza. Opinie będą wyświetlały się na stronie porfilu tego użytkownika oraz na dodanych przez niego ogłoszeń.
+    \item \textbf{System ocen użytkownika}: po 2 dniach po upływie terminu przewozu, użytkownicy będą mogli dodać opinie na temat użytkownika, którego umowa dotyczyła. Opinia składała się będzie z oceny w skali 1-5 oraz komentarza. Opinie będą wyświetlały się na stronie porfilu tego użytkownika oraz na dodanych przez niego ogłoszeniach.
 \end{enumerate}
 Aplikacja musi być niezawodna i przyjazna do użytkowania dla wszystkich. Do komfortowego korzystania z serwisu przez użytkowników, niezbędna będzie realizacja następujących wymagań niefunkcjonalnych
 \begin{enumerate}
     \item \textbf{Innowacyjność}: Aplikacja musi używać nowoczesnych technologii, takich jak \texttt{TypeScript}, \texttt{Next.js}, \texttt{Tailwind CSS}, \texttt{Node.js} oraz bazę danych \texttt{PostgreSQL}, zapewni to wysoką wydajność, skalowalność i bezpieczeństwo aplikacji.
     \item \textbf{Intuicyjny interfejs użytkownika}: Aplikacja musi posiadać prosty i intuicyjny interfejs użytkownika, który umożliwi łatwą obsługę zarówno dla zleceniodawców, jak i przewoźników.
     \item \textbf{Dostępność na różnych urządzeniach}: Aplikacja musi responsywna i dostosowana do różnych urządzeń, takich jak komputery, tablety i smartfony, co zapewni wygodę użytkowania w dowolnym miejscu i czasie.
-    \item \textbf{Wielojęzyczność}: użytkownicy korzystający z aplikacji, muszą mieć możliwość wyboru jednego z trzech przewidzianych języków: polski, angielski oraz niemiecki. Dodatkowo użytkownicy podczas rejestracji muszą mieć możliwość wybrania języków, którymi się posługują. Informacje te będą zamieszczone na profilu użytkownika.
+    \item \textbf{Wielojęzyczność}: użytkownicy korzystający z aplikacji, muszą mieć możliwość wyboru jednego z trzech przewidzianych języków: polski, angielski oraz niemiecki. Dodatkowo użytkownicy podczas rejestracji muszą mieć możliwość wybrania dowolnych języków, którymi się posługują. Informacje te będą zamieszczone na profilu użytkownika.
 \end{enumerate}
