@@ -35,9 +35,10 @@ Parametry te pozwolą na ujednolicenie wyglądu interfejsu, co przełoży się n
 
 \section{Diagramy przypadków użycia}
 W tym podrozdziale przedstawione zostaną diagramy przypadków użycia serwisu \texttt{CargoLink}, korzystając z definicji aktorów opisanych powyżej. Dodatkowo opisane i graficznie przedstawione zostaną wszystkie przypadki użycia użyte w diagramach.
+\subsection{Niezalogowany użytkownik}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=\linewidth]{rozdzial1/PU_niezalogowany_uzytkownik.png}
+		\includegraphics[width=\linewidth]{rozdzial1/PU_niezalogowany_uzytkownik.jpg}
 	\caption{Diagram przedstawiający przypadki użycia aktora \texttt{Niezalogowany użytkownik}}
 	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Niezalogowany użytkownik}
 \end{figure}
@@ -71,7 +72,7 @@ Przebieg podstawowy realizacji przypadku użycia:
 \end{enumerate}
 Przebieg alternatywny realizacji podpunktu (6a): W bazie danych istnieje już użytkownik o podanym emailu bądź użytkownik podał błędne dane. System informuje o niezgodności. \\
 Przebieg alternatywny realizacja podpunktu (7a): Jeżeli konto ma reprezentować osobę fizyczną, pola do wpisania informacji o przedsiębiorstwie nie wyświetlą się. \\
-Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarke ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
+Warunki końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarke ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
 \begin{figure}[H]
  \centering
   \begin{tabular}{@{}ccc@{}}
@@ -95,7 +96,7 @@ Warunki Końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekie
 \end{figure}
 \begin{figure}[H]
  \centering
-  \includegraphics[width=0.45\textwidth]{rozdzial1/rejestracja_d.jpg}
+  \includegraphics[width=0.7\textwidth]{rozdzial1/rejestracja_d.jpg}
  \caption{Formularz rejestracji w wersji desktopowej: Wprowadzenie danych do rejestracji}
  \label{fig:Formularz rejestracji - c - desktop}
 \end{figure}
@@ -132,7 +133,7 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Przejście do wyszukiwarki ogłoszeń o planowanych trasach, bądź zleceń (w zależności od wybranego typu konta).
 \end{enumerate}
 Przebieg alternatywny realizacji podpunktu (3a): W bazie danych nie znajduję się użytkownik o podanym emailu oraz haśle. System informuje o niepowodzeniu. \\
-Warunki Końcowe: W zależności od typu konta, przenosi do odpowiedniego miejsca w serwisie.\\
+Warunki końcowe: W zależności od typu konta, przenosi do odpowiedniego miejsca w serwisie.\\
 
 \texttt{Zmiana wersji językowej aplikacji} \\
 Zdarzenie inicjujące: Wersja mobilna aplikacji - kliknięcie w trzy poziome kreski w nagłówku, aby otworzyć menu (np. Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a). Wersja desktopowa aplikacji - kliknięcie przycisku z ikoną globu (np. Rys. \ref{fig:Formularz rejestracji - ab - desktop}.a). \\
@@ -156,7 +157,7 @@ Przebieg podstawowy realizacji przypadku użycia:
 \end{figure}
 \begin{figure}[H]
  \centering
-  \includegraphics[width=0.45\textwidth]{rozdzial1/menu_jezyk_d.jpg}
+  \includegraphics[width=0.7\textwidth]{rozdzial1/menu_jezyk_d.jpg}
  \caption{Menu wyboru języka aplikacji w wersji desktopowej}
  \label{Rys. fig:Wybór języka aplikacji - desktop}
 \end{figure}
@@ -172,7 +173,7 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Kliknięcie przycisku \texttt{Szukaj} (Rys. \ref{Rys. fig:Wyszukiwanie użytkownika - mobile} lub \ref{Rys. fig:Wyszukiwanie użytkownika - destkop});
     \item Wyświetlenie wszystkich użytkowników spełniających podane kryteria.
 \end{enumerate}
-Warunki Końcowe: Serwis zwraca wszystkie profile spełniające wpisane wymagania.\\
+Warunki końcowe: Serwis zwraca wszystkie profile spełniające wpisane wymagania.\\
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.3\linewidth]{rozdzial1/szukaj_uzytkownika_m.png}
@@ -181,7 +182,7 @@ Warunki Końcowe: Serwis zwraca wszystkie profile spełniające wpisane wymagani
 \end{figure}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.45\linewidth]{rozdzial1/szukaj_uzytkownika_d.jpg}
+		\includegraphics[width=0.7\linewidth]{rozdzial1/szukaj_uzytkownika_d.jpg}
 	\caption{Wyszukiwanie użytkownika w wersji desktopowej}
 	\label{Rys. fig:Wyszukiwanie użytkownika - destkop}
 \end{figure}
@@ -196,7 +197,7 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Kliknięcie przycisku \texttt{Zlecenia} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
     \item Wyświetlenie listy ogłoszeń dodanych przez zleceniodawców.
 \end{enumerate}
-Warunki Końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a)
+Warunki końcowe: Wyświetlenie przeglądarki zleceń. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
@@ -228,18 +229,18 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Kliknięcie przycisku \texttt{Planowane trasy} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
     \item Wyświetlenie listy planowanych przez przewoźników tras.
 \end{enumerate}
-Warunki Końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b)\\
+Warunki końcowe: Wyświetlenie przeglądarki ogłoszeń o planowanych trasach. (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b)\\
 
 \texttt{Wyświetlenie ogłoszenia} \\
 Zdarzenie inicjujące: Kliknięcie w dowolne ogłoszenie (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}
+    \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras};
     \item Kliknięcie w dowolne ogłoszenie;
     \item Wyświetlenie klikniętego ogłoszenia.
 \end{enumerate}
-Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b)
+Warunki końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b)
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{@{}ccc@{}}
@@ -259,18 +260,18 @@ Warunki Końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wy
   \end{tabular}
  \caption{Wyświetlenie ogłoszenia w wersji desktopowej: a) Ogłoszenie zlecenia, b) Ogłoszenie o planowanej trasie}
  \label{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}
- 
 \end{figure}
+
 \texttt{Wyświetlenie mapy ze wszystkimi trasami} \\
 Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
-    \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras}
-    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b).
+    \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras};
+    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b);
     \item Wyświetlenie mapy z zaznaczonymi wszystkimi trasami w bazie danych, które są aktualne.
 \end{enumerate}
-Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich aktualnych ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami - mobile} lub \ref{Rys. fig:Mapa ze wszystkimi trasami - desktop}).\\
+Warunki końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich aktualnych ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami - mobile} lub \ref{Rys. fig:Mapa ze wszystkimi trasami - desktop}).\\
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.3\linewidth]{rozdzial1/mapa_m.png}
@@ -279,10 +280,208 @@ Warunki Końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszys
 \end{figure}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.45\linewidth]{rozdzial1/mapa_d.jpg}
+		\includegraphics[width=0.7\linewidth]{rozdzial1/mapa_d.jpg}
 	\caption{Mapa ze wszystkimi trasami w wersji desktopowej}
 	\label{Rys. fig:Mapa ze wszystkimi trasami - desktop}
 \end{figure}
+
+\texttt{Wyświetlenie profilu użytkownika} \\
+Zdarzenie inicjujące: Kliknięcie w dowolnego użytkownika (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b) lub kliknięcie w imię i nazwisko autora dowolnego ogłoszenia (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b) \\
+Warunki początkowe: Brak. \\
+Przebieg podstawowy realizacji przypadku użycia:
+\begin{enumerate}
+    \item Kliknięcie w dowolnego użytkownika (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b) lub kliknięcie w imię i nazwisko autora dowolnego ogłoszenia (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b);
+    \item Wyświetlenie profilu wybranego użytkownika (Rys. \ref{Rys. fig:Profil użytkownika - mobile} lub \ref{Rys. fig:Profil użytkownika - desktop}).
+\end{enumerate}
+Warunki końcowe: Użytkownik przechodzi do strony profilu wybranego użytkownika (Rys. \ref{Rys. fig:Profil użytkownika - mobile} lub \ref{Rys. fig:Profil użytkownika - desktop}).
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.3\linewidth]{rozdzial1/profil_m.png}
+	\caption{Profil użytkownika w wersji mobilnej}
+	\label{Rys. fig:Profil użytkownika - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.7\linewidth]{rozdzial1/profil_d.jpg}
+	\caption{Profil użytkownika w wersji desktopowej}
+	\label{Rys. fig:Profil użytkownika - desktop}
+\end{figure}
+
+\subsection{Przewoźnik}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=\linewidth]{rozdzial1/PU_przewoznik.jpg}
+	\caption{Diagram przedstawiający przypadki użycia aktora \texttt{Przewoźnik}}
+	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Przewoźnik}
+\end{figure}
+Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Przewoźnika}. Kolorem szarym oznaczone zostały przypadki użycia, które zostały już opisane w poprzednich podsekcjach.\\
+
+\texttt{Dodawanie nowego ogłoszenia o planowanej trasie} \\
+Zdarzenie inicjujące: Po zalogowaniu na konto z typem przewoźnik, do menu nawigacji dokładane jest klilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj ogłoszenie o planowanej trasie} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a). \\
+Warunki początkowe: Bycie zalogowanym jako przewoźnik. \\
+Przebieg podstawowy realizacji przypadku użycia:
+\begin{enumerate}
+    \item Kliknięcie w przycisk \texttt{Dodaj ogłoszenie o planowanej trasie} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a);
+    \item Wypełnienie formularza (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.b;
+    \item Kliknięcie przycisku \texttt{Dodaj ogłoszenie o planowanej trasie};
+    \item System sprawdza poprawność wprowadzonych danych;
+    \item Ogłoszenie wysyłane jest do akceptacji przez jednego z moderatorów.
+\end{enumerate}
+Warunki końcowe: Ogłoszenie o planowanej trasie wysyłane jest do moderatorów w celu akceptacji.
+Przebieg alternatywny realizacji podpunktu (4a): Wprowadzone dane są niepoprawne. System informuje o niepowodzeniu. \\
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+            a) & b)\\
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/menu_m_przewoznik.png}}} &
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/nowe_ogloszenie_m.png}}}
+    \end{tabular}
+    \caption{Dodawanie nowego ogłoszenia o planowanej trasie w wersji mobilnej: a) Menu po zalogowaniu jako przewoźnik b) Formularz dodawania ogłoszenia o planowanej trasie}
+	\label{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \includegraphics[width=0.45\textwidth]{rozdzial1/menu_d_przewoznik.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/nowe_ogloszenie_d.jpg}
+  \end{tabular}
+ \caption{Dodawanie nowego ogłoszenia o planowanej trasie w wersji desktopowej: a) Menu po zalogowaniu jako przewoźnik b) Formularz dodawania ogłoszenia o planowanej trasie}
+ \label{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}
+\end{figure}
+
+\texttt{Otworzenie czatu z innym użytkownikiem} \\
+\label{Otworzenie czatu z innym uzytkownikiem}
+Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Przejdź do czatu} (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b) \\
+Warunki początkowe: Bycie zalogowanym. \\
+Przebieg podstawowy realizacji przypadku użycia:
+\begin{enumerate}
+    \item Kliknięcie w przycisk \texttt{Przejdź do czatu} (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b);
+    \item Otworzenie czatu z autorem ogłoszenia (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop}).
+\end{enumerate}
+Warunki końcowe: Użytkownik przechodzi do konwersacji z wybranym użytkownikiem (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop})).\\
+Przebieg alternatywny realizacji przypadku użycia: \begin{enumerate}
+    \item Kliknięcie w przycisk \texttt{Wiadomości} (Rys. \ref{Rys. fig:Menu nawigacji po aplikacji - ab}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b);
+    \item Otworzenie czatu z autorem ogłoszenia (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop}).
+\end{enumerate}
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+            a) & b)\\
+    \includegraphics[width=0.3\linewidth]{rozdzial1/czat_1_m.png} &
+    \includegraphics[width=0.3\linewidth]{rozdzial1/czat_2_m.png}
+    \end{tabular}
+    \caption{Czat w wersji mobilnej: a) Menu wyboru konwersacji, b) Czat}
+	\label{Rys. fig:Czat - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.7\linewidth]{rozdzial1/czat_d.jpg}
+	\caption{Czat w wersji desktopowej}
+	\label{Rys. fig:Czat - desktop}
+\end{figure}
+
+\texttt{Wysłanie propozycji umowy} \\
+Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Zaproponuj umowę}. \\
+Warunki początkowe: Użytkownik jest zalogowany.\\
+Przebieg podstawowy realizacji przypadku użycia:\\
+\begin{enumerate}
+    \item Wykonanie przypadku użycia \ref{Otworzenie czatu z innym uzytkownikiem};
+    \item Kliknięcie przycisku \texttt{Zaproponuj umowę} (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop});
+    \item Wypełnienie formularza (Rys. \ref{Rys. fig:Wygeneruj umowe - mobile} lub \ref{Rys. fig:Wygeneruj umowe - desktop});
+    \item System sprawdza poprawność wprowadzonych danych;
+    \item System wysyła propozycje umowy do rozmówcy.
+\end{enumerate}
+Warunki końcowe: System wysyła propozycje umowy do rozmówcy.\\
+Przebieg alternatywny w realizacji podpunktu (4a): Wprowadzone przez użytkownika dane są nieprawidłowe, system informuje o błędach w formularzu.\\
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.3\linewidth]{rozdzial1/wygneruj_umowe_m.png}
+	\caption{Formularz generujący umowę w wersji mobilnej}
+	\label{Rys. fig:Wygeneruj umowe - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.7\linewidth]{rozdzial1/wygeneruj_umowe_d.jpg}
+	\caption{Formularz generujący umowę w wersji desktopowej}
+	\label{Rys. fig:Wygeneruj umowe - desktop}
+\end{figure}
+
+\texttt{Zaakceptowanie warunków umowy} \\
+Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Otwórz propozycje umowy} \\
+Warunki początkowe: Bycie zalogowanym, rozmówca musi wysłać propozycje umowy \\
+Przebieg podstawowy realizacji przypadku użycia: \\
+\begin{enumerate}
+    \item kliknięcie przycisku \texttt{Otwórz propozycje umowy} (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop});
+    \item kliknięcie przycisku \texttt{Akceptuje warunki} (Rys. \ref{Rys. fig:Potwierdz umowe - mobile} lub \ref{Rys. fig:Potwierdz umowe - desktop}).
+\end{enumerate}
+Warunki końcowe: System generuje gotowy do podpisania dokument w formacie PDF. \\
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.3\linewidth]{rozdzial1/potwierdz_umowe_m.png}
+	\caption{Zaakceptowanie warunków umowy w wersji mobilnej}
+	\label{Rys. fig:Potwierdz umowe - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.7\linewidth]{rozdzial1/potwierdz_umowe_d.jpg}
+	\caption{Zaakceptowanie warunków umowy w wersji mobilnej}
+	\label{Rys. fig:Potwierdz umowe - desktop}
+\end{figure}
+
+\texttt{Modyfikacja warunków umowy} \\
+Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Otwórz propozycje umowy} \\
+Warunki początkowe: Bycie zalogowanym, rozmówca musi wysłać propozycje umowy \\
+Przebieg podstawowy realizacji przypadku użycia: \\
+\begin{enumerate}
+    \item kliknięcie przycisku \texttt{Otwórz propozycje umowy} (Rys. \ref{Rys. fig:Czat - mobile}.b lub \ref{Rys. fig:Czat - desktop});
+    \item użytkownik zmienia wartości w formularzu;
+    \item kliknięcie przycisku \texttt{Zaproponuj nową umowe} (Rys. \ref{Rys. fig:Potwierdz umowe - mobile} lub \ref{Rys. fig:Potwierdz umowe - desktop}).
+\end{enumerate}
+Warunki końcowe: Do rozmówcy wysyłana jest nowa wersja umowy wraz z zaznaczonymi wartościami, które uległy zmianie.\\
+Przebieg alternatywny w realizacji podpunktu (3a): Wprowadzone dane są niepoprawne, system informuje o niepowodzeniu. \\
+
+\texttt{Wylogowanie} \\
+Zdarzenie inicjujące: kliknięcie przycisku \texttt{Wyloguj się} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub np. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a). \\
+Warunki początkowe: Użytkownik jest zalogowany. \\
+Przebieg podstawowy realizacji przypadku użycia:
+\begin{enumerate}
+    \item kliknięcie przycisku \texttt{Wyloguj się} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub np. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a).
+\end{enumerate}
+Warunki końcowe: Wylogowanie użytkownika.\\
+
+\texttt{Edycja profilu} \\
+Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Profil} \\
+Warunki początkowe: Bycie zalogowanym \\
+Przebieg podstawowy realizacji przypadku użycia: \\
+\begin{enumerate}
+    \item Zdarzenie inicjujące: Kliknięcie przycisku \texttt{Profil} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub np. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.b);
+    \item Zmiana danych na profilu (Rys. \ref{Edytuj profil - mobile} lub \ref{Edytuj profil - mobile});
+    \item Kliknięcie przycisku \texttt{Zapisz}.
+\end{enumerate}
+Warunki końcowe: zapisanie w bazie danych zmienionych danych. \\
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.3\linewidth]{rozdzial1/edytuj_profil_m.png}
+	\caption{Edycja profilu w wersji mobilnej}
+	\label{Edytuj profil - mobile}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.7\linewidth]{rozdzial1/edytuj_profil_d.jpg}
+	\caption{Edycja profilu w wersji mobilnej}
+	\label{Edytuj profil - desktop}
+\end{figure}
+
+%\texttt{Przypadek użycia} \\
+%Zdarzenie inicjujące: \\
+%Warunki początkowe: \\
+%Przebieg podstawowy realizacji przypadku użycia: \\
+%\begin{enumerate}
+%    \item aaa
+%\end{enumerate}
+%Warunki końcowe: \\
+%Przebieg alternatywny w realizacji przypadku użycia: \\
 
 \section{Projekt bazy danych}
 Baza danych została wykonana w języku \texttt{PostgreSQL}. Jest to zaawansowany, open-source'owy system zarządzania bazami danych. Między innymi jest znany ze swojej elastyczności, skalowalności i zgodności ze standardami SQL.
@@ -291,7 +490,7 @@ Diagram bazy danych został wygenerowany przez program \texttt{DataGrip}. \textt
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=1\linewidth]{rozdzial1/baza_danych.png}
+		\includegraphics[width=1\linewidth]{rozdzial1/baza_danych.jpg}
 	\caption{Projekt bazy danych}
 	\label{Rys. fig:Projekt bazy danych}
 \end{figure}
