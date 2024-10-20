@@ -7,7 +7,7 @@ Biorąc pod uwagę wymagania opisane w poprzednich podrozdziałach, zaprojektowa
 \item \textbf{Użytkownik niezalogowany} - nowy gość w serwsie, może  się zalogować oraz przeglądać ogłoszenia przewozu i zlecenia dodane przez pozostałych użytkowników.
 \item \textbf{Przewoźnik} - aktor odpowiedzialny za transport towarów. Przewoźnik może przeglądać dostępne zlecenia, dodawać ogłoszenia o planowanych trasach, komunikować się z autorami ogłoszeń, przyjmować zlecenia oraz oceniać i komentować kontrahentów.
 \item \textbf{Zleceniodawca} - użytkownik systemu, który zleca transport towarów. zleceniodawca może dodawać nowe zlecenia transportowe, podobnie jak przewoźnik, może również przeglądać ogłoszenia przewoźników oraz komunikować się z autorami ogłoszeń.
-\item \textbf{Moderator} - osoba odpowiedzialna za zarządzanie systemem. Moderator zatwierdza lub usuwa nowe ogłoszenia i zlecenia oraz blokuje konta użytkowników.
+\item \textbf{Moderator} - osoba odpowiedzialna za zarządzanie systemem. Moderator zatwierdza lub usuwa nowe ogłoszenia i zlecenia.
 \item \textbf{Administrator} - użytkownik umiejscowiony najwyżej w hierarchii systemu. Może on wykonywać wszystko co moderator oraz ma możliwość dodawania nowych moderatorów lub usuwania obecnych.
 \end{enumerate}
 
@@ -51,7 +51,7 @@ Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Kliknięcie przycisku \texttt{Nie masz konta? Zarejestruj się} (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.a lub \ref{fig:Formularz rejestracji - ab - desktop}.a);
     \item Wybór typu konta: zleceniodawca lub przewoźnik;
-    \item Kliknięcie przycisku \texttt{dalej}; (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.b lub \ref{fig:Formularz rejestracji - ab - desktop}.b)
+    \item Kliknięcie przycisku \texttt{dalej} (Rys. \ref{fig:Formularz rejestracji - abc - mobile}.b lub \ref{fig:Formularz rejestracji - ab - desktop}.b);
     \item Wpisanie danych:
         \begin{itemize}
             \item imię,
@@ -286,6 +286,7 @@ Warunki końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszys
 \end{figure}
 
 \texttt{Wyświetlenie profilu użytkownika} \\
+\label{Wyświetlenie profilu użytkownika}
 Zdarzenie inicjujące: Kliknięcie w dowolnego użytkownika (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b) lub kliknięcie w imię i nazwisko autora dowolnego ogłoszenia (Rys. \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - mobile}.b lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.a lub \ref{Rys. fig:Wyświetlenie ogłoszenia - ab - desktop}.b) \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
@@ -322,7 +323,7 @@ Warunki początkowe: Bycie zalogowanym jako przewoźnik. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Kliknięcie w przycisk \texttt{Dodaj ogłoszenie o planowanej trasie} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a);
-    \item Wypełnienie formularza (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.b;
+    \item Wypełnienie formularza (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.b lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.b;
     \item Kliknięcie przycisku \texttt{Dodaj ogłoszenie o planowanej trasie};
     \item System sprawdza poprawność wprowadzonych danych;
     \item Ogłoszenie wysyłane jest do akceptacji przez jednego z moderatorów.
@@ -473,15 +474,131 @@ Warunki końcowe: zapisanie w bazie danych zmienionych danych. \\
 	\label{Edytuj profil - desktop}
 \end{figure}
 
-%\texttt{Przypadek użycia} \\
-%Zdarzenie inicjujące: \\
-%Warunki początkowe: \\
-%Przebieg podstawowy realizacji przypadku użycia: \\
-%\begin{enumerate}
-%    \item aaa
-%\end{enumerate}
-%Warunki końcowe: \\
-%Przebieg alternatywny w realizacji przypadku użycia: \\
+\texttt{Dodanie opinii o użytkowniku} \\
+Zdarzenie inicjujące: Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika} \\
+Warunki początkowe: Od wygenerowania umowy między użytkownikami musi minąć 7 dni. \\
+Przebieg podstawowy realizacji przypadku użycia: \\
+\begin{enumerate}
+   \item Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika};
+   \item Gdy dodanie opini będzie możliwe, pojawi się nowy przycisk \texttt{Dodaj opinie} (Rys. \ref{Dodawanie opini - mobile - ab}.a lub \ref{Dodawanie opini - destkop - ab}.a);
+   \item Wypełnienie formularza dodawania opinii (Rys. \ref{Dodawanie opini - mobile - ab}.b lub \ref{Dodawanie opini - destkop - ab}.b);
+   \item Dodanie opinii o użytkowniku.
+\end{enumerate}
+Warunki końcowe: Dodanie opinii o użytkowniku \\
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+            a) & b)\\
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/profil_opinia_m.png}}} &
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/dodaj_opinie_m.png}}}
+    \end{tabular}
+    \caption{Dodawanie opinii o użytkowniku w wersji mobilnej: a) Profil użytkownika gdy dostępne jest dodanie opinii b) Formularz dodawania opinii}
+	\label{Dodawanie opini - mobile - ab}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \includegraphics[width=0.45\textwidth]{rozdzial1/profil_opinia_d.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/dodaj_opinie_d.jpg}
+  \end{tabular}
+ \caption{Dodawanie opinii o użytkowniku w wersji desktopowej: a) Profil użytkownika gdy dostępne jest dodanie opinii b) Formularz dodawania opinii}
+ \label{Dodawanie opini - destkop - ab}
+\end{figure}
+
+\subsection{Zleceniodawca}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=\linewidth]{rozdzial1/PU_zleceniodawca.jpg}
+	\caption{Diagram przedstawiający przypadki użycia aktora \texttt{Zleceniodawca}}
+	\label{Rys. fig:Diagram przedstawiający przypadki użycia aktora Zleceniodawca}
+\end{figure}
+Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Zleceniodawcy}. Kolorem szarym oznaczone zostały przypadki użycia, które zostały już opisane w poprzednich podsekcjach.\\
+
+\texttt{Dodawanie nowego zlecenia} \\
+Zdarzenie inicjujące: Po zalogowaniu na konto z typem zleceniodawca, do menu nawigacji dokładane jest klilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj zlecenie} (Rys. \ref{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}.a). \\
+Warunki początkowe: Bycie zalogowanym jako zleceniodawca. \\
+Przebieg podstawowy realizacji przypadku użycia:
+\begin{enumerate}
+    \item Kliknięcie w przycisk \texttt{Dodaj zlecenie} (Rys. \ref{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}.a);
+    \item Wypełnienie formularza (Rys. \ref{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}.b lub \ref{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}.b);
+    \item Kliknięcie przycisku \texttt{Dodaj zlecenie};
+    \item System sprawdza poprawność wprowadzonych danych;
+    \item Zlecenie wysyłane jest do akceptacji przez jednego z moderatorów.
+\end{enumerate}
+Warunki końcowe: Zlecenie wysyłane jest do moderatorów w celu akceptacji.
+Przebieg alternatywny realizacji podpunktu (4a): Wprowadzone dane są niepoprawne. System informuje o niepowodzeniu. \\
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+            a) & b)\\
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/menu_m_zleceniodawca.png}}} &
+    \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/dodaj_zlecenie_m.png}}}
+    \end{tabular}
+    \caption{Dodawanie nowego zlecenia w wersji mobilnej: a) Menu po zalogowaniu jako zleceniodawca b) Formularz dodawania zlecenia}
+	\label{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \begin{tabular}{@{}ccc@{}}
+  a) & b)\\
+  \includegraphics[width=0.45\textwidth]{rozdzial1/menu_d_zleceniodawca.jpg} &
+  \includegraphics[width=0.45\textwidth]{rozdzial1/dodaj_zlecenie_d.jpg}
+  \end{tabular}
+ \caption{Dodawanie nowego zlecenia w wersji desktopowej: a) Menu po zalogowaniu jako zleceniodawca b) Formularz dodawania zlecenia}
+ \label{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}
+\end{figure}
+
+\subsection{Moderator i Administrator}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=\linewidth]{rozdzial1/PU_moderator_administrator.jpg}
+	\caption{Diagram przedstawiający przypadki użycia aktorów \texttt{Moderator} i \texttt{Administrator}}
+	\label{PU moderator administrator}
+\end{figure}
+Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Moderatora} oraz \texttt{Administratora}.  \\
+
+ \texttt{Akceptacja nowych zleceń oraz ogłoszeń o planowanej trasie} \\
+ Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Zgłoszenia do akceptacji (x)}. \\
+ Warunki początkowe: Bycie zalogowanym jako moderator lub administrator. \\
+ Przebieg podstawowy realizacji przypadku użycia: \\
+ \begin{enumerate}
+    \item Kliknięcie w przycisk \texttt{Zgłoszenia do akceptacji (x)} (Rys. \ref{Ackeptacja ogłoszenia - mobile - ab}.a lub \ref{Akceptacja ogłoszenia - destkop - ab}.a);
+    \item Użytkownikowi wyświetla się lista oczekujących zgłoszeń;
+    \item Osoba akceptująca zatwierdza lub odrzuca zgłoszenia klikając w odpowiednie przyciski (Rys. \ref{Ackeptacja ogłoszenia - mobile - ab}.b lub \ref{Akceptacja ogłoszenia - destkop - ab}.b).
+ \end{enumerate}
+ Warunki końcowe: Ogłoszenie zostaje odrzucone bądź zaakceptowane. \\
+ \begin{figure}[H]
+	\centering
+	\begin{tabular}{@{}ccc@{}}
+             a) & b)\\
+     \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/menu_moderator_m.png}}} &
+     \vtop{\null\hbox{\includegraphics[width=0.3\linewidth]{rozdzial1/zatwierdz_m.png}}}
+     \end{tabular}
+     \caption{Akceptacja nowych zleceń i ogłoszeń o planowanej trasie w wersji mobilnej: a) Menu po zalogowaniu jako moderator lub administrator b) Panel akceptacji nowych ogłoszeń}
+	\label{Ackeptacja ogłoszenia - mobile - ab}
+ \end{figure}
+ \begin{figure}[H]
+  \centering
+   \begin{tabular}{@{}ccc@{}}
+   a) & b)\\
+   \includegraphics[width=0.45\textwidth]{rozdzial1/menu_moderator_d.jpg} &
+   \includegraphics[width=0.45\textwidth]{rozdzial1/zatwierdz_d.jpg}
+   \end{tabular}
+  \caption{Akceptacja nowych zleceń i ogłoszeń o planowanej trasie w wersji desktopowej: a) Menu po zalogowaniu jako moderator lub administrator b) Panel akceptacji nowych ogłoszeń}
+  \label{Akceptacja ogłoszenia - destkop - ab}
+ \end{figure}
+
+ \texttt{Nadawanie i odbieranie użytkownikom prawa moderatora} \\
+ Zdarzenie inicjujące: Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika}. \\
+ Warunki początkowe: Bycię zalogowanym jako administrator. \\
+ Przebieg podstawowy realizacji przypadku użycia: \\
+ \begin{enumerate}
+    \item Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika};
+    \item Kliknięcie na pole \texttt{Typ użytkownika} rozwija listę z opcjami \texttt{Przewoźnik}, \texttt{Zleceniodawca}, \texttt{Moderator}, \texttt{Administrator} (Rys. \ref{Rys. fig:Profil użytkownika - mobile} lub \ref{Rys. fig:Profil użytkownika - desktop});
+    \item Typ użytkownika zostaje zmieniony na wybraną opcje.
+ \end{enumerate}
+ Warunki końcowe: Typ użytkownika zostaje zmieniony na wybraną opcje. \\
 
 \section{Projekt bazy danych}
 Baza danych została wykonana w języku \texttt{PostgreSQL}. Jest to zaawansowany, open-source'owy system zarządzania bazami danych. Między innymi jest znany ze swojej elastyczności, skalowalności i zgodności ze standardami SQL.
@@ -502,3 +619,5 @@ Dodatkowo, zamiast przechowywać hasła w postaci zwykłego tekstu, hasła użyt
 Przykładowe zaszyfrowane hasło: \\
 \texttt{\$2a\$06\$M/okyRSZvHY80DUo6rlTi.SNaZCZF5/NisSB5PMZCPeaPwnFZplAy}. \\
 Po odszyfrowaniu okazuje się, że ukryty ciąg znaków to: \texttt{twojehaslo}
+
+\cite{React} \cite{Next} \cite{Express} \cite{PostgreSQL} \cite{LogistykaMiędzynarodowa} \cite{MurphyWoodLogistyka}
