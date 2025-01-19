@@ -601,7 +601,7 @@ Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Mod
  Warunki końcowe: Typ użytkownika zostaje zmieniony na wybraną opcje. \\
 
 \section{Projekt bazy danych}
-Baza danych została wykonana w języku \texttt{PostgreSQL}. Jest to zaawansowany, open-source'owy system zarządzania bazami danych. Między innymi jest znany ze swojej elastyczności, skalowalności i zgodności ze standardami SQL.
+Baza danych została wykonana w języku \texttt{PostgreSQL} \cite{PostgreSQL}. Jest to zaawansowany, open-source'owy system zarządzania bazami danych. Między innymi jest znany ze swojej elastyczności, skalowalności i zgodności ze standardami SQL.
 
 Diagram bazy danych został wygenerowany przez program \texttt{DataGrip}. \texttt{DataGrip} to zaawansowane narzędzie do zarządzania bazami danych, stworzone przez JetBrains. Jest to wieloplatformowe środowisko IDE (zintegrowane środowisko programistyczne), które obsługuje wiele różnych systemów bazodanowych, takich jak \texttt{PostgreSQL}, \texttt{MySQL}, \texttt{Oracle}, \texttt{SQL Server}, \texttt{SQLite} i inne. Jedną z jego głównych zalet jest inteligentny edytor SQL, który oferuje funkcje automatycznego uzupełniania kodu, podpowiedzi dotyczących zapytań oraz wykrywania błędów w czasie rzeczywistym. \texttt{DataGrip} umożliwia również łatwe przeglądanie struktury baz danych, poprzez graficzny interfejs. Narzędzie jest szczególnie cenione przez deweloperów i administratorów baz danych za swoją intuicyjność.
 
@@ -618,6 +618,17 @@ Przykładowy klucz główny UUID: \texttt{2d8e72dc-aa4e-4c4c-b02b-b08655d891aa} 
 Dodatkowo, zamiast przechowywać hasła w postaci zwykłego tekstu, hasła użytkowników są szyfrowane przy użyciu algorytmu \texttt{bcrypt}. Dzięki któremu nawet w przypadku nieautoryzowanego dostępu do bazy danych, hasła pozostają bezpieczne, ponieważ odzyskanie oryginalnej wartości z hasha jest praktycznie niemożliwe. Dodatkowo technika solenia (and. \texttt{salt}) stosowana w \texttt{pgcrypto} (rozszerzenie do \texttt{PostgreSQL}) dodaje losowy ciąg znaków do każdego hasła przed jego zahashowaniem, co zapobiega atakom typu "rainbow table" i sprawia, że dwa identyczne hasła będą miały różne zaszyfrowane wartości. \\
 Przykładowe zaszyfrowane hasło: \\
 \texttt{\$2a\$06\$M/okyRSZvHY80DUo6rlTi.SNaZCZF5/NisSB5PMZCPeaPwnFZplAy}. \\
-Po odszyfrowaniu okazuje się, że ukryty ciąg znaków to: \texttt{twojehaslo}
+Po odszyfrowaniu okazuje się, że ukryty ciąg znaków to: \texttt{twojehaslo} \\
 
-\cite{React} \cite{Next} \cite{Express} \cite{PostgreSQL} \cite{LogistykaMiędzynarodowa} \cite{MurphyWoodLogistyka}
+Do przechowywania informacji o współrzędnych geograficznych w tabeli \texttt{Addresses}, użyto typu danych \texttt{geography(point,4326)}. Ten typ danych pozwala na precyzyjne przechowywanie współrzędnych geograficznych zgodnych z globalnym systemem odniesienia WGS 84. Umożliwia to wykonywanie zaawansowanych operacji geograficznych, takich jak obliczanie odległości czy znajdowanie punktów w określonym promieniu. \\
+Przykładowa wartość tego typu danych może wyglądać w następujący sposób: \\
+\texttt{0101000020E61000004B598638D68D4940E0F3C308E1093140} \\
+Odpowiednią kwerendą, uzyskać możemy szerokość i wysokość geograficzną \\
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=SQL,caption=Przykład kwerendy SQL, label=lst:sql_query]
+SELECT ST_X(addresses.geography::geometry) AS longitude, 
+       ST_Y(addresses.geography::geometry) AS latitude 
+FROM addresses;
+\end{lstlisting}
+}
+W tym przypadku jest to szerokość: 51.1081 oraz wysokość 17.03859, czyli współrzędne geograficzne Wrocławia.
