@@ -164,15 +164,44 @@ Schemat używa funkcji tłumaczącej do generowania komunikatów błędów, co z
 
 Jeżeli wprowadzone dane zostaną pozytywnie rozpatrzone przez walidacje, następuje dodanie ogłoszenia o planowanej trasie do bazy danych.
 
-type MapProps = {
-  zoom?: number;
-  className?: string;
-  roads?: Road[];
-};
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=JavaScript,caption=Dodawanie ogłoszenia do bazy danych, label=lst:addAnnouncementToDB]
 
-export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
-  const [routesPoints, setRoutesPoints] = useState<[number, number][][]>([]);
-  const [selectedRoute, setSelectedRoute] = useState<number | null>(null);
+export async function addAnnouncement(state: NewAnnouncementFormState, formData: FormData) {
+    
+    // Powyzej opisana walidacja danych
+
+    const data = validatedFields.data;
+    let [size_x, size_y] = data.maxSize.split('x').map(Number);
+    const { userId } = await verifySession();
+    
+    const from_address_id = await addAddress(data.from);
+    const to_address_id = await addAddress(data.to);
+    
+    await sql(
+        'INSERT INTO announcements (title,description,start_date,arrive_date,max_weight,size_x,size_y,max_height,author_id,is_accepted,vehicle_brand,vehicle_model,from_address_id,to_address_id,road_color)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)',
+        [
+        data.title,
+        data.desc,
+        data.departureDate,
+        data.arrivalDate,
+        data.maxWeight,
+        size_x,
+        size_y,
+        data.maxHeight,
+        userId,
+        false,
+        data.brand,
+        data.model,
+        from_address_id,
+        to_address_id,
+        '#' + ((Math.random() * 0xffffff) << 0).toString(16),
+        ],
+    );
+    redirect({ locale: 'pl', href: '/announcements' });
+}
+\end{lstlisting}
+}
 
 Powyższy fragment funkcji \texttt{addAnnouncement} realizuje proces zapisu nowego ogłoszenia transportowego do bazy danych. Wykonwane są w nim następujące czynności:
 \begin{enumerate}
