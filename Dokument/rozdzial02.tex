@@ -2,11 +2,11 @@
 W niniejszym rozdziale przedstawiona zostanie szczegółowa analiza aspektów technicznych związanych z implementacją aplikacji. Na początku zaprezentowane zostaną wykorzystane narzędzia wraz z uzasadnieniem ich wyboru w kontekście wymagań projektowych. Następnie omówiona zostanie architektura warstw systemu. W dalszej części rozdziału szczegółowo opisane zostaną poszczególne moduły systemu oraz ich wzajemne powiązania. Następna część poświęcona będzie omówieniu implementacji kluczowych funkcjonalności: mechanizmu publikacji ogłoszeń, modułu wizualizacji tras na mapie oraz algorytmu rekomendacji ogłoszeń. W ostatniej części rozdziału przedstawione zostanie podejście do testowania aplikacji oraz proces jej wdrożenia na środowisko produkcyjne.
 
 \section{Opis narzędzi}
-Aplikacja została wykonana w technologii webowej, przy użyciu fullstackowego frameworka \texttt{Next.js} \cite{Next} (w wersji \texttt{15.1.3}). Jest to popularny sposób tworzenia aplikacji webowych, zapewniający wiele przydatnych funkcji poprawiających optymalizacje. Między innymi \texttt{Next.js} skraca czas potrzebny do załadowania aplikacji poprzez renderowanie kodu \texttt{HTML} strony, już podczas kompilacji aplikacji. Został on oparty na innym frameworku - React \cite{React}, jest to jedna z najpopularniejszych bibliotek \texttt{JavaScript} do budowania interfejsów użytkownika. Opiera się on na koncepcji komponentów - niezależnych, wielokrotnego użytku bloków interfejsu. Komponenty te w  \texttt{Next.js} są renderowane po stronie serwera, co znacząco przyspiesza pierwsze ładowanie strony. Dodatkowo renderowanie komponentów aplikacji po stronie serwera, pozytywnie wpływa na algorytmy \texttt{SEO}, co skutkuje lepszym pozycjonowaniem serwisu w wyszukiwarkach internetowych. \texttt{Next.js} posiada zintegrowane rozwiązanie fullstackowe, oznacza to, że zarówno backend jak i frontend aplikacji wykorzystują tę samą bazę kodu. Takie podejście znacząco upraszcza proces developmentu i utrzymania aplikacji, eliminując potrzebę zarządzania oddzielnymi projektami dla części serwerowej i klienckiej. Dodatkowo ułatwia proces wdrożenia aplikacji na środowisko produkcyjne.
+Aplikacja została wykonana w technologii webowej, przy użyciu fullstackowego frameworka \texttt{Next.js} \cite{Next} (w wersji \texttt{15.1.3}). Jest to popularny sposób tworzenia aplikacji webowych, zapewniający wiele przydatnych funkcji poprawiających optymalizacje. Między innymi \texttt{Next.js} skraca czas potrzebny do załadowania aplikacji poprzez renderowanie kodu \texttt{HTML} strony, już podczas kompilacji aplikacji. Został on oparty na innym frameworku - React \cite{React}, jest to jedna z najpopularniejszych bibliotek \texttt{JavaScript} do budowania interfejsów użytkownika. Opiera się ona na koncepcji komponentów - niezależnych, wielokrotnego użytku bloków interfejsu. Komponenty te w  \texttt{Next.js} mogą być renderowane po stronie serwera, co znacząco przyspiesza pierwsze ładowanie strony. Dodatkowo renderowanie komponentów aplikacji po stronie serwera pozytywnie wpływa na algorytmy \texttt{SEO}, co skutkuje lepszym pozycjonowaniem serwisu w wyszukiwarkach internetowych. \texttt{Next.js} posiada zintegrowane rozwiązanie fullstackowe, oznacza to, że zarówno backend jak i frontend aplikacji wykorzystują tę samą bazę kodu. Takie podejście znacząco upraszcza proces developmentu i utrzymania aplikacji, eliminując potrzebę zarządzania oddzielnymi projektami dla części serwerowej i klienckiej. Dodatkowo ułatwia proces wdrożenia aplikacji na środowisko produkcyjne.
 
 Zamiast standardowych klas \texttt{CSS}, do interfejsu użytkownika została użyta biblioteka \texttt{Tailwind} \cite{Tailwind} (w wersji \texttt{3.4.1}). Jest to narzędzie typu \texttt{utility-first CSS}, które pozwala na szybkie tworzenie responsywnych interfejsów poprzez zastosowanie predefiniowanych klas bezpośrednio w kodzie HTML.
 
-Do wyświetlania na mapie tras z ogłoszeń, użyte zostało \texttt{API Leaflet}. Jest to darmowy serwis oferujący interaktywne mapy, który umożliwia łatwą implementację funkcjonalności takich jak wyświetlanie markerów, rysowanie tras czy obsługa zdarzeń związanych z interakcją użytkownika z mapą. Biblioteka została zoptymalizowana pod kątem urządzeń mobilnych, zapewniając płynne działanie i responsywność na różnych rozmiarach ekranów.
+Do wyświetlania na mapie tras z ogłoszeń użyte zostało \texttt{API Leaflet}. Jest to darmowy serwis oferujący interaktywne mapy, który umożliwia łatwą implementację funkcjonalności takich jak: wyświetlanie markerów, rysowanie tras czy obsługa zdarzeń związanych z interakcją użytkownika z mapą. Biblioteka została zoptymalizowana pod kątem urządzeń mobilnych, zapewniając płynne działanie i responsywność na różnych rozmiarach ekranów.
 
 Testy jednostkowe aplikacji wykonane zostały przy użyciu biblioteki \texttt{Jest} \cite{Jest} (w wersji \texttt{29.7.0}). Framework ten został wybrany ze względu na jego natywną integrację z \texttt{Next.js} oraz możliwość łatwego tworzenia i uruchamiania testów dla komponentów React.
 
@@ -25,20 +25,20 @@ Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wys
 \begin{enumerate}
     \item \textbf{Warstwa prezentacji} - odpowiada za bezpośrednią interakcje z użytkownikiem. W jej skład wchodzą:
     \begin{enumerate}
-        \item formularze - stanowią pośrednika między użytkownikiem, a warstwą logiki aplikacji. Pozwalają na wysyłanie wprowadzonych danych do warstwy logiki aplikacji,
-        \item komponenty klienckie (ang. \emph{client components}) - interaktywne elementy interfejsu użytkownika renderowane po stronie przeglądarki końcowego użytkownika, które:
+        \item Formularze - stanowią pośrednika między użytkownikiem, a warstwą logiki aplikacji. Pozwalają na wysyłanie wprowadzonych danych do warstwy logiki aplikacji,
+        \item Komponenty klienckie (ang. \emph{client components}) - interaktywne elementy interfejsu użytkownika renderowane po stronie przeglądarki końcowego użytkownika, które:
         \begin{itemize}
             \item obsługują zdarzenia użytkownika (kliknięcia, wprowadzanie danych),
-            \item zarządzają stanem lokalnym aplikacji przy użyciu \emph{React hooks},
+            \item zarządzają stanem lokalnym aplikacji przy użyciu haków React (ang. \emph{React hooks}),
             \item implementują dynamiczne zachowania interfejsu bez przeładowywania strony,
             \item komunikują się z API poprzez żądania HTTP,
             \item renderują interaktywne elementy mapy przy użyciu biblioteki Leaflet.
         \end{itemize}
-        \item hydracja - kluczowy proces w architekturze aplikacji \texttt{Next.js}. Przekształca początkowy, statyczny widok strony w pełni interaktywną aplikację React. Poprzez wypełnianie komponentów klienckich danymi pozyskanymi z warstwy logicznej aplikacji.
+        \item Hydracja - kluczowy proces w architekturze aplikacji \texttt{Next.js}. Przekształca początkowy, statyczny widok strony w pełni interaktywną aplikację React. Poprzez wypełnianie komponentów klienckich danymi pozyskanymi z warstwy logicznej aplikacji.
     \end{enumerate}
     \item \textbf{Warstwa logiki aplikacji} - są w niej zawarte wszelkie mechanizmy, do których użytkownik końcowy nie może mieć wglądu z uwagi na bezpieczeństwo. Warstwa ta składa się z:
     \begin{enumerate}
-        \item komponentów serwerowych (ang. \emph{server components}) - komponenty intefejsu użytkownika, które:
+        \item Komponentów serwerowych (ang. \emph{server components}) - komponenty intefejsu użytkownika, które:
         \begin{itemize}
             \item są renderowane po stronie serwera, a użytkownikowi zwracany jest gotowy kod HTML,
             \item redukują ilość JavaScript przesyłanego do przeglądarki,
@@ -46,7 +46,7 @@ Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wys
             \item mają dostęp do wrażliwych danych i zmiennych środowiskowych,
             \item są odpowiednie do renderowania statycznej zawartości i elementów niewymagających interaktywności.
         \end{itemize}
-        \item mechanizmów obsługi tras (ang. \emph{route handlers}) - odpowiadają za przetwarzanie żądań przychodzących i wysyłanie odpowiedzi.
+        \item Mechanizmów obsługi tras (ang. \emph{route handlers}) - odpowiadają za przetwarzanie żądań przychodzących i wysyłanie odpowiedzi.
         \begin{itemize}
             \item obsługują metody HTTP (\emph{GET, POST, PUT, DELETE}),
             \item zapewniają bezpieczną komunikację między frontendem a backendem aplikacji.
@@ -61,13 +61,13 @@ Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wys
             \item komunikacji z zewnętrznym API OSRM dla wyznaczania tras,
         \end{itemize}
     \end{enumerate}
-    \item \textbf{Warstwa danych} - warstwa odpowiadająca za przechowywanie oraz dostarczanie wszelkich danych aplikacji. W aplikacji wykorzystano relacyjną bazę danych PostgreSQL, która przechowuje informacje o:
-    \begin{enumerate}
+    \item \textbf{Warstwa danych} - Warstwa odpowiadająca za przechowywanie oraz dostarczanie wszelkich danych aplikacji. W aplikacji wykorzystano relacyjną bazę danych PostgreSQL, która przechowuje informacje o:
+    \begin{itemize}
         \item użytkownikach systemu i ich rolach,
         \item zleceniach transportowych i ich statusach,
         \item lokalizacjach geograficznych (punkty początkowe i końcowe tras),
         \item czatach między użytkownikami oraz umowami zawartymi między nimi,
-    \end{enumerate}
+    \end{itemize}
     \item \textbf{Zewnętrzne usługi} - systemy i API wykorzystywane do rozszerzenia funkcjonalności aplikacji:
     \begin{enumerate}
         \item Project OSRM (ang. \emph{Open Source Routing Machine}), używany jest do zapewnia funkcji wyznaczania tras między punktami. Oferuje API do integracji z aplikacjami transportowymi.
@@ -76,10 +76,11 @@ Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wys
 \end{enumerate}
 
 \section{Opis implementacji}
-W tym podrozdziale zostały opisane implementacje funkcjonalności mechanizmu publikacji ogłoszeń, modułu wizualizacji tras na mapie oraz algorytmu rekomendacji ogłoszeń.
+TODO
 
 \subsection{Implementacja mechanizmu publikacji ogłoszeń o planowanej trasie}
-Dodawanie nowego ogłoszenia o planowanej trasie odbywa się poprzez wysłanie przez użytkownika wypełnienionego formularza. W bazie danych muszą zostać zawarte informacje o adresie początkowym, adresie końcowym, datach odjazdu i przyjazdu, tytule ogłoszenia oraz jego opisie, a także o ładowności pojazdu (maksymalny ciężar towaru, maksymalne wymiary towaru oraz maksymalna wysokość towaru). Walidacja wprowadzonych przez użytkownika danych odbywa się po stronie serwera. Poniżej zamieszczony został fragment funkcji dodającej do bazy danych nowe ogłoszenie o planowanej trasie.
+\label{addAnnouncement}
+Dodawanie nowego ogłoszenia o planowanej trasie odbywa się poprzez wysłanie przez użytkownika wypełnienionego formularza. W bazie danych muszą zostać zawarte informacje o: adresie początkowym, adresie końcowym, datach odjazdu i przyjazdu, tytule ogłoszenia oraz jego opisie, a także o ładowności pojazdu (maksymalny ciężar towaru, maksymalne wymiary towaru oraz maksymalna wysokość towaru). Walidacja wprowadzonych przez użytkownika danych odbywa się po stronie serwera. Poniżej zamieszczony został fragment funkcji dodającej do bazy danych nowe ogłoszenie o planowanej trasie.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Wstępna walidacja danych przed dodaniem ogłoszenia do bazy danych, label=lst:addAnnouncement]
@@ -113,7 +114,7 @@ export async function addAnnouncement(state: NewAnnouncementFormState, formData:
 W powyższym fragmencie funkcji \texttt{addAnnouncement} widoczny jest mechanizm dodawania nowego ogłoszenia o planowanej trasie. Funkcja realizuje kilka kluczowych zadań:
 \begin{enumerate}
     \item \textbf{Walidacja danych wejściowych} - funkcja wykorzystuje schemat walidacji \texttt{newAnnouncementSchema} zdefiniowany przy pomocy biblioteki \texttt{Zod}. Do schematu podawana jako argument jest funkcja pobierająca tłumaczenia dla komunikatów błędów.
-    \item \textbf{Obsługa danych} - dane są pobierane z obiektu \texttt{FormData}, dostarczanego podczas wysyłania formularza. Adresy początkowy i końcowy są parsowane z objektu \texttt{JSON} zawierającego dokładne informacje o współrzędnych, identyfikatorów krajów, stanów, miast, kodzie pocztowym oraz innych niezbędnych danych.
+    \item \textbf{Obsługa danych} - dane są pobierane z obiektu \texttt{FormData}, dostarczanego podczas wysyłania formularza. Adresy początkowy i końcowy są parsowane z objektu \texttt{JSON} zawierającego dokładne informacje o: współrzędnych, identyfikatorów krajów, stanów, miast, kodzie pocztowym oraz innych niezbędnych danych.
     \item \textbf{Mechanizm obsługi błędów} - w przypadku niepowodzenia walidacji funkcja zwraca do formularza obiekt z wyszczególnionymi błędami dla poszczególnych pól.
 \end{enumerate}
 
@@ -155,9 +156,9 @@ export const newAnnouncementSchema = (t: any) =>
 
 Przedstawiony schemat walidacji danych wejściowych \texttt{newAnnouncementSchema} definiuje reguły sprawdzania poprawności dla nowego ogłoszenia transportowego przy użyciu biblioteki Zod. Schemat obejmuje następujące kluczowe elementy:
 \begin{enumerate}
-    \item \textbf{Walidacja tekstowa} - Pola takie jak tytuł, marka, model wymagają niepustej wartości, która jest dodatkowo przycinana z białych znaków.
-    \item \textbf{Walidacja liczbowa} - Maksymalna waga towaru musi zawierać w zakresie 1-50000, a maksymalna wysokość towaru w zakresie 1-1000.
-    \item \textbf{Walidacja formatu} - Maksymalny rozmiar towaru wymaga formatu \emph{szerokość} x \emph{wysokość} liczonych w europaletach (np. 3x2). Daty wyjazdu i przyjazdu są konwertowane do formatu daty.
+    \item \textbf{Walidacja tekstowa} - pola takie jak tytuł, marka, model wymagają niepustej wartości, która jest dodatkowo przycinana z białych znaków.
+    \item \textbf{Walidacja liczbowa} - maksymalna waga towaru musi zawierać w zakresie 1-50000, a maksymalna wysokość towaru w zakresie 1-1000.
+    \item \textbf{Walidacja formatu} - maksymalny rozmiar towaru wymaga formatu \emph{szerokość} x \emph{wysokość} liczonych w europaletach (np. 3x2). Daty wyjazdu i przyjazdu są konwertowane do formatu daty.
     \item \textbf{Walidacja adresów} - wykorzystuje osobny schemat \texttt{AddressSchema} dla weryfikacji danych adresowych.
 \end{enumerate}
 Schemat używa funkcji tłumaczącej do generowania komunikatów błędów, co zapewnia internacjonalizację komunikatów walidacyjnych.
@@ -165,7 +166,7 @@ Schemat używa funkcji tłumaczącej do generowania komunikatów błędów, co z
 Jeżeli wprowadzone dane zostaną pozytywnie rozpatrzone przez walidacje, następuje dodanie ogłoszenia o planowanej trasie do bazy danych.
 
 {\belowcaptionskip=-9pt
-\begin{lstlisting}[language=JavaScript,caption=Dodawanie ogłoszenia do bazy danych, label=lst:addAnnouncementToDB]
+\begin{lstlisting}[language=JavaScript,caption=Implementacja dodawania ogłoszenia do bazy danych, label=lst:addAnnouncementToDB]
 
 export async function addAnnouncement(state: NewAnnouncementFormState, formData: FormData) {
     
@@ -203,11 +204,12 @@ export async function addAnnouncement(state: NewAnnouncementFormState, formData:
 \end{lstlisting}
 }
 
+\pagebreak
 Powyższy fragment funkcji \texttt{addAnnouncement} realizuje proces zapisu nowego ogłoszenia transportowego do bazy danych. Wykonwane są w nim następujące czynności:
 \begin{enumerate}
     \item \textbf{Przygotowanie danych} - parsuje rozmiar towaru na osobne wartości \texttt{size\_x} i \texttt{size\_y}, a także weryfikuje czy użytkownik w rzeczywiście jest zalogowany. Następnie do tabeli \texttt{addresses} dodawane są rekordy z adresem początkowym oraz końcowym.
     \item \textbf{Zapis do bazy danych} - dodaje rekord do tabeli \texttt{announcements} używając wszystkich przesłanych przez użytkownika danych. Odbywa się to poprzez używanie zmiennych (\$1, \$2, ...), uodparnia to aplikacje na atak typu \texttt{SQL injection}.
-    \item \textbf{Automatyczne przekierowanie do listy ogłoszeń po pomyślnym dodaniu}
+    \item \textbf{Automatyczne przekierowanie do listy ogłoszeń po pomyślnym dodaniu}.
 \end{enumerate}
 Domyślnie kolumna \texttt{is\_accepted} jest ustawiona na \texttt{false} ze względu na to, że ogłoszenie nie powinno być było widoczne publicznie natychmiast po dodaniu. Stanie się ono widoczne dopiero kiedy jeden z moderatorów je zatwierdzi. Wartość kolumny \texttt{road\_color} jest generowana losowo, kolor ten będzie używany do rysowania trasy przewozu na mapie.
 
@@ -236,10 +238,11 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
 \end{lstlisting}
 }
 
-Komponent \texttt{Map} przyjmuje w argumencie wartość \texttt{zoom}, czyli poziom przybliżenia mapy, domyślnie w aplikacji ta wartość została ustawiona na 13, co daje nam widok na całą Europe. Argument \texttt{className} to klasy Tailwind, pozwala na stylizacje komponentu w zależności od potrzeb. Ostatni argument \texttt{roads} to tablica typu \texttt{Road}, typ ten zawiera informacje o trasie, współrzędnych geograficznych punktu początkowego oraz końcowego, identyfikator powiązanego z nią ogłoszenia oraz kolor rysowanej na mapie trasy.
+Komponent \texttt{Map} przyjmuje w argumencie wartość \texttt{zoom}, czyli poziom przybliżenia mapy, domyślnie w aplikacji ta wartość została ustawiona na 13, co daje nam widok na całą Europę. Argument \texttt{className} to klasy Tailwind, pozwala na stylizacje komponentu w zależności od potrzeb. Ostatni argument \texttt{roads} to tablica typu \texttt{Road}, typ ten zawiera informacje o trasie, współrzędnych geograficznych punktu początkowego oraz końcowego, identyfikator powiązanego z nią ogłoszenia oraz kolor rysowanej na mapie trasy.
 
+\pagebreak
 {\belowcaptionskip=-9pt
-\begin{lstlisting}[language=JavaScript,caption=Pobieranie najkrótszych tras między punktami, label=lst:fetchRoutes]
+\begin{lstlisting}[language=JavaScript,caption=Implementacja pobierania najkrótszych tras między punktami, label=lst:fetchRoutes]
 export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
     
     const [routesPoints, setRoutesPoints] = useState<[number, number][][]>([]);
@@ -277,20 +280,21 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
     
         fetchRoutes();
     }, [roads]);
+}
   \end{lstlisting}
-  }
-  
+}
+  \pagebreak
   Powyższy fragment kodu ukazuje implementacje pobierania danych o najkrótszej trasie z API OSRM. Hak Reacta (ang. \emph{React Hook}) o nazwie \texttt{useEffect()} powoduje, że kod zawarty w tym haku, wykona się już po załadowaniu komponentu na stronie. Fragment ten spełnia następujące funkcje:
   \begin{enumerate}
     \item \textbf{Sprawdzanie poprawności argumentów} - zanim API OSRM zacznie być odpytywane, argument \texttt{roads} sprawdzany jest pod kątem posiadania w sobie pola ze współrzędnymi geograficznymi.
-    \item \textbf{Wysyłanie zapytania do API OSRM} - zapytanie używa metody \texttt{GET} i są w nim zawarte informacje dotyczące współrzędnych geograficznych punktu początkowego oraz końcowego. Warto zauważyć, że współrzędne podane są w odwrotny sposób niż ogólna przyjęta konwencja (najpierw szerokość, później długość), są to wymagania tego API.
-    \item \textbf{Zamiana szerokości geograficznej z długością} - Oprócz tego, że wymagane jest podawanie współrzędnych w odwróconej formie, to są one również w takiej formie zwracane. Po uzyskaniu odpowiedzi od API należy ją odwrócić.
-    \item \textbf{Obsługa błędów} - jeżeli odpowiedź nie zostanie uzyskana lub zapytanie zwróci błąd, do konsoli aplikacji wypisywany jest komunikat o niepowodzeniu.
+    \item \textbf{Wysyłanie zapytania do API OSRM} - zapytanie używa metody \texttt{GET} i są w nim zawarte informacje dotyczące współrzędnych geograficznych punktu początkowego oraz końcowego. Zauważyć można, że współrzędne podane są w odwrotny sposób niż ogólna przyjęta konwencja (najpierw szerokość, później długość), są to wymagania tego API.
+    \item \textbf{Zamiana szerokości geograficznej z długością} - oprócz tego, że wymagane jest podawanie współrzędnych w odwróconej formie, to są one również w takiej formie zwracane. Po uzyskaniu odpowiedzi od API należy ją odwrócić.
+    \item \textbf{Obsługa błędów} - jeżeli odpowiedź nie zostanie uzyskana lub zapytanie zwróci błąd, wówczas do konsoli aplikacji wypisywany jest komunikat o niepowodzeniu.
     \item \textbf{Ustawienie tras w stanie komponentu} - uzyskane macierze ze współrzędnymi geograficznymi tras, są ustawiane jako aktualny stan komponentu.
   \end{enumerate}
   
-  {\belowcaptionskip=-9pt
-  \begin{lstlisting}[language=JavaScript,caption=Rysowanie tras na mapi, label=lst:drawRoutes]
+{\belowcaptionskip=-9pt
+  \begin{lstlisting}[language=JavaScript,caption=Implementacja rysowania tras na mapie, label=lst:drawRoutes]
   export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
   // Fragment kodu opisany powyzej
   return (
@@ -337,11 +341,130 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
       )}
     </MapContainer>
   );
+}
 \end{lstlisting}
 }
-Przedstawiony fragment kodu prezentuje renderowanie komponentu mapy z wykorzystaniem biblioteki Leaflet. Implementacja łączy pobrane wcześniej dane tras z interaktywną wizualizacją na mapie, umożliwiając użytkownikowi przeglądanie i eksplorację tras transportowych. Powyższy kod obejmuje następujące kluczowe funkcjonalności:
+Na powyższym fragmencie kodu zauważyć można renderowanie komponentu mapy z wykorzystaniem biblioteki Leaflet. Implementacja łączy pobrane wcześniej dane tras z interaktywną wizualizacją na mapie, umożliwiając użytkownikowi przeglądanie i eksplorację tras transportowych. Powyższy kod obejmuje następujące kluczowe funkcjonalności:
 \begin{enumerate}
     \item \textbf{Inicjalizacja kontenera mapy} - ustawienie centrum mapy na podstawie współrzędnych pierwszej trasy, dodanie możliwości przewijania mapy za pomocą rolki myszy.
     \item \textbf{Renderowanie tras} - mapowanie pobranych wcześniej punktów tras. Rysowanie linii tras (\texttt{Polyline}) z indywidualnym kolorem dla każdej trasy.
     \item \textbf{Obsługa interakcji} - zaznaczanie wybranej trasy, wyświetlanie wyskakującego okna (ang. \emph{Popup}) po kliknięciu trasy. W oknie znajduję się odnośnik do powiązanego ogłoszenia.
 \end{enumerate}
+Połączenie powyższych fragmentów kodu pozwala na wyświetlenie interaktywnej mapy z trasami transportowymi, co stanowi kluczową funkcjonalność aplikacji.
+
+\subsection{Implementacja algorytmu rekomendacji ogłoszeń}
+
+Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{addAnnouncement} jeszcze przed dodaniem ogłoszenia do bazy danych. Algorytm rekomendacji polega na znalezieniu ogłoszeń, które są najbardziej zbliżone do dodawanego ogłoszenia. W tym celu wykorzystywane są współrzędne geograficzne punktu początkowego i końcowego dodawanego ogłoszenia. Następnie obliczana jest odległość od punktów początkowych i końcowych innych ogłoszeń. Ogłoszenie, które wykaże odległość od punktu początkowego i punktu końcowego nie wiekszą niż 50km oraz zawiera się w odpowiednim zakresie właściwości fizycznych towaru, jest zwracane jako rekomendacja.
+
+{\belowcaptionskip=-9pt 
+\begin{lstlisting}[language=JavaScript,caption=Implementacja rekomendacji ogłoszeń, label=lst:recomendPost]
+  export async function tryLinkToPost(post: ErrandProps | AnnouncementProps): Promise<string | null> {
+  if ('ware' in post) {
+    const announcements = await getAnnouncements(SortDirection.ByNewest);
+    const match = announcements.find((announcement) =>
+      isMatchingDelivery(
+        post.from.geography!,
+        announcement.from.geography!,
+        post.to.geography!,
+        announcement.to.geography!,
+        post.ware,
+        announcement.carProps,
+      ),
+    );
+    return match?.id ?? null;
+  } else {
+    const errands = await getErrands(SortDirection.ByNewest);
+    const match = errands.find((errand) =>
+      isMatchingDelivery(
+        post.from.geography!,
+        errand.from.geography!,
+        post.to.geography!,
+        errand.to.geography!,
+        errand.ware,
+        post.carProps,
+      ),
+    );
+    return match?.id ?? null;
+  }
+}
+\end{lstlisting}
+}
+
+Powyższy fragment kodu przedstawia implementację algorytmu rekomendacji ogłoszeń. Funkcja \texttt{tryLinkToPost} przyjmuje jako argument ogłoszenie, które ma zostać zarekomendowane. W zależności od tego czy ogłoszenie jest ogłoszeniem o planowanej trasie czy zleceniem transportowym, pobierane są odpowiednie ogłoszenia z bazy danych. Następnie dla każdego ogłoszenia sprawdzane jest czy spełnia ono warunki rekomendacji.
+
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=JavaScript,caption=Funkcja sprawdzająca warunki powiązania ogłoszeń, label=lst:isMatchingDelivery]
+    export function isMatchingDelivery (
+    fromPoint1: GeoPoint,
+    fromPoint2: GeoPoint,
+    toPoint1: GeoPoint,
+    toPoint2: GeoPoint,
+    ware: ErrandProps['ware'],
+    carProps: AnnouncementProps['carProps']
+  ): boolean {
+    const isStartPointValid = arePointsInRange(fromPoint1, fromPoint2, 50);
+    const isEndPointValid = arePointsInRange(toPoint1, toPoint2, 50);
+    const areSizesValid = areDimensionsValid(ware, carProps);
+
+    return isStartPointValid && isEndPointValid && areSizesValid;
+  }
+\end{lstlisting}
+}
+
+Funkcja \texttt{isMatchingDelivery} sprawdza czy dane ogłoszenie spełnia warunki rekomendacji. W zależności od tego czy punkty początkowe i końcowe ogłoszeń znajdują się w odpowiedniej odległości od siebie oraz czy wymiary towaru mieszczą się w zakresie wymiarów pojazdu, funkcja zwraca wartość \texttt{true} lub \texttt{false}.
+
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=JavaScript,caption=Funkcje obliczająca odległość między punktami, label=lst:calculateDistance]
+  export function calculateDistance(point1: GeoPoint, point2: GeoPoint): number {
+    const R = 6371;
+  
+    const lat1 = (parseFloat(point1.coordinates[0]) * Math.PI) / 180;
+    const lon1 = (parseFloat(point1.coordinates[1]) * Math.PI) / 180;
+    const lat2 = (parseFloat(point2.coordinates[0]) * Math.PI) / 180;
+    const lon2 = (parseFloat(point2.coordinates[1]) * Math.PI) / 180;
+  
+    const dLat = lat2 - lat1;
+    const dLon = lon2 - lon1;
+  
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+  
+    return Number(distance.toFixed(2));
+  }
+  
+  export function arePointsInRange(point1: GeoPoint, point2: GeoPoint, maxDistance: number): boolean {
+    return calculateDistance(point1, point2) <= maxDistance;
+  }
+\end{lstlisting}
+}
+
+W powyższym fragmencie kodu znajdują się funkcje pomocnicze wykorzystywane w algorytmie rekomendacji ogłoszeń. Funkcja \texttt{calculateDistance} oblicza odległość między dwoma punktami geograficznymi. Funkcja \texttt{arePointsInRange} sprawdza czy odległość między dwoma punktami nie przekracza maksymalnej odległości. Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. 
+
+Do obliczenia odległości między punktami wykorzystany został wzór Haversine'a \cite{HeavenlyMathematics}. Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powrzechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje nam odległość liczoną w kilometrach.
+
+\begin{equation}
+  \text{dystans} = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
+\end{equation}
+
+Gdzie: 
+$R$ - promień Ziemi
+$\phi_1, \phi_2$ - szerokości geograficzne
+$\lambda_1, \lambda_2$ - długości geograficzne
+
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=JavaScript,caption=Funkcja sprawdzająca czy ogłoszenie zawiera się w odpowiednim zakresie właściwości fizycznych towaru , label=lst:areDimensionValid]
+export function areDimensionsValid(ware: ErrandProps['ware'], carProps: AnnouncementProps['carProps']): boolean {
+  return (
+    ware.weight <= carProps.maxWeight &&
+    ware.size.height <= carProps.maxSize.height &&
+    ware.size.x * ware.size.y <= carProps.maxSize.x * carProps.maxSize.y
+  );
+}
+\end{lstlisting}
+}
+
+Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. Wartości te są porównywane z wartościami maksymalnymi pojazdu, jeżeli wszystkie wartości są mniejsze lub równe wartościom maksymalnym, to funkcja zwraca wartość \texttt{true}, w przeciwnym wypadku \texttt{false}.
