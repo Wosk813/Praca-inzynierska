@@ -17,7 +17,7 @@ TODO
 \subsection{Architektura warstw}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.7\linewidth]{rozdzial2/diagram_warstw.png}
+		\includegraphics[width=1\linewidth]{rozdzial2/diagram_warstw.png}
 	\caption{Diagram architektury warstw aplikacji}
 	\label{Diagram warstw}
 \end{figure}
@@ -169,16 +169,16 @@ Jeżeli wprowadzone dane zostaną pozytywnie rozpatrzone przez walidacje, nastę
 \begin{lstlisting}[language=JavaScript,caption=Implementacja dodawania ogłoszenia do bazy danych, label=lst:addAnnouncementToDB]
 
 export async function addAnnouncement(state: NewAnnouncementFormState, formData: FormData) {
-    
+
     // Powyzej opisana walidacja danych
 
     const data = validatedFields.data;
     let [size_x, size_y] = data.maxSize.split('x').map(Number);
     const { userId } = await verifySession();
-    
+
     const from_address_id = await addAddress(data.from);
     const to_address_id = await addAddress(data.to);
-    
+
     await sql(
         'INSERT INTO announcements (title,description,start_date,arrive_date,max_weight,size_x,size_y,max_height,author_id,is_accepted,vehicle_brand,vehicle_model,from_address_id,to_address_id,road_color)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)',
         [
@@ -244,7 +244,7 @@ Komponent \texttt{Map} przyjmuje w argumencie wartość \texttt{zoom}, czyli poz
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Implementacja pobierania najkrótszych tras między punktami, label=lst:fetchRoutes]
 export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
-    
+
     const [routesPoints, setRoutesPoints] = useState<[number, number][][]>([]);
     const [selectedRoute, setSelectedRoute] = useState<number | null>(null);
     const t = useTranslations('map');
@@ -252,17 +252,17 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
     useEffect(() => {
         const fetchRoutes = async () => {
         const newRoutes: [number, number][][] = [];
-    
+
         for (const road of roads) {
             if (!road.from?.coordinates || !road.to?.coordinates) continue;
-    
+
             try {
             const response = await fetch(
                 `https://router.project-osrm.org/route/v1/driving/${road.from.coordinates[1]},${road.from.coordinates[0]};${road.to.coordinates[1]},${road.to.coordinates[0]}?overview=full&geometries=geojson`,
             );
-    
+
             const data = await response.json();
-    
+
             if (data.routes?.[0]?.geometry?.coordinates) {
                 const points = data.routes[0].geometry.coordinates.map(
                 (coord: [number, number]) => [coord[1], coord[0]] as [number, number],
@@ -274,10 +274,10 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
             newRoutes.push([]);
             }
         }
-    
+
         setRoutesPoints(newRoutes);
         };
-    
+
         fetchRoutes();
     }, [roads]);
 }
@@ -292,7 +292,7 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
     \item \textbf{Obsługa błędów} - jeżeli odpowiedź nie zostanie uzyskana lub zapytanie zwróci błąd, wówczas do konsoli aplikacji wypisywany jest komunikat o niepowodzeniu.
     \item \textbf{Ustawienie tras w stanie komponentu} - uzyskane macierze ze współrzędnymi geograficznymi tras, są ustawiane jako aktualny stan komponentu.
   \end{enumerate}
-  
+
 {\belowcaptionskip=-9pt
   \begin{lstlisting}[language=JavaScript,caption=Implementacja rysowania tras na mapie, label=lst:drawRoutes]
   export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
@@ -304,7 +304,7 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
       scrollWheelZoom={true}
       className={`${className} z-10 h-screen w-full`}
     >
-      
+
       {routesPoints.map(
         (points, index) =>
           points &&
@@ -356,7 +356,7 @@ Połączenie powyższych fragmentów kodu pozwala na wyświetlenie interaktywnej
 
 Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{addAnnouncement} jeszcze przed dodaniem ogłoszenia do bazy danych. Algorytm rekomendacji polega na znalezieniu ogłoszeń, które są najbardziej zbliżone do dodawanego ogłoszenia. W tym celu wykorzystywane są współrzędne geograficzne punktu początkowego i końcowego dodawanego ogłoszenia. Następnie obliczana jest odległość od punktów początkowych i końcowych innych ogłoszeń. Ogłoszenie, które wykaże odległość od punktu początkowego i punktu końcowego nie wiekszą niż 50km oraz zawiera się w odpowiednim zakresie właściwości fizycznych towaru, jest zwracane jako rekomendacja.
 
-{\belowcaptionskip=-9pt 
+{\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Implementacja rekomendacji ogłoszeń, label=lst:recomendPost]
   export async function tryLinkToPost(post: ErrandProps | AnnouncementProps): Promise<string | null> {
   if ('ware' in post) {
@@ -417,40 +417,40 @@ Funkcja \texttt{isMatchingDelivery} sprawdza czy dane ogłoszenie spełnia warun
 \begin{lstlisting}[language=JavaScript,caption=Funkcje obliczająca odległość między punktami, label=lst:calculateDistance]
   export function calculateDistance(point1: GeoPoint, point2: GeoPoint): number {
     const R = 6371;
-  
+
     const lat1 = (parseFloat(point1.coordinates[0]) * Math.PI) / 180;
     const lon1 = (parseFloat(point1.coordinates[1]) * Math.PI) / 180;
     const lat2 = (parseFloat(point2.coordinates[0]) * Math.PI) / 180;
     const lon2 = (parseFloat(point2.coordinates[1]) * Math.PI) / 180;
-  
+
     const dLat = lat2 - lat1;
     const dLon = lon2 - lon1;
-  
+
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  
+
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c;
-  
+
     return Number(distance.toFixed(2));
   }
-  
+
   export function arePointsInRange(point1: GeoPoint, point2: GeoPoint, maxDistance: number): boolean {
     return calculateDistance(point1, point2) <= maxDistance;
   }
 \end{lstlisting}
 }
 
-W powyższym fragmencie kodu znajdują się funkcje pomocnicze wykorzystywane w algorytmie rekomendacji ogłoszeń. Funkcja \texttt{calculateDistance} oblicza odległość między dwoma punktami geograficznymi. Funkcja \texttt{arePointsInRange} sprawdza czy odległość między dwoma punktami nie przekracza maksymalnej odległości. Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. 
+W powyższym fragmencie kodu znajdują się funkcje pomocnicze wykorzystywane w algorytmie rekomendacji ogłoszeń. Funkcja \texttt{calculateDistance} oblicza odległość między dwoma punktami geograficznymi. Funkcja \texttt{arePointsInRange} sprawdza czy odległość między dwoma punktami nie przekracza maksymalnej odległości. Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu.
 
 Do obliczenia odległości między punktami wykorzystany został wzór Haversine'a \cite{HeavenlyMathematics}. Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powrzechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje nam odległość liczoną w kilometrach.
 
 \begin{equation}
-  \text{dystans} = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
+  dystans = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
 \end{equation}
 
-Gdzie: 
+Gdzie:
 $R$ - promień Ziemi
 $\phi_1, \phi_2$ - szerokości geograficzne
 $\lambda_1, \lambda_2$ - długości geograficzne
@@ -470,10 +470,10 @@ export function areDimensionsValid(ware: ErrandProps['ware'], carProps: Announce
 Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. Wartości te są porównywane z wartościami maksymalnymi pojazdu, jeżeli wszystkie wartości są mniejsze lub równe wartościom maksymalnym, to funkcja zwraca wartość \texttt{true}, w przeciwnym wypadku \texttt{false}.
 
 \section{Opis testów aplikacji}
-Aplikacja w trakcie implementacji była testowana na bieżąco. Testy obejmowały zarówno testy jednostkowe, integracyjne, jak i testy \texttt{end-to-end}. Testy jednostkowe sprawdzały poprawność działania poszczególnych komponentów, testy integracyjne sprawdzały poprawność współpracy poszczególnych komponentów aplikacji, a testy end-to-end sprawdzały poprawność działania aplikacji jako całości. Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu biblioteki \texttt{Jest}, natomiast na potrzeby testów \texttt{end-to-end} użyte zostało narzędzie \texttt{Selenium IDE}.
+Aplikacja w trakcie implementacji była testowana na bieżąco. Testy obejmowały zarówno testy jednostkowe i testy \texttt{end-to-end}. Testy jednostkowe sprawdzały poprawność działania poszczególnych komponentów, testy integracyjne sprawdzały poprawność współpracy poszczególnych komponentów aplikacji, a testy end-to-end sprawdzały poprawność działania aplikacji jako całości.
 
 \subsection{Testy jednostkowe}
-Testy jednostkowe sprawdzają poprawność działania poszczególnych komponentów aplikacji. W aplikacji testowano następujące komponenty:
+Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu biblioteki \texttt{Jest}. Sprawdzają one poprawność działania poszczególnych komponentów aplikacji. W aplikacji testowano następujące komponenty:
 \begin{itemize}
   \item Pasek nawigacyjny, w kodzie aplikacji nazwany \texttt{Nav},
   \item Formularz rejestracji, w kodzie aplikacja nazwany \texttt{SignupForm},
@@ -481,7 +481,7 @@ Testy jednostkowe sprawdzają poprawność działania poszczególnych komponent�
   \item Mapę z narysowanymi trasami, w kodzie aplikacji nazwany \texttt{AllRoadsMap},
 \end{itemize}
 
-Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}, komponent ten został użyty międzyinnymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}:
+Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}. Komponent ten został użyty międzyinnymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}. W aplikacji przyjmuje on dwie formy, zależnie od szerokości przeglądarki. Gdy szerokość ekranu jest większa niż 768px, pasek nawigacji jest stale widoczny po lewej stronie. Jeżeli ekran jest węższy niż ta wartość graniczna, pasek nawigacji domyślnie jest ukryty, a pokazuje się dopiero po kliknięciu w ikonę hamburgera.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Przykładowy test jednostkowy paska nawigacyjnego, label=lst:NavTest]
@@ -505,7 +505,7 @@ it('opens mobile menu when hamburger icon is clicked', () => {
 \end{lstlisting}
 }
 
-Powyższy test sprawdza funkcjonalność otwierania menu mobilnego po kliknięciu w ikonę hamburgera. Sprawdza on czy, menu mobilne zostaje poprawnie otwarte, czy posiada odpowiednie klasy oraz czy overlay menu został wyrenderowany.
+Powyższy test pokazuje sprawdzanie funkcjonalności otwierania menu mobilnego po kliknięciu w ikonę hamburgera. Sprawdza on czy, menu mobilne zostaje poprawnie otwarte, czy posiada odpowiednie klasy oraz czy nagłówek menu został wyrenderowany.
 
 Inne testy jednostkowe dla tego komponentu sprawdzały poprawność nastepujących funkcjonalności:
 \begin{enumerate}
@@ -515,3 +515,22 @@ Inne testy jednostkowe dla tego komponentu sprawdzały poprawność nastepujący
   \item Czy nazwa obecnej strony jest poprawnie wyświetlana.
   \item Czy chowanie i pokazywanie menu nawigacji będzie poprawnie działać po kliknieciu dwukrotnie w ikonę hamburgera.
 \end{enumerate}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.5\linewidth]{rozdzial2/testy_jednostkowe_wyniki.png}
+	\caption{Wyniki uruchomienia testów jednostkowych}
+	\label{Testy jednostkowe wyniki}
+\end{figure}
+
+Wszystkie napisane testy jednostkowe pomyślnie się wykonują.
+
+\subsection{Testy end-to-end}
+
+Testy \texttt{end-to-end} wykonano przy użyciu narzędzia \texttt{Selenium IDE}, rozszerzenia do przeglądarki \texttt{Google Chrome}. Narzędzie pozwala na nagrywanie sekwencji interakcji użytkownika z aplikacją, które następnie służą jako scenariusze testowe.
+Testy przeprowadzono w środowisku maksymalnie zbliżonym do produkcyjnego. Firma Vercel, twórca frameworka \texttt{Next.js}, udostępnia darmowy serwer do wdrażania aplikacji. Mechanizm ciągłego wdrażania (ang. \emph{continuous deployment}) automatycznie buduje aplikację po każdym wysłaniu kodu do repozytorium:
+
+Kod wysłany do gałęzi głównej (\emph{master branch}) uruchamia budowanie wersji produkcyjnej
+Kod wysłany do innych gałęzi tworzy środowisko podglądu (\emph{preview}), dostępne tylko dla uprawnionych osób
+
+Testy \texttt{Selenium IDE} wykonano w środowisku podglądu, które niemal całkowicie odzwierciedla warunki środowiska produkcyjnego.
