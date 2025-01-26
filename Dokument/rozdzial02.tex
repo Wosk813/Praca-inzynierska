@@ -468,3 +468,50 @@ export function areDimensionsValid(ware: ErrandProps['ware'], carProps: Announce
 }
 
 Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. Wartości te są porównywane z wartościami maksymalnymi pojazdu, jeżeli wszystkie wartości są mniejsze lub równe wartościom maksymalnym, to funkcja zwraca wartość \texttt{true}, w przeciwnym wypadku \texttt{false}.
+
+\section{Opis testów aplikacji}
+Aplikacja w trakcie implementacji była testowana na bieżąco. Testy obejmowały zarówno testy jednostkowe, integracyjne, jak i testy \texttt{end-to-end}. Testy jednostkowe sprawdzały poprawność działania poszczególnych komponentów, testy integracyjne sprawdzały poprawność współpracy poszczególnych komponentów aplikacji, a testy end-to-end sprawdzały poprawność działania aplikacji jako całości. Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu biblioteki \texttt{Jest}, natomiast na potrzeby testów \texttt{end-to-end} użyte zostało narzędzie \texttt{Selenium IDE}.
+
+\subsection{Testy jednostkowe}
+Testy jednostkowe sprawdzają poprawność działania poszczególnych komponentów aplikacji. W aplikacji testowano następujące komponenty:
+\begin{itemize}
+  \item Pasek nawigacyjny, w kodzie aplikacji nazwany \texttt{Nav},
+  \item Formularz rejestracji, w kodzie aplikacja nazwany \texttt{SignupForm},
+  \item Wyświetlanie zlecenia, w kodzie aplikacji nazwany \texttt{Errand},
+  \item Mapę z narysowanymi trasami, w kodzie aplikacji nazwany \texttt{AllRoadsMap},
+\end{itemize}
+
+Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}, komponent ten został użyty międzyinnymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}:
+
+{\belowcaptionskip=-9pt
+\begin{lstlisting}[language=JavaScript,caption=Przykładowy test jednostkowy paska nawigacyjnego, label=lst:NavTest]
+it('opens mobile menu when hamburger icon is clicked', () => {
+    render(
+      <NextIntlClientProvider messages={messages} locale="pl">
+        <Nav />
+      </NextIntlClientProvider>,
+    );
+
+    const menuButton = screen.getByTestId('menu-button');
+    fireEvent.click(menuButton);
+
+    const sideMenu = screen.getByTestId('side-menu');
+    const menuOverlay = screen.getByTestId('menu-overlay');
+
+    expect(sideMenu).not.toHaveClass('hidden');
+    expect(sideMenu).toHaveClass('fixed');
+    expect(menuOverlay).toBeInTheDocument();
+  });
+\end{lstlisting}
+}
+
+Powyższy test sprawdza funkcjonalność otwierania menu mobilnego po kliknięciu w ikonę hamburgera. Sprawdza on czy, menu mobilne zostaje poprawnie otwarte, czy posiada odpowiednie klasy oraz czy overlay menu został wyrenderowany.
+
+Inne testy jednostkowe dla tego komponentu sprawdzały poprawność nastepujących funkcjonalności:
+\begin{enumerate}
+  \item Renderowanie nagłówka z nazwą aplikacji.
+  \item Czy mobilne menu jest domyślnie zamknięte.
+  \item Czy menu mobilne jest poprawnie zamykane po kliknięciu ikony hamburgera.
+  \item Czy nazwa obecnej strony jest poprawnie wyświetlana.
+  \item Czy chowanie i pokazywanie menu nawigacji będzie poprawnie działać po kliknieciu dwukrotnie w ikonę hamburgera.
+\end{enumerate}
