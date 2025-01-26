@@ -13,11 +13,10 @@ Testy jednostkowe aplikacji wykonane zostały przy użyciu biblioteki \texttt{Je
 W celu usprawnienia procesu wdrożenia aplikacji na środowisko produkcyjne, zastosowano narzędzie \texttt{Docker} \cite{Docker}. Technologia ta pozwala na izolację poszczególnych modułów aplikacji w dedykowanych kontenerach, zapewniając jednakowe środowisko uruchomieniowe niezależnie od platformy. Kontenery \texttt{Docker} stanowią wyizolowane, lekkie maszyny wirtualne, w których uruchamiana jest aplikacja. Zastosowanie takiej architektury umożliwia zdefiniowanie wszystkich wymaganych zależności na etapie budowania obrazu kontenera, eliminując konieczność ich konfiguracji w środowisku produkcyjnym.
 
 \section{Opis architektury}
-TODO
 \subsection{Architektura warstw}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=1\linewidth]{rozdzial2/diagram_warstw.png}
+		\includegraphics[width=0.7\linewidth]{rozdzial2/diagram_warstw.png}
 	\caption{Diagram architektury warstw aplikacji}
 	\label{Diagram warstw}
 \end{figure}
@@ -76,8 +75,6 @@ Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wys
 \end{enumerate}
 
 \section{Opis implementacji}
-TODO
-
 \subsection{Implementacja mechanizmu publikacji ogłoszeń o planowanej trasie}
 \label{addAnnouncement}
 Dodawanie nowego ogłoszenia o planowanej trasie odbywa się poprzez wysłanie przez użytkownika wypełnienionego formularza. W bazie danych muszą zostać zawarte informacje o: adresie początkowym, adresie końcowym, datach odjazdu i przyjazdu, tytule ogłoszenia oraz jego opisie, a także o ładowności pojazdu (maksymalny ciężar towaru, maksymalne wymiary towaru oraz maksymalna wysokość towaru). Walidacja wprowadzonych przez użytkownika danych odbywa się po stronie serwera. Poniżej zamieszczony został fragment funkcji dodającej do bazy danych nowe ogłoszenie o planowanej trasie.
@@ -534,3 +531,24 @@ Kod wysłany do gałęzi głównej (\emph{master branch}) uruchamia budowanie we
 Kod wysłany do innych gałęzi tworzy środowisko podglądu (\emph{preview}), dostępne tylko dla uprawnionych osób
 
 Testy \texttt{Selenium IDE} wykonano w środowisku podglądu, które niemal całkowicie odzwierciedla warunki środowiska produkcyjnego.
+
+Zostały przygotowane następujace scenariusze testowe:
+\begin{itemize}
+  \item rejestracja nowego użytkownika,
+  \item logowanie do aplikacji,
+  \item wylogowanie z aplikacji,
+  \item otwieranie ogłoszenia i przechodzenie do profilu,
+  \item dodawanie opinii o użytkowniku,
+  \item otwieranie czatu z użytkownikiem
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\linewidth]{rozdzial2/test_end_to_end_wyniki.png}
+  \caption{Wyniki uruchomienia testów end-to-end}
+  \label{Testy end-to-end wyniki}
+\end{figure}
+
+Początkowo test otwierający czat z użytkownikiem (\texttt{Test open chat}) zakończył się niepowodzeniem. W trakcie analizy okazało się, że przyczyną błędu była możliwość utworzenia czatu z ogłoszeniem o planowanej trasie będąc zalogowanym jako przewoźnik. Przewoźnik nie powinien mieć możliwości tworzenia czatu z ogłoszeniem o planowanej trasie, ponieważ również świadczy on usługi przewozowe. Po zmianie polegającej na tym aby, przycisk otworzenia czatu był dostępny tylko dla ogłoszeń o zleceniach transportowych, test zakończył się sukcesem.
+
+Końcowo wszystkie testy \texttt{end-to-end} zakończyły się sukcesem. Testy potwierdziły poprawność działania aplikacji oraz jej zgodność z założeniami funkcjonalnymi.

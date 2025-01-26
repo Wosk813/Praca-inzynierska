@@ -1,0 +1,24 @@
+\chapter{Podsumowanie i wnioski}
+
+\section{Napotkane problemy}
+
+Początkowo projekt zakładał przechowywanie nazw miast początkowych i końcowych wraz ze współrzędnymi geograficznymi bezpośrednio w tabelach \texttt{announcements} i \texttt{errands}. Podczas implementacji odkryto jednak lukę: brakowało informacji o państwie i stanie lokalizacji.
+
+Rozważano ręczne wprowadzanie tych danych przez użytkownika, ale mogłoby to negatywnie wpłynąć na wygodę korzystania z aplikacji. Alternatywą było utworzenie osobnej tabeli \texttt{addresses} przechowującej pełne informacje o adresach. Tym samym w tabelach \texttt{announcements} i \texttt{errands} pozostawiono jedynie klucze obce do tabeli \texttt{addresses}.
+
+Zmiana wymusiła modyfikację formularzy dodawania ogłoszeń i zleceń - zamiast ręcznego wprowadzania, użytkownicy zyskali możliwość wyboru adresu z listy.
+
+\section{Możliwości rozwoju}
+
+Aplikacja została stworzona z myślą o rozwoju. W przyszłości można by dodać nowe funkcjonalności, takie jak:
+\begin{itemize}
+    \item Możliwość dodawania zdjęć do ogłoszeń i zleceń.
+    \item Dodanie możliwości ingerencji w spór między użytkownikami.
+    \item Rozbudowanie systemu oceniania użytkowników, możliwość oceniania dopiero po zakończeniu zlecenia.
+    \item Zgłaszanie nieprawidłowości w ogłoszeniach i zleceniach.
+    \item Dodanie możliwości wyboru dokładnej trasy przejazdu (jeżeli użytkownik nie chce korzystać z proponowanej trasy).
+\end{itemize}
+
+\section{Wnioski}
+
+Projekt CargoLink stanowi innowacyjne rozwiązanie w obszarze transportu okazjonalnego, które przy wykorzystaniu nowoczesnych technologii (\texttt{TypeScript}, \texttt{Next.js}, \texttt{Tailwind CSS}, \texttt{Node.js}, \texttt{PostgreSQL}) oferuje kompleksową platformę łączącą przewoźników ze zleceniodawcami. Aplikacja przyczyni się do optymalizacji procesów logistycznych poprzez inteligentny system rekomendacji, bezpośrednią komunikację między użytkownikami, graficzną prezentację tras oraz wielojęzyczny interfejs, co pozwoli na redukcję kosztów transportu i eliminację nieefektywnego wykorzystania zasobów transportowych. Realizacja projektu stanowi odpowiedź na rosnące zapotrzebowanie rynku na narzędzia usprawniające współpracę w sektorze transportowym.
