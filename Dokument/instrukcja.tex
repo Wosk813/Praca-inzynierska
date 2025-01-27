@@ -1,5 +1,6 @@
 \chapter{Instrukcja wdrożeniowa}
-Aplikacja jest konteneryzowana przy użyciu Docker, co zapewnia kompatybilność międzyplatformową. Baza danych jest hostowana na darmowym serwerze \texttt{Neon}, co upraszcza konfigurację.
+Aplikacja jest konteneryzowana przy użyciu Docker, co zapewnia kompatybilność międzyplatformową. Baza danych jest hostowana na darmowym serwerze \texttt{Neon}, co upraszcza konfigurację. \\
+Wymagania:
 \begin{itemize}
     \item Zainstalowane oprogramowanie \texttt{Docker}
     \item Dostęp do internetu
@@ -13,4 +14,4 @@ W celu wdrożenia aplikacji na środowisko produkcyjne należy wykonać następu
     \item Uruchomić kontener z aplikacją za pomocą komendy \texttt{docker run -p 80:3000 cargolink}.
 \end{enumerate}
 
-Po wykonaniu powyższych kroków aplikacja będzie dostępna pod adresem \texttt{http://localhost:80}. Port na którym działa aplikacja można zmienić w pliku \texttt{Dockerfile} w linii 4. Jednak port 80 jest domyślnym portem dla protokołu HTTP, więc zaleca się pozostawienie go bez zmian. Jeżeli serwer, na którym wykonane zostały powyższe kroki, jest dostępny z zewnątrz, aplikacja będzie dostępna pod adresem \texttt{http://<adres\_serwera>:80}.
+Po wykonaniu powyższych kroków aplikacja będzie dostępna pod adresem \texttt{http://localhost:80}. Port na którym działa aplikacja można zmienić w modyfikując argument w \texttt{-p} w komendzie \texttt{docker run -p 80:3000 cargolink}. Port 80 jest domyślnym portem dla protokołu HTTP, więc zaleca się pozostawienie go bez zmian. Jeżeli serwer, na którym wykonane zostały powyższe kroki, jest dostępny z zewnątrz, aplikacja będzie dostępna pod adresem \texttt{http://<adres\_serwera>:80}.

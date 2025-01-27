@@ -1,0 +1,56 @@
+@MISC{React, 
+  title={{Dokumentacja React.js}}, 
+  howpublished={\url{https://react.dev/reference/react}}, 
+  note={[dost¿p: 20 pa¿dziernika 2024]}
+}
+
+@MISC{Next, 
+  title={{Dokumentacja Next.js}}, 
+  howpublished={\url{https://nextjs.org/docs}}, 
+  note={[dost¿p: 20 pa¿dziernika 2024]}
+}
+
+@MISC{Tailwind, 
+  title={{Dokumentacja Tailwind}}, 
+  howpublished={\url{https://tailwindcss.com/docs/installation}}, 
+  note={[dost¿p: 18 stycznia 2025]}
+}
+
+@MISC{Jest, 
+  title={{Dokumentacja Jest}}, 
+  howpublished={\url{https://jestjs.io/docs/getting-started}}, 
+  note={[dost¿p: 18 stycznia 2025]}
+}
+
+@MISC{PostgreSQL, 
+  title={{Dokumentacja PostgreSQL}}, 
+  howpublished={\url{https://www.postgresql.org/docs/current/index.html}}, 
+  note={[dost¿p: 20 pa¿dziernika 2024]}
+}
+
+@MISC{Docker, 
+  title={{Dokumentacja Docker}}, 
+  howpublished={\url{https://docs.docker.com/}}, 
+  note={[dost¿p: 19 stycznia 2025]}
+}
+
+@book{MurphyWoodLogistyka,
+  author    = {Paul R. Murphy Jr. and Donald F. Wood},
+  title     = {Nowoczesna logistyka},
+  publisher = {Wydawnictwo Helion},
+  year      = {2011}, 
+  address   = {Gliwice} 
+}
+
+@article{LogistykaMiedzynarodowa,
+  author    = {Marta Wincewicz-Bosy},
+  title     = {Logistyka mi¿dzynarodowa},
+  year      = {2015}, 
+}
+
+@book{HeavenlyMathematics,
+  author = {Glen Van Brummelen},
+  publisher = {Princeton University Press},
+  title = {Heavenly Mathematics: The Forgotten Art of Spherical Trigonometry},
+  year = {2013}
+}

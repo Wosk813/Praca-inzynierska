@@ -290,6 +290,7 @@ export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
     \item \textbf{Ustawienie tras w stanie komponentu} - uzyskane macierze ze współrzędnymi geograficznymi tras, są ustawiane jako aktualny stan komponentu.
   \end{enumerate}
 
+\pagebreak
 {\belowcaptionskip=-9pt
   \begin{lstlisting}[language=JavaScript,caption=Implementacja rysowania tras na mapie, label=lst:drawRoutes]
   export default function Map({ zoom = 13, className, roads = [] }: MapProps) {
@@ -349,6 +350,7 @@ Na powyższym fragmencie kodu zauważyć można renderowanie komponentu mapy z w
 \end{enumerate}
 Połączenie powyższych fragmentów kodu pozwala na wyświetlenie interaktywnej mapy z trasami transportowymi, co stanowi kluczową funkcjonalność aplikacji.
 
+\pagebreak
 \subsection{Implementacja algorytmu rekomendacji ogłoszeń}
 
 Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{addAnnouncement} jeszcze przed dodaniem ogłoszenia do bazy danych. Algorytm rekomendacji polega na znalezieniu ogłoszeń, które są najbardziej zbliżone do dodawanego ogłoszenia. W tym celu wykorzystywane są współrzędne geograficzne punktu początkowego i końcowego dodawanego ogłoszenia. Następnie obliczana jest odległość od punktów początkowych i końcowych innych ogłoszeń. Ogłoszenie, które wykaże odległość od punktu początkowego i punktu końcowego nie wiekszą niż 50km oraz zawiera się w odpowiednim zakresie właściwości fizycznych towaru, jest zwracane jako rekomendacja.
@@ -389,6 +391,7 @@ Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{a
 
 Powyższy fragment kodu przedstawia implementację algorytmu rekomendacji ogłoszeń. Funkcja \texttt{tryLinkToPost} przyjmuje jako argument ogłoszenie, które ma zostać zarekomendowane. W zależności od tego czy ogłoszenie jest ogłoszeniem o planowanej trasie czy zleceniem transportowym, pobierane są odpowiednie ogłoszenia z bazy danych. Następnie dla każdego ogłoszenia sprawdzane jest czy spełnia ono warunki rekomendacji.
 
+\pagebreak
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Funkcja sprawdzająca warunki powiązania ogłoszeń, label=lst:isMatchingDelivery]
     export function isMatchingDelivery (
@@ -410,6 +413,7 @@ Powyższy fragment kodu przedstawia implementację algorytmu rekomendacji ogłos
 
 Funkcja \texttt{isMatchingDelivery} sprawdza czy dane ogłoszenie spełnia warunki rekomendacji. W zależności od tego czy punkty początkowe i końcowe ogłoszeń znajdują się w odpowiedniej odległości od siebie oraz czy wymiary towaru mieszczą się w zakresie wymiarów pojazdu, funkcja zwraca wartość \texttt{true} lub \texttt{false}.
 
+\pagebreak
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Funkcje obliczająca odległość między punktami, label=lst:calculateDistance]
   export function calculateDistance(point1: GeoPoint, point2: GeoPoint): number {
@@ -439,9 +443,7 @@ Funkcja \texttt{isMatchingDelivery} sprawdza czy dane ogłoszenie spełnia warun
 \end{lstlisting}
 }
 
-W powyższym fragmencie kodu znajdują się funkcje pomocnicze wykorzystywane w algorytmie rekomendacji ogłoszeń. Funkcja \texttt{calculateDistance} oblicza odległość między dwoma punktami geograficznymi. Funkcja \texttt{arePointsInRange} sprawdza czy odległość między dwoma punktami nie przekracza maksymalnej odległości. Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu.
-
-Do obliczenia odległości między punktami wykorzystany został wzór Haversine'a \cite{HeavenlyMathematics}. Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powrzechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje nam odległość liczoną w kilometrach.
+W powyższym fragmencie kodu znajdują się funkcje pomocnicze wykorzystywane w algorytmie rekomendacji ogłoszeń. Funkcja \texttt{calculateDistance} oblicza odległość między dwoma punktami geograficznymi. Funkcja \texttt{arePointsInRange} sprawdza czy odległość między dwoma punktami nie przekracza maksymalnej odległości. Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. Do obliczenia odległości między punktami wykorzystany został wzór Haversine'a \cite{HeavenlyMathematics}. 
 
 \begin{equation}
   dystans = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
@@ -450,7 +452,9 @@ Do obliczenia odległości między punktami wykorzystany został wzór Haversine
 Gdzie:
 $R$ - promień Ziemi
 $\phi_1, \phi_2$ - szerokości geograficzne
-$\lambda_1, \lambda_2$ - długości geograficzne
+$\lambda_1, \lambda_2$ - długości geograficzne \\
+
+Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powrzechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje odległość liczoną w kilometrach.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Funkcja sprawdzająca czy ogłoszenie zawiera się w odpowiednim zakresie właściwości fizycznych towaru , label=lst:areDimensionValid]
@@ -467,7 +471,7 @@ export function areDimensionsValid(ware: ErrandProps['ware'], carProps: Announce
 Funkcja \texttt{areDimensionsValid} sprawdza czy wymiary towaru mieszczą się w wymiarach pojazdu. Wartości te są porównywane z wartościami maksymalnymi pojazdu, jeżeli wszystkie wartości są mniejsze lub równe wartościom maksymalnym, to funkcja zwraca wartość \texttt{true}, w przeciwnym wypadku \texttt{false}.
 
 \section{Opis testów aplikacji}
-Aplikacja w trakcie implementacji była testowana na bieżąco. Testy obejmowały zarówno testy jednostkowe i testy \texttt{end-to-end}. Testy jednostkowe sprawdzały poprawność działania poszczególnych komponentów, testy integracyjne sprawdzały poprawność współpracy poszczególnych komponentów aplikacji, a testy end-to-end sprawdzały poprawność działania aplikacji jako całości.
+Aplikacja w trakcie implementacji była testowana na bieżąco. Testy obejmowały zarówno testy jednostkowe i testy \texttt{end-to-end}. Testy jednostkowe sprawdzały poprawność działania poszczególnych komponentów, a testy end-to-end sprawdzały poprawność działania aplikacji jako całości. W pełni wykonaną aplikacje przetestowano również pod kątem wydajności.
 
 \subsection{Testy jednostkowe}
 Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu biblioteki \texttt{Jest}. Sprawdzają one poprawność działania poszczególnych komponentów aplikacji. W aplikacji testowano następujące komponenty:
@@ -480,6 +484,7 @@ Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu b
 
 Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}. Komponent ten został użyty międzyinnymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}. W aplikacji przyjmuje on dwie formy, zależnie od szerokości przeglądarki. Gdy szerokość ekranu jest większa niż 768px, pasek nawigacji jest stale widoczny po lewej stronie. Jeżeli ekran jest węższy niż ta wartość graniczna, pasek nawigacji domyślnie jest ukryty, a pokazuje się dopiero po kliknięciu w ikonę hamburgera.
 
+\pagebreak
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Przykładowy test jednostkowy paska nawigacyjnego, label=lst:NavTest]
 it('opens mobile menu when hamburger icon is clicked', () => {
@@ -552,3 +557,22 @@ Zostały przygotowane następujace scenariusze testowe:
 Początkowo test otwierający czat z użytkownikiem (\texttt{Test open chat}) zakończył się niepowodzeniem. W trakcie analizy okazało się, że przyczyną błędu była możliwość utworzenia czatu z ogłoszeniem o planowanej trasie będąc zalogowanym jako przewoźnik. Przewoźnik nie powinien mieć możliwości tworzenia czatu z ogłoszeniem o planowanej trasie, ponieważ również świadczy on usługi przewozowe. Po zmianie polegającej na tym aby, przycisk otworzenia czatu był dostępny tylko dla ogłoszeń o zleceniach transportowych, test zakończył się sukcesem.
 
 Końcowo wszystkie testy \texttt{end-to-end} zakończyły się sukcesem. Testy potwierdziły poprawność działania aplikacji oraz jej zgodność z założeniami funkcjonalnymi.
+
+\subsection{Testy wydajnościowe}
+
+Wydajność aplikacji mierzono za pomocą biblioteki \texttt{@vercel/speed-insights}, które jest zintegrowane z platformą Vercel. Narzędzie to automatycznie zbiera metryki wydajnościowe podczas rzeczywistego użytkowania aplikacji, w tym czas ładowania strony (LCP), opóźnienie interaktywności (FID) oraz przesunięcie układu wizualnego (CLS). Dane te są agregowane i prezentowane w panelu administracyjnym Vercel, co umożliwia monitorowanie wydajności w czasie rzeczywistym oraz identyfikację potencjalnych problemów wydajnościowych. Wszystkie metryki pozostawały w granicach zalecanych przez Web Vitals. Poniżej zamieszczony został zrzut ekranu panelu administracyjnego Vercel ukazujący uzyskane wyniki.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\linewidth]{rozdzial2/testy_wydajnosciowe_wyniki.png}
+  \caption{Wyniki testów wydajnościowych}
+\end{figure}
+
+\pagebreak
+Zebrane dane wydajnościowe pochodzą z 61 rzeczywistych odczytów zarejestrowanych od użytkowników z Polski. Dostarczyły one reprezentatywnej próbki dla analizy zachowania aplikacji w warunkach lokalnych, potwierdzając jej stabilną wydajność.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\linewidth]{rozdzial2/probka_statystyczna.png}
+  \caption{Pochodzenie danych do testów wydajnościowych}
+\end{figure}
