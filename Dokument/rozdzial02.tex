@@ -12,15 +12,18 @@ Testy jednostkowe aplikacji wykonane zostały przy użyciu biblioteki \texttt{Je
 
 W celu usprawnienia procesu wdrożenia aplikacji na środowisko produkcyjne, zastosowano narzędzie \texttt{Docker} \cite{Docker}. Technologia ta pozwala na izolację poszczególnych modułów aplikacji w dedykowanych kontenerach, zapewniając jednakowe środowisko uruchomieniowe niezależnie od platformy. Kontenery \texttt{Docker} stanowią wyizolowane, lekkie maszyny wirtualne, w których uruchamiana jest aplikacja. Zastosowanie takiej architektury umożliwia zdefiniowanie wszystkich wymaganych zależności na etapie budowania obrazu kontenera, eliminując konieczność ich konfiguracji w środowisku produkcyjnym.
 
+\pagebreak
 \section{Opis architektury}
 \subsection{Architektura warstw}
+Poniższy diagram przedstawia architekturę warstw aplikacji. 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.7\linewidth]{rozdzial2/diagram_warstw.png}
 	\caption{Diagram architektury warstw aplikacji}
 	\label{Diagram warstw}
 \end{figure}
-Powyższy diagram przedstawia architekture warstw aplikacji. Zostały na nim wyszczególnione następujące warstwy:
+
+Zostały na nim wyszczególnione następujące warstwy:
 \begin{enumerate}
     \item \textbf{Warstwa prezentacji} - odpowiada za bezpośrednią interakcje z użytkownikiem. W jej skład wchodzą:
     \begin{enumerate}
@@ -111,7 +114,7 @@ export async function addAnnouncement(state: NewAnnouncementFormState, formData:
 W powyższym fragmencie funkcji \texttt{addAnnouncement} widoczny jest mechanizm dodawania nowego ogłoszenia o planowanej trasie. Funkcja realizuje kilka kluczowych zadań:
 \begin{enumerate}
     \item \textbf{Walidacja danych wejściowych} - funkcja wykorzystuje schemat walidacji \texttt{newAnnouncementSchema} zdefiniowany przy pomocy biblioteki \texttt{Zod}. Do schematu podawana jako argument jest funkcja pobierająca tłumaczenia dla komunikatów błędów.
-    \item \textbf{Obsługa danych} - dane są pobierane z obiektu \texttt{FormData}, dostarczanego podczas wysyłania formularza. Adresy początkowy i końcowy są parsowane z objektu \texttt{JSON} zawierającego dokładne informacje o: współrzędnych, identyfikatorów krajów, stanów, miast, kodzie pocztowym oraz innych niezbędnych danych.
+    \item \textbf{Obsługa danych} - dane są pobierane z obiektu \texttt{FormData}, dostarczanego podczas wysyłania formularza. Adresy początkowy i końcowy są parsowane z obiektu \texttt{JSON} zawierającego dokładne informacje o: współrzędnych, identyfikatorów krajów, stanów, miast, kodzie pocztowym oraz innych niezbędnych danych.
     \item \textbf{Mechanizm obsługi błędów} - w przypadku niepowodzenia walidacji funkcja zwraca do formularza obiekt z wyszczególnionymi błędami dla poszczególnych pól.
 \end{enumerate}
 
@@ -202,7 +205,7 @@ export async function addAnnouncement(state: NewAnnouncementFormState, formData:
 }
 
 \pagebreak
-Powyższy fragment funkcji \texttt{addAnnouncement} realizuje proces zapisu nowego ogłoszenia transportowego do bazy danych. Wykonwane są w nim następujące czynności:
+Powyższy fragment funkcji \texttt{addAnnouncement} realizuje proces zapisu nowego ogłoszenia transportowego do bazy danych. Wykonywane są w nim następujące czynności:
 \begin{enumerate}
     \item \textbf{Przygotowanie danych} - parsuje rozmiar towaru na osobne wartości \texttt{size\_x} i \texttt{size\_y}, a także weryfikuje czy użytkownik w rzeczywiście jest zalogowany. Następnie do tabeli \texttt{addresses} dodawane są rekordy z adresem początkowym oraz końcowym.
     \item \textbf{Zapis do bazy danych} - dodaje rekord do tabeli \texttt{announcements} używając wszystkich przesłanych przez użytkownika danych. Odbywa się to poprzez używanie zmiennych (\$1, \$2, ...), uodparnia to aplikacje na atak typu \texttt{SQL injection}.
@@ -211,7 +214,7 @@ Powyższy fragment funkcji \texttt{addAnnouncement} realizuje proces zapisu nowe
 Domyślnie kolumna \texttt{is\_accepted} jest ustawiona na \texttt{false} ze względu na to, że ogłoszenie nie powinno być było widoczne publicznie natychmiast po dodaniu. Stanie się ono widoczne dopiero kiedy jeden z moderatorów je zatwierdzi. Wartość kolumny \texttt{road\_color} jest generowana losowo, kolor ten będzie używany do rysowania trasy przewozu na mapie.
 
 \subsection{Implementacja wizualizacji tras na mapie}
-W aplikacji użyto darmową open-source'ową biblioteke Leaflet, pozwala ona na wygenerowanie interaktywnej mapy, na której wyświetlane będą punkty oraz trasy. Wyświetlenie rzeczywistej trasy między punktami wymaga posiadania bazy danych ze współrzędnymi geograficznym wszystkich dróg na świecie. W aplikacji posłużono się gotowym darmowym rozwiązaniem w formie API. \texttt{Project OSRM} (ang. \emph{Open Source Routing Machine}) pozwala na wygenerowanie macierzy współrzędnych geograficznych, wskazujących na najkrótszą drogę między dwoma punktami.
+W aplikacji użyto darmową open-source'ową bibliotekę Leaflet, pozwala ona na wygenerowanie interaktywnej mapy, na której wyświetlane będą punkty oraz trasy. Wyświetlenie rzeczywistej trasy między punktami wymaga posiadania bazy danych ze współrzędnymi geograficznym wszystkich dróg na świecie. W aplikacji posłużono się gotowym darmowym rozwiązaniem w formie API. \texttt{Project OSRM} (ang. \emph{Open Source Routing Machine}) pozwala na wygenerowanie macierzy współrzędnych geograficznych, wskazujących na najkrótszą drogę między dwoma punktami.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Argumenty komponentu mapy, label=lst:mapProps]
@@ -353,7 +356,7 @@ Połączenie powyższych fragmentów kodu pozwala na wyświetlenie interaktywnej
 \pagebreak
 \subsection{Implementacja algorytmu rekomendacji ogłoszeń}
 
-Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{addAnnouncement} jeszcze przed dodaniem ogłoszenia do bazy danych. Algorytm rekomendacji polega na znalezieniu ogłoszeń, które są najbardziej zbliżone do dodawanego ogłoszenia. W tym celu wykorzystywane są współrzędne geograficzne punktu początkowego i końcowego dodawanego ogłoszenia. Następnie obliczana jest odległość od punktów początkowych i końcowych innych ogłoszeń. Ogłoszenie, które wykaże odległość od punktu początkowego i punktu końcowego nie wiekszą niż 50km oraz zawiera się w odpowiednim zakresie właściwości fizycznych towaru, jest zwracane jako rekomendacja.
+Rekomendowanie ogłoszenia odbywa się w funkcji \texttt{addAnnouncement} \ref{addAnnouncement} jeszcze przed dodaniem ogłoszenia do bazy danych. Algorytm rekomendacji polega na znalezieniu ogłoszeń, które są najbardziej zbliżone do dodawanego ogłoszenia. W tym celu wykorzystywane są współrzędne geograficzne punktu początkowego i końcowego dodawanego ogłoszenia. Następnie obliczana jest odległość od punktów początkowych i końcowych innych ogłoszeń. Ogłoszenie, które wykaże odległość od punktu początkowego i punktu końcowego nie większą niż 50km oraz zawiera się w odpowiednim zakresie właściwości fizycznych towaru, jest zwracane jako rekomendacja.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Implementacja rekomendacji ogłoszeń, label=lst:recomendPost]
@@ -454,7 +457,7 @@ $R$ - promień Ziemi
 $\phi_1, \phi_2$ - szerokości geograficzne
 $\lambda_1, \lambda_2$ - długości geograficzne \\
 
-Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powrzechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje odległość liczoną w kilometrach.
+Wzór ten jest matematyczną metodą obliczania odległości między dwoma punktami na sferze (w tym przypadku na kuli ziemskiej) przy użyciu ich współrzędnych geograficznych (szerokości i długości). Jest on powszechnie używany w nawigacji GPS oraz w systemach geolokalizacyjnych. Wzór ten wymaga podania promienia sfery (dla Ziemi jest to 6371km), następnie przekształca stopnie na radiany oraz używa funkcji trygonometrycznych do obliczenia różnicy współrzędnych. Końcowy wynik jest zaokrąglany do dwóch miejsc po przecinku, co daje odległość liczoną w kilometrach.
 
 {\belowcaptionskip=-9pt
 \begin{lstlisting}[language=JavaScript,caption=Funkcja sprawdzająca czy ogłoszenie zawiera się w odpowiednim zakresie właściwości fizycznych towaru , label=lst:areDimensionValid]
@@ -482,7 +485,7 @@ Testy jednostkowe oraz integracyjne napisano w języku JavaScript przy użyciu b
   \item Mapę z narysowanymi trasami, w kodzie aplikacji nazwany \texttt{AllRoadsMap},
 \end{itemize}
 
-Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}. Komponent ten został użyty międzyinnymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}. W aplikacji przyjmuje on dwie formy, zależnie od szerokości przeglądarki. Gdy szerokość ekranu jest większa niż 768px, pasek nawigacji jest stale widoczny po lewej stronie. Jeżeli ekran jest węższy niż ta wartość graniczna, pasek nawigacji domyślnie jest ukryty, a pokazuje się dopiero po kliknięciu w ikonę hamburgera.
+Przykładowy test jednostkowy sprawdzający poprawność działania komponentu \texttt{Nav}. Komponent ten został użyty między innymi na stronie przeglądarki ogłoszeń o planowanych trasach \ref{Przeglądanie ogłoszeń planowanych tras}. W aplikacji przyjmuje on dwie formy, zależnie od szerokości przeglądarki. Gdy szerokość ekranu jest większa niż 768px, pasek nawigacji jest stale widoczny po lewej stronie. Jeżeli ekran jest węższy niż ta wartość graniczna, pasek nawigacji domyślnie jest ukryty, a pokazuje się dopiero po kliknięciu w ikonę hamburgera.
 
 \pagebreak
 {\belowcaptionskip=-9pt
@@ -509,13 +512,13 @@ it('opens mobile menu when hamburger icon is clicked', () => {
 
 Powyższy test pokazuje sprawdzanie funkcjonalności otwierania menu mobilnego po kliknięciu w ikonę hamburgera. Sprawdza on czy, menu mobilne zostaje poprawnie otwarte, czy posiada odpowiednie klasy oraz czy nagłówek menu został wyrenderowany.
 
-Inne testy jednostkowe dla tego komponentu sprawdzały poprawność nastepujących funkcjonalności:
+Inne testy jednostkowe dla tego komponentu sprawdzały poprawność następujących funkcjonalności:
 \begin{enumerate}
   \item Renderowanie nagłówka z nazwą aplikacji.
   \item Czy mobilne menu jest domyślnie zamknięte.
   \item Czy menu mobilne jest poprawnie zamykane po kliknięciu ikony hamburgera.
   \item Czy nazwa obecnej strony jest poprawnie wyświetlana.
-  \item Czy chowanie i pokazywanie menu nawigacji będzie poprawnie działać po kliknieciu dwukrotnie w ikonę hamburgera.
+  \item Czy chowanie i pokazywanie menu nawigacji będzie poprawnie działać po kliknięciu dwukrotnie w ikonę hamburgera.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -537,7 +540,7 @@ Kod wysłany do innych gałęzi tworzy środowisko podglądu (\emph{preview}), d
 
 Testy \texttt{Selenium IDE} wykonano w środowisku podglądu, które niemal całkowicie odzwierciedla warunki środowiska produkcyjnego.
 
-Zostały przygotowane następujace scenariusze testowe:
+Zostały przygotowane następujące scenariusze testowe:
 \begin{itemize}
   \item rejestracja nowego użytkownika,
   \item logowanie do aplikacji,

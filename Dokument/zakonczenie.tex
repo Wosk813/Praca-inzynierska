@@ -1,5 +1,15 @@
 \chapter{Podsumowanie i wnioski}
 
+\section{Wykonane czynności}
+W ramach pracy inżynierskiej opracowano projekt i implementację aplikacji webowej CargoLink, mającej na celu optymalizację procesów związanych z transportem towarów. Stworzona aplikacja umożliwia zleceniodawcom i przewoźnikom dodawanie ogłoszeń, dopasowywanie ofert, prowadzenie komunikacji oraz finalizowanie transakcji poprzez generowanie szablonów umów. System wprowadza także mechanizm ocen użytkowników, co wspiera budowanie zaufania między stronami.\\
+W projekcie wykonano:
+\begin{enumerate}
+    \item \textbf{Analizę wymagań} - zidentyfikowano kluczowe potrzeby użytkowników i funkcjonalności systemu.
+    \item \textbf{Projekt systemu} - opracowano diagramy przypadków użycia, projekt bazy danych oraz makiety interfejsu użytkownika z uwzględnieniem responsywności.
+    \item \textbf{Implementację aplikacji} - wykorzystano technologie TypeScript, Next.js, Tailwind CSS i PostgreSQL. Zastosowano bezpieczne mechanizmy przechowywania danych, takie jak UUID dla identyfikatorów i bcrypt do szyfrowania haseł.
+    \item \textbf{Testy} - przeprowadzono testy jednostkowe, end-to-end oraz wydajnościowe, zapewniając poprawność i stabilność działania systemu.
+\end{enumerate}
+
 \section{Napotkane problemy}
 
 Początkowo projekt zakładał przechowywanie nazw miast początkowych i końcowych wraz ze współrzędnymi geograficznymi bezpośrednio w tabelach \texttt{announcements} i \texttt{errands}. Podczas implementacji odkryto jednak lukę: brakowało informacji o państwie i stanie lokalizacji.

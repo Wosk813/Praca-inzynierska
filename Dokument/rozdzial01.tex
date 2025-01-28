@@ -2,9 +2,9 @@
 W tym rozdziale zostanie opisany projekt systemu, analiza wymagań pod kątem przypadków użycia oraz projekt bazy danych. Każdy przypadek użycia zostanie omówiony, a jego działanie zilustrowane za pomocą makiet aplikacji. Przygotowana została makieta aplikacji w wersji na telefony komórkowe oraz wersja na standardowe monitory. Pierwszym podpunktem w nowym rozdziale będzie identyfikacja aktorów. Jest to kluczowy element w projektowaniu diagramu przypadków użycia aplikacji.
 
 \section{Identyfikacja aktorów}
-Biorąc pod uwagę wymagania opisane w poprzednich podrozdziałach, zaprojektowany został diagram przypadków użycia aplikacji. W systmie wyróżnić można następujących aktorów:
+Biorąc pod uwagę wymagania opisane w poprzednich podrozdziałach, zaprojektowany został diagram przypadków użycia aplikacji. W systemie wyróżnić można następujących aktorów:
 \begin{enumerate}
-\item \textbf{Użytkownik niezalogowany} - nowy gość w serwsie, może  się zalogować oraz przeglądać ogłoszenia przewozu i zlecenia dodane przez pozostałych użytkowników.
+\item \textbf{Użytkownik niezalogowany} - nowy gość w serwisie, może  się zalogować oraz przeglądać ogłoszenia przewozu i zlecenia dodane przez pozostałych użytkowników.
 \item \textbf{Przewoźnik} - aktor odpowiedzialny za transport towarów. Przewoźnik może przeglądać dostępne zlecenia, dodawać ogłoszenia o planowanych trasach, komunikować się z autorami ogłoszeń, przyjmować zlecenia oraz oceniać i komentować kontrahentów.
 \item \textbf{Zleceniodawca} - użytkownik systemu, który zleca transport towarów. zleceniodawca może dodawać nowe zlecenia transportowe, podobnie jak przewoźnik, może również przeglądać ogłoszenia przewoźników oraz komunikować się z autorami ogłoszeń.
 \item \textbf{Moderator} - osoba odpowiedzialna za zarządzanie systemem. Moderator zatwierdza lub usuwa nowe ogłoszenia i zlecenia.
@@ -14,7 +14,7 @@ Biorąc pod uwagę wymagania opisane w poprzednich podrozdziałach, zaprojektowa
 \section{Projekt interfejsu użytkownika}
 Makieta aplikacji została wykonana w darmowym programie \texttt{Figma}, który pozwala na tworzenie interfejsu użytkownika i oferuje wiele funkcji ułatwiających pracę, takich jak utrzymanie spójności w rozmiarach czcionek, kolorach czy odstępach. Figma świetnie nadaje się także do tworzenia komponentów wielokrotnego użytku oraz ich wariantów. Komponenty te są również wykorzystywane w frameworku \texttt{Next.js}, dlatego uwzględnienie ich już na etapie projektowania ułatwia późniejszą implementację w kodzie.
 
-Poniżej znajdują się założenia wizualne, które zostaną zastosowane podczas projektowania makiety aplikacji. Zdefinowane zostały wartości takie jak:
+Poniżej znajdują się założenia wizualne, które zostaną zastosowane podczas projektowania makiety aplikacji. Zdefiniowane zostały wartości takie jak:
 \begin{itemize}
     \item rozmiary czcionek dla odpowiednich elementów aplikacji,
     \item paleta kolorów,
@@ -66,13 +66,13 @@ Przebieg podstawowy realizacji przypadku użycia:
     \item Wybór czy konto ma reprezentować przedsiębiorstwo (wymagane będzie podane pełnej nazwy firmy, wraz z NIP'em oraz adresem siedziby), bądź osobę fizyczną;
     \item Jeżeli wybrane zostało przedsiębiorstwo, system sprawdza poprawność wprowadzonych danych;
     \item Kliknięcie przycisku \texttt{Dalej}; (Rys. \ref{fig:Formularz rejestracji - ab2 - mobile}.a lub \ref{fig:Formularz rejestracji - ab2 - desktop}.a)
-    \item Zaznaczenie języków, którymi użytkownik umię się posługiwać (informacje te pokazywać się będą w oknie czatu oraz na profilu, aby ułatwić użytkownikom porozumienie się);
+    \item Zaznaczenie języków, którymi użytkownik umie się posługiwać (informacje te pokazywać się będą w oknie czatu oraz na profilu, aby ułatwić użytkownikom porozumienie się);
     \item Akcpetacja regulaminu;
     \item Kliknięcie przycisku \texttt{Zarejestruj się}; (Rys. \ref{fig:Formularz rejestracji - ab2 - mobile}.a lub \ref{fig:Formularz rejestracji - ab2 - desktop}.a)
 \end{enumerate}
 Przebieg alternatywny realizacji podpunktu (6a): W bazie danych istnieje już użytkownik o podanym emailu bądź użytkownik podał błędne dane. System informuje o niezgodności. \\
 Przebieg alternatywny realizacja podpunktu (7a): Jeżeli konto ma reprezentować osobę fizyczną, pola do wpisania informacji o przedsiębiorstwie nie wyświetlą się. \\
-Warunki końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarke ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
+Warunki końcowe: Dodanie utworzonego użytkownika do bazy, a następnie przekierowanie go na przeglądarkę ogłoszeń o planowanych trasach lub zleceń, w zależności od typu konta.
 \begin{figure}[H]
  \centering
   \begin{tabular}{@{}ccc@{}}
@@ -263,12 +263,12 @@ Warunki końcowe: Wyświetlenie klikniętego ogłoszenia. (Rys. \ref{Rys. fig:Wy
 \end{figure}
 
 \texttt{Wyświetlenie mapy ze wszystkimi trasami} \\
-Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
+Zdarzenie inicjujące: Kliknięcie w przycisk \texttt{Otwórz mapę tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b). \\
 Warunki początkowe: Brak. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
     \item Wykonanie przypadku użycia \ref{Przeglądanie zleceń} lub \ref{Przeglądanie ogłoszeń planowanych tras};
-    \item Kliknięcie w przycisk \texttt{Otwórz mape tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b);
+    \item Kliknięcie w przycisk \texttt{Otwórz mapę tras} (Rys. \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - mobile}.b lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.a lub \ref{Rys. fig:Przeglądarka zleceń i planowanych tras - ab - desktop}.b);
     \item Wyświetlenie mapy z zaznaczonymi wszystkimi trasami w bazie danych, które są aktualne.
 \end{enumerate}
 Warunki końcowe: Użytkownikowi ukazuję się mapa z zaznaczonymi trasami wszystkich aktualnych ogłoszeń w bazie danych (Rys. \ref{Rys. fig:Mapa ze wszystkimi trasami - mobile} lub \ref{Rys. fig:Mapa ze wszystkimi trasami - desktop}).\\
@@ -319,7 +319,7 @@ Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Prz
 
 \pagebreak
 \texttt{Dodawanie nowego ogłoszenia o planowanej trasie} \\
-Zdarzenie inicjujące: Po zalogowaniu na konto z typem przewoźnik, do menu nawigacji dokładane jest klilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj ogłoszenie o planowanej trasie} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a). \\
+Zdarzenie inicjujące: Po zalogowaniu na konto z typem przewoźnik, do menu nawigacji dokładane jest kilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj ogłoszenie o planowanej trasie} (Rys. \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego ogłoszenia o planowanej trasie - ab - desktop}.a). \\
 Warunki początkowe: Bycie zalogowanym jako przewoźnik. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
@@ -482,7 +482,7 @@ Warunki początkowe: Od wygenerowania umowy między użytkownikami musi minąć 
 Przebieg podstawowy realizacji przypadku użycia: \\
 \begin{enumerate}
    \item Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika};
-   \item Gdy dodanie opini będzie możliwe, pojawi się nowy przycisk \texttt{Dodaj opinie} (Rys. \ref{Dodawanie opini - mobile - ab}.a lub \ref{Dodawanie opini - destkop - ab}.a);
+   \item Gdy dodanie opinii będzie możliwe, pojawi się nowy przycisk \texttt{Dodaj opinie} (Rys. \ref{Dodawanie opini - mobile - ab}.a lub \ref{Dodawanie opini - destkop - ab}.a);
    \item Wypełnienie formularza dodawania opinii (Rys. \ref{Dodawanie opini - mobile - ab}.b lub \ref{Dodawanie opini - destkop - ab}.b);
    \item Dodanie opinii o użytkowniku.
 \end{enumerate}
@@ -518,7 +518,7 @@ Warunki końcowe: Dodanie opinii o użytkowniku \\
 Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Zleceniodawcy}. Kolorem szarym oznaczone zostały przypadki użycia, które zostały już opisane w poprzednich podsekcjach.\\
 
 \texttt{Dodawanie nowego zlecenia} \\
-Zdarzenie inicjujące: Po zalogowaniu na konto z typem zleceniodawca, do menu nawigacji dokładane jest klilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj zlecenie} (Rys. \ref{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}.a). \\
+Zdarzenie inicjujące: Po zalogowaniu na konto z typem zleceniodawca, do menu nawigacji dokładane jest kilka nowych opcji. Kliknięcie w przycisk \texttt{Dodaj zlecenie} (Rys. \ref{Rys. fig:Dodawanie nowego zlecenia - ab - mobile}.a lub \ref{Rys. fig:Dodawanie nowego zlecenia - ab - desktop}.a). \\
 Warunki początkowe: Bycie zalogowanym jako zleceniodawca. \\
 Przebieg podstawowy realizacji przypadku użycia:
 \begin{enumerate}
@@ -593,7 +593,7 @@ Na powyższym diagramie przedstawione zostały przypadki użycia dla \texttt{Mod
 
  \texttt{Nadawanie i odbieranie użytkownikom prawa moderatora} \\
  Zdarzenie inicjujące: Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika}. \\
- Warunki początkowe: Bycię zalogowanym jako administrator. \\
+ Warunki początkowe: Bycie zalogowanym jako administrator. \\
  Przebieg podstawowy realizacji przypadku użycia: \\
  \begin{enumerate}
     \item Wykonanie przypadku użycia \ref{Wyświetlenie profilu użytkownika};
@@ -614,7 +614,7 @@ Diagram bazy danych został wygenerowany przez program \texttt{DataGrip}. \textt
 	\label{Rys. fig:Projekt bazy danych}
 \end{figure}
 
-Dla tabel zastosowano nazewnictwo w języku angielskim, co jest dobrą praktyką podczas pracy w zespołach międzynarodowych, ułatwiając współpracę i zrozumienie struktury danych. Klucze główne we wszystkich tabelach są typu \texttt{UUID}, co jest nowoczesnym podejściem do identyfikacji wierszy w bazach danych. W odróżnieniu od tradycyjnych kluczy głównych opartych na autoinkrementujących liczbach całkowitych, \texttt{UUID} są unikalnymi identyfikatorami, które mogą być generowane niezależnie w różnych systemach bez ryzyka konfliktów. Jest to szczególnie istotne w systemach rozproszonych, gdzie wiele serwerów może dodawać dane równocześnie. Co więcej, \texttt{UUID} zwiększa bezpieczeństwo, ponieważ trudno jest przewidzieć kolejny identyfikator, co może mieć znaczenie w aplikacjach wymagających większej prywatności i bezpieczeństwa danych. \\
+Dla tabel zastosowano nazewnictwo w języku angielskim, co jest dobrą praktyką podczas pracy w zespołach międzynarodowych, ułatwiając współpracę i zrozumienie struktury danych. Klucze główne we wszystkich tabelach są typu \texttt{UUID}, co jest nowoczesnym podejściem do identyfikacji wierszy w bazach danych. W odróżnieniu od tradycyjnych kluczy głównych opartych na auto inkrementujących liczbach całkowitych, \texttt{UUID} są unikalnymi identyfikatorami, które mogą być generowane niezależnie w różnych systemach bez ryzyka konfliktów. Jest to szczególnie istotne w systemach rozproszonych, gdzie wiele serwerów może dodawać dane równocześnie. Co więcej, \texttt{UUID} zwiększa bezpieczeństwo, ponieważ trudno jest przewidzieć kolejny identyfikator, co może mieć znaczenie w aplikacjach wymagających większej prywatności i bezpieczeństwa danych. \\
 Przykładowy klucz główny UUID: \texttt{2d8e72dc-aa4e-4c4c-b02b-b08655d891aa} \\
 
 Dodatkowo, zamiast przechowywać hasła w postaci zwykłego tekstu, hasła użytkowników są szyfrowane przy użyciu algorytmu \texttt{bcrypt}. Dzięki któremu nawet w przypadku nieautoryzowanego dostępu do bazy danych, hasła pozostają bezpieczne, ponieważ odzyskanie oryginalnej wartości z hasha jest praktycznie niemożliwe. Dodatkowo technika solenia (and. \texttt{salt}) stosowana w \texttt{pgcrypto} (rozszerzenie do \texttt{PostgreSQL}) dodaje losowy ciąg znaków do każdego hasła przed jego zahashowaniem, co zapobiega atakom typu "rainbow table" i sprawia, że dwa identyczne hasła będą miały różne zaszyfrowane wartości. \\
